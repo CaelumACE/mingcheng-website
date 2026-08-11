@@ -6,3 +6,5 @@ dist/
 .env
 .env.local
 mingcheng-dist.zip
+v3-backup/
+v3.1-backup/
