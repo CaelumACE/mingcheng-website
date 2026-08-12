@@ -188,7 +188,7 @@ export default function Home() {
               </h1>
 
               <p className="reveal text-xl md:text-2xl font-semibold text-brand-600 mb-6">
-                铭澄互动 —— 让智能触手可及 · 终测OK
+                铭澄互动 —— 让智能触手可及
               </p>
 
               <p className="reveal text-lg md:text-xl text-ink-secondary max-w-lg mb-12 leading-relaxed">
