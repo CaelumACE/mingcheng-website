@@ -343,9 +343,9 @@ export default function Home() {
             {partners.map((p) => (
               <div
                 key={p.name}
-                className="glass-card p-6 flex items-center justify-center h-28 md:h-32"
+                className="group flex items-center justify-center h-28 md:h-32 rounded-2xl border border-slate-200/40 bg-white/20 hover:bg-white/50 hover:border-slate-300/60 hover:shadow-sm transition-all duration-300"
               >
-                <img src={p.logo} alt={p.name} className="h-16 md:h-20 w-auto object-contain opacity-75 hover:opacity-100 transition-opacity duration-300" />
+                <img src={p.logo} alt={p.name} className="h-14 md:h-18 w-auto object-contain opacity-60 group-hover:opacity-90 transition-opacity duration-300" />
               </div>
             ))}
           </div>
