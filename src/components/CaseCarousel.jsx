@@ -68,7 +68,7 @@ const slides = [
     ],
   },
   {
-    image: '/assets/cases/case-party-history.png',
+    image: '/assets/cases/case-pc-extreme.jpg',
     tag: '交互教学 · 技能培训',
     title: 'PC 装机模拟教学系统',
     desc: '开发交互式 3D 硬件装机教学软件，通过引导式操作流程与零部件识别训练，帮助学员掌握计算机组装技能，适用于职业教育与企业内训。',
