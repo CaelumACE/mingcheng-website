@@ -2,7 +2,7 @@ import { useState, useEffect, useCallback, useRef } from 'react'
 
 const slides = [
   {
-    image: '/assets/cases/case-supply-center.jpg',
+    image: '/assets/cases/case-party-new.jpg',
     tag: '红色文化 · 数字展厅',
     title: '党建党史展厅',
     desc: '高保真红色文化数字展厅，运用沉浸式空间设计与多媒体交互技术，让党史学习教育突破时空限制，支持远程参观与互动学习。',
@@ -13,7 +13,7 @@ const slides = [
     ],
   },
   {
-    image: '/assets/cases/case-smart-factory.jpg',
+    image: '/assets/cases/case-bmw-circular.jpg',
     tag: '数字孪生 · 管理中心',
     title: '供应商资源管理中心',
     desc: '为企业打造数字化供应商管理中枢，融合数据可视化大屏与智能交互终端，实现供应链全链路透明化管理与实时决策支持。',
@@ -24,7 +24,7 @@ const slides = [
     ],
   },
   {
-    image: '/assets/cases/case-bmw-circular.jpg',
+    image: '/assets/cases/case-smart-factory.jpg',
     tag: '品牌展馆 · 绿色可持续',
     title: 'BMW CIRCULAR 循环经济展台',
     desc: '为国际品牌打造沉浸式循环概念展馆，结合生态景观与数字媒体艺术，传递可持续发展理念，创造极具视觉冲击力的品牌体验空间。',
