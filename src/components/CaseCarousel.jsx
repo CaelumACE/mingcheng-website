@@ -2,7 +2,7 @@ import { useState, useEffect, useCallback, useRef } from 'react'
 
 const slides = [
   {
-    image: '/assets/cases/case-vr-store.jpg',
+    image: '/assets/cases/case-supply-center.jpg',
     tag: '红色文化 · 数字展厅',
     title: '党建党史展厅',
     desc: '高保真红色文化数字展厅，运用沉浸式空间设计与多媒体交互技术，让党史学习教育突破时空限制，支持远程参观与互动学习。',
@@ -35,7 +35,7 @@ const slides = [
     ],
   },
   {
-    image: '/assets/cases/case-supply-center.jpg',
+    image: '/assets/cases/case-vr-store.jpg',
     tag: '工业仿真 · 智能制造',
     title: '智能工厂产线仿真系统',
     desc: '基于高精度物理引擎的工业产线仿真平台，还原真实工厂环境与机器人作业流程，用于产线规划验证、员工培训与安全演练。',
