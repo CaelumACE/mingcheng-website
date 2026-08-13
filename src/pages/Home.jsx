@@ -9,70 +9,75 @@ const businessCards = [
   {
     icon: (
       <svg className="w-9 h-9" viewBox="0 0 48 48" fill="none">
-        <rect x="4" y="8" width="40" height="32" rx="4" stroke="currentColor" strokeWidth="1.5" />
-        <circle cx="16" cy="24" r="5" stroke="currentColor" strokeWidth="1.5" />
-        <path d="M8 36c0-3 4-7 8-7s8 4 8 7" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" />
-        <path d="M28 18h12M28 24h12M28 30h8" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" />
+        <rect x="4" y="8" width="40" height="32" rx="4" stroke="white" strokeWidth="1.5" />
+        <circle cx="16" cy="24" r="5" stroke="white" strokeWidth="1.5" />
+        <path d="M8 36c0-3 4-7 8-7s8 4 8 7" stroke="white" strokeWidth="1.5" strokeLinecap="round" />
+        <path d="M28 18h12M28 24h12M28 30h8" stroke="white" strokeWidth="1.5" strokeLinecap="round" />
+        <circle cx="16" cy="24" r="2" fill="#bfdbfe" />
       </svg>
     ),
     title: 'AI 数字员工',
     desc: '不是聊天框，而是敢进入业务流程的 AI 执行系统。理解知识、遵循流程、调用系统，安全可控地完成真实工作。',
     to: '/products#ai',
-    accent: 'from-blue-500/15 to-blue-400/10',
-    iconBg: 'bg-blue-100 text-blue-600',
+    iconBox: 'bg-gradient-to-br from-blue-500 to-indigo-600',
+    iconGlow: 'shadow-[0_10px_28px_rgba(37,99,235,0.35)]',
     border: 'border-slate-200/60 hover:border-blue-300',
     glow: 'hover:shadow-[0_8px_40px_rgba(37,99,235,0.10)]',
+    topbar: 'from-blue-500 to-indigo-500',
   },
   {
     icon: (
       <svg className="w-9 h-9" viewBox="0 0 48 48" fill="none">
-        <rect x="6" y="14" width="36" height="24" rx="3" stroke="currentColor" strokeWidth="1.5" />
-        <circle cx="24" cy="24" r="8" stroke="currentColor" strokeWidth="1.5" />
-        <circle cx="24" cy="24" r="3" fill="currentColor" opacity="0.6" />
-        <path d="M24 6v4M24 38v4M10 20h4M34 20h4" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" />
+        <rect x="6" y="14" width="36" height="24" rx="3" stroke="white" strokeWidth="1.5" />
+        <circle cx="24" cy="24" r="8" stroke="white" strokeWidth="1.5" />
+        <circle cx="24" cy="24" r="3" fill="#a5f3fc" />
+        <path d="M24 6v4M24 38v4M10 20h4M34 20h4" stroke="white" strokeWidth="1.5" strokeLinecap="round" />
       </svg>
     ),
     title: 'VR/AR 虚实融合',
     desc: '基于 UE4/Unity 引擎，提供 XR 内容研发与定制化整体解决方案。从数字展厅到工业仿真，全链路覆盖。',
     to: '/products#xr',
-    accent: 'from-cyan-500/15 to-teal-400/10',
-    iconBg: 'bg-cyan-100 text-cyan-600',
+    iconBox: 'bg-gradient-to-br from-cyan-500 to-teal-600',
+    iconGlow: 'shadow-[0_10px_28px_rgba(6,182,212,0.35)]',
     border: 'border-slate-200/60 hover:border-cyan-300',
     glow: 'hover:shadow-[0_8px_40px_rgba(6,182,212,0.10)]',
+    topbar: 'from-cyan-500 to-teal-500',
   },
   {
     icon: (
       <svg className="w-9 h-9" viewBox="0 0 48 48" fill="none">
-        <path d="M24 8l-4 4h-8c-2.2 0-4 1.8-4 4v20c0 2.2 1.8 4 4 4h24c2.2 0 4-1.8 4-4V16c0-2.2-1.8-4-4-4h-8l-4-4z" stroke="currentColor" strokeWidth="1.5" strokeLinejoin="round" />
-        <circle cx="24" cy="26" r="6" stroke="currentColor" strokeWidth="1.5" />
-        <circle cx="24" cy="26" r="2" fill="currentColor" opacity="0.6" />
+        <path d="M24 8l-4 4h-8c-2.2 0-4 1.8-4 4v20c0 2.2 1.8 4 4 4h24c2.2 0 4-1.8 4-4V16c0-2.2-1.8-4-4-4h-8l-4-4z" stroke="white" strokeWidth="1.5" strokeLinejoin="round" />
+        <circle cx="24" cy="26" r="6" stroke="white" strokeWidth="1.5" />
+        <circle cx="24" cy="26" r="2" fill="#ddd6fe" />
       </svg>
     ),
     title: '无人机训练软件',
     desc: '军事风洞跳伞训练仿真平台，高精度物理引擎与沉浸式交互体验。更多内容即将上线。',
     to: '/products#drone',
-    accent: 'from-purple-500/15 to-violet-400/10',
-    iconBg: 'bg-purple-100 text-purple-600',
+    iconBox: 'bg-gradient-to-br from-violet-500 to-purple-600',
+    iconGlow: 'shadow-[0_10px_28px_rgba(139,92,246,0.35)]',
     border: 'border-slate-200/60 hover:border-purple-300',
     glow: 'hover:shadow-[0_8px_40px_rgba(139,92,246,0.10)]',
     badge: '即将上线',
+    topbar: 'from-violet-500 to-purple-500',
   },
   {
     icon: (
       <svg className="w-9 h-9" viewBox="0 0 48 48" fill="none">
-        <rect x="4" y="20" width="40" height="12" rx="2" stroke="currentColor" strokeWidth="1.5" />
-        <path d="M12 12h4v8h-4zM20 8h4v12h-4zM28 4h4v16h-4zM36 12h4v8h-4z" stroke="currentColor" strokeWidth="1.5" />
-        <line x1="24" y1="32" x2="24" y2="40" stroke="currentColor" strokeWidth="1.5" />
-        <circle cx="24" cy="42" r="3" fill="currentColor" opacity="0.6" />
+        <rect x="4" y="20" width="40" height="12" rx="2" stroke="white" strokeWidth="1.5" />
+        <path d="M12 12h4v8h-4zM20 8h4v12h-4zM28 4h4v16h-4zM36 12h4v8h-4z" stroke="white" strokeWidth="1.5" />
+        <line x1="24" y1="32" x2="24" y2="40" stroke="white" strokeWidth="1.5" />
+        <circle cx="24" cy="42" r="3" fill="#fde68a" />
       </svg>
     ),
     title: '智慧交通',
     desc: '自研时空分层预测模型，突破 GCN 瓶颈。动态图结构学习 + BiGCN 出行预测 + T2GAN 态势推演。',
     to: '/products#traffic',
-    accent: 'from-amber-500/15 to-orange-400/10',
-    iconBg: 'bg-amber-100 text-amber-600',
+    iconBox: 'bg-gradient-to-br from-amber-500 to-orange-600',
+    iconGlow: 'shadow-[0_10px_28px_rgba(245,158,11,0.35)]',
     border: 'border-slate-200/60 hover:border-amber-300',
     glow: 'hover:shadow-[0_8px_40px_rgba(245,158,11,0.10)]',
+    topbar: 'from-amber-500 to-orange-500',
   },
 ]
 
@@ -239,9 +244,10 @@ export default function Home() {
                     {card.badge}
                   </span>
                 )}
-                <div className={`w-14 h-14 rounded-xl bg-gradient-to-br ${card.accent} ${card.iconBg.replace(/text-\S+/, '').replace(/bg-\S+/, '')} flex items-center justify-center mb-5 border border-slate-200/50 group-hover:scale-110 group-hover:rotate-3 transition-transform duration-500`}>
+                <div className={`w-14 h-14 rounded-xl ${card.iconBox} ${card.iconGlow} flex items-center justify-center mb-5 border border-white/20 ring-4 ring-white/10 group-hover:scale-110 group-hover:-rotate-6 transition-all duration-500`}>
                   {card.icon}
                 </div>
+                <span className={`absolute top-0 left-6 right-6 h-1 rounded-b-full bg-gradient-to-r ${card.topbar} opacity-0 group-hover:opacity-100 transition-opacity duration-500`} />
                 <h3 className="h3-title mb-3">{card.title}</h3>
                 <p className="text-ink-secondary text-sm leading-relaxed">{card.desc}</p>
                 <span className="inline-flex items-center gap-1.5 mt-5 text-sm font-semibold text-brand-600 group-hover:text-brand-700 transition-colors">
