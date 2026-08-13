@@ -2,7 +2,7 @@ import { useState, useEffect, useCallback, useRef } from 'react'
 
 const slides = [
   {
-    image: '/assets/cases/case-party-history.png',
+    image: '/assets/cases/case-vr-store.jpg',
     tag: '红色文化 · 数字展厅',
     title: '党建党史展厅',
     desc: '高保真红色文化数字展厅，运用沉浸式空间设计与多媒体交互技术，让党史学习教育突破时空限制，支持远程参观与互动学习。',
@@ -13,7 +13,7 @@ const slides = [
     ],
   },
   {
-    image: '/assets/cases/case-supply-center.jpg',
+    image: '/assets/cases/case-smart-factory.jpg',
     tag: '数字孪生 · 管理中心',
     title: '供应商资源管理中心',
     desc: '为企业打造数字化供应商管理中枢，融合数据可视化大屏与智能交互终端，实现供应链全链路透明化管理与实时决策支持。',
@@ -35,7 +35,7 @@ const slides = [
     ],
   },
   {
-    image: '/assets/cases/case-smart-factory.jpg',
+    image: '/assets/cases/case-supply-center.jpg',
     tag: '工业仿真 · 智能制造',
     title: '智能工厂产线仿真系统',
     desc: '基于高精度物理引擎的工业产线仿真平台，还原真实工厂环境与机器人作业流程，用于产线规划验证、员工培训与安全演练。',
@@ -46,7 +46,7 @@ const slides = [
     ],
   },
   {
-    image: '/assets/cases/case-vr-store.jpg',
+    image: '/assets/cases/case-metaverse-track.jpg',
     tag: 'VR/AR · 虚实融合',
     title: 'VR 智能便利店实训系统',
     desc: '基于 UE 引擎开发的 VR 实训应用，模拟便利店经营全流程，融合 AI 导购助手与虚拟交互界面，为新零售从业人员提供沉浸式培训方案。',
@@ -57,7 +57,7 @@ const slides = [
     ],
   },
   {
-    image: '/assets/cases/case-metaverse-track.jpg',
+    image: '/assets/cases/case-pc-assembly.jpg',
     tag: '元宇宙 · 娱乐体验',
     title: '赛博朋克元宇宙赛道体验',
     desc: '构建未来城市主题的元宇宙驾驶体验场景，融合霓虹美学、物理驾驶模拟与社交互动元素，打造沉浸式数字娱乐产品。',
@@ -68,7 +68,7 @@ const slides = [
     ],
   },
   {
-    image: '/assets/cases/case-pc-assembly.jpg',
+    image: '/assets/cases/case-party-history.png',
     tag: '交互教学 · 技能培训',
     title: 'PC 装机模拟教学系统',
     desc: '开发交互式 3D 硬件装机教学软件，通过引导式操作流程与零部件识别训练，帮助学员掌握计算机组装技能，适用于职业教育与企业内训。',
