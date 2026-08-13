@@ -2,7 +2,7 @@ import { useState, useEffect, useCallback, useRef } from 'react'
 
 const slides = [
   {
-    image: '/assets/cases/case-party-new.jpg',
+    image: '/assets/cases/case-party-v3.jpg',
     tag: '红色文化 · 数字展厅',
     title: '党建党史展厅',
     desc: '高保真红色文化数字展厅，运用沉浸式空间设计与多媒体交互技术，让党史学习教育突破时空限制，支持远程参观与互动学习。',
