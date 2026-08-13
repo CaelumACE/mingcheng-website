@@ -3,6 +3,7 @@ import { useEffect } from 'react'
 import HeroIllustration from '../components/HeroIllustration'
 import FloatingShapes from '../components/FloatingShapes'
 import CountUp from '../components/CountUp'
+import CaseCarousel from '../components/CaseCarousel'
 
 const businessCards = [
   {
@@ -300,7 +301,7 @@ export default function Home() {
         </div>
       </section>
 
-      {/* ───── Featured Case ───── */}
+      {/* ───── Featured Case Carousel ───── */}
       <section className="py-24 md:py-32 bg-section-alt relative">
         <div className="absolute inset-0 dot-grid opacity-30" />
         <div className="max-w-6xl mx-auto px-6 relative z-10">
@@ -310,57 +311,12 @@ export default function Home() {
             <p className="section-subtitle">从概念到交付，我们陪客户走完最后一公里</p>
           </div>
 
-          <div className="reveal glass-card overflow-hidden grid grid-cols-1 lg:grid-cols-2 rounded-3xl">
-            {/* Case Image — 党建展厅效果图 */}
-            <div className="relative min-h-[280px] lg:min-h-[420px] bg-gradient-to-br from-brand-50 to-cyan-50 border-b lg:border-b-0 lg:border-r border-slate-200/60 overflow-hidden">
-              <img
-                src="/assets/case-showroom.jpg"
-                alt="数字孪生展厅案例"
-                className="absolute inset-0 w-full h-full object-cover"
-                loading="lazy"
-                onError={(e) => {
-                  e.target.style.display = 'none'
-                  e.target.nextSibling.style.display = 'flex'
-                }}
-              />
-              {/* Fallback placeholder (shown if image missing) */}
-              <div className="absolute inset-0 hidden flex-col items-center justify-center gap-3" style={{ display: 'none' }}>
-                <svg className="w-16 h-16 text-brand-300" viewBox="0 0 48 48" fill="none">
-                  <rect x="6" y="8" width="36" height="32" rx="3" stroke="currentColor" strokeWidth="1.5" />
-                  <circle cx="18" cy="20" r="3" fill="currentColor" />
-                  <path d="M12 34l8-8 6 6 5-5 5 5" stroke="currentColor" strokeWidth="1.5" strokeLinejoin="round" strokeLinecap="round" />
-                </svg>
-                <span className="text-sm text-brand-400 font-medium">案例配图</span>
-              </div>
-            </div>
-
-            {/* Text */}
-            <div className="p-8 md:p-10">
-              <span className="inline-block px-3 py-1 rounded-full text-xs font-semibold bg-brand-100 text-brand-700 mb-4">
-                数字孪生 · 工业仿真
-              </span>
-              <h3 className="text-2xl font-bold text-ink mb-4 leading-snug">
-                大型装备制造企业 · 数字孪生展厅
-              </h3>
-              <p className="text-ink-secondary leading-relaxed mb-6">
-                为客户构建高保真数字孪生展厅，将线下实体展馆与线上沉浸式交互体验打通，支持远程参观、设备拆解演示与实时数据可视化，显著降低线下接待与培训成本。
-              </p>
-              <div className="space-y-3">
-                {casePoints.map((p) => (
-                  <div key={p.t} className="flex items-start gap-3">
-                    <span className="mt-1 w-1.5 h-1.5 rounded-full bg-brand-500 shrink-0" />
-                    <p className="text-sm text-ink-secondary">
-                      <span className="font-semibold text-ink">{p.t}：</span>{p.d}
-                    </p>
-                  </div>
-                ))}
-              </div>
-            </div>
-          </div>
+          {/* Carousel: auto-play 5s, pause on hover, arrow nav, dot indicators */}
+          <CaseCarousel />
 
           {/* More cases chips */}
           <div className="reveal flex flex-wrap justify-center gap-3 mt-10">
-            {['数字展厅', '工业仿真', '智慧交通指挥中心', 'VR 培训系统'].map((c) => (
+            {['数字展厅', '工业仿真', '智慧交通指挥中心', 'VR 培训系统', '元宇宙体验', '交互教学'].map((c) => (
               <span key={c} className="px-4 py-2 rounded-full text-sm font-medium text-ink-secondary bg-white/60 border border-slate-200/60 backdrop-blur-sm">
                 {c}
               </span>
