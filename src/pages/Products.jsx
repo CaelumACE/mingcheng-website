@@ -1,6 +1,7 @@
 import { useEffect } from 'react'
 import FloatingShapes from '../components/FloatingShapes'
 import { ProductIllustration } from '../components/ProductIllustrations'
+import ImageCarousel from '../components/ImageCarousel'
 
 const products = [
   {
@@ -44,22 +45,79 @@ const products = [
   {
     id: 'drone',
     title: '无人机训练软件',
-    subtitle: '军事级仿真训练平台',
+    subtitle: '三位一体仿真平台 · 战训教一体化',
     accent: 'purple',
-    desc: '面向军事与专业领域的风洞跳伞训练仿真平台，融合高精度物理引擎与沉浸式交互体验。',
+    desc: '面向战、训、教一体化应用的无人机仿真平台。支持武器装备库、无人机库、战术想定等核心模块，可按需组合、分层组织、贯通应用——既可作为综合运用平台，也可独立拆分为作战/训练/教学三套子系统。',
     features: [
-      { title: '风洞模拟', desc: '高精度空气动力学模型，真实还原风洞环境下的飞行姿态与受力。' },
-      { title: '沉浸训练', desc: 'VR 头显 + 体感反馈，提供接近实战的训练体验。' },
-      { title: '数据分析', desc: '训练过程全数据采集，姿态分析、成绩评估、改进建议。' },
-      { title: '多人协同', desc: '支持多人在线协同训练，还原真实编队环境。' },
+      { title: '三位一体架构', desc: '战/训/教一体化平台，可独立拆分也可综合运用。依据不同任务需求灵活组合与部署。' },
+      { title: '武器装备库', desc: '指挥/侦察/打击/警戒/保障角色编组与装备方案动态配置，建立岗位-功能-装备对应关系。' },
+      { title: '无人机库', desc: '机架/电池/电机/螺旋桨/相机/电调/飞控/天线/载荷9类核心部件组装，实时参数可视化。' },
+      { title: '战术想定环境', desc: 'DEM地形+倾斜摄影数字战场，坦克/步战车/火炮/无人车等多类型作战单元协同部署。' },
     ],
     scenarios: [
-      { title: '军事训练', desc: '跳伞、无人机操控等高风险训练场景的仿真替代。' },
-      { title: '民航培训', desc: '飞行员应急程序训练，降低真机训练成本与风险。' },
-      { title: '竞技体育', desc: '风洞飞行竞技仿真，辅助运动员技术分析。' },
+      { title: '部队作战运用', desc: '贴近实战的演训环境与作战推演，红蓝对抗多类型战场场景。' },
+      { title: '专业训练', desc: '无人机操控、战术运用、反无装备运用等专业技能训练与考评。' },
+      { title: '院校教学', desc: '无人机理论教学、模拟训练、考评结合的一体化教学支撑。' },
     ],
-    highlight: '即将上线——更多产品细节与功能演示敬请期待。',
-    badge: '即将上线',
+    highlight: '战/训/教三位一体，模块化设计按需组合；AI智能化分析贯穿全过程；支持DEM地形与倾斜摄影真实战场环境。',
+    carouselInterval: 6000,
+    carouselSlides: [
+      {
+        image: '/assets/drone/drone-01-weapon-base.jpg',
+        tag: '武器装备库 · 角色编组',
+        title: '作战角色与装备配置',
+        desc: '支持指挥、侦察、打击、警戒、保障五大作战角色选择与差异化装备配置，建立人员岗位-功能分工-装备配置的对应关系。',
+        points: [
+          { t: '角色灵活编组', d: '指挥/侦察/打击/警戒/保障差异化设置' },
+          { t: '装备方案可调', d: '默认装备方案在装备库中持续调整更新' },
+          { t: '示例武器清单', d: '突击步枪/狙击枪/反无干扰器/火箭筒等' },
+        ],
+      },
+      {
+        image: '/assets/drone/drone-02-uav-hangar.jpg',
+        tag: '无人机库 · 核心部件',
+        title: '核心部件组装与平台配置',
+        desc: '在机库界面选择并装配机架、电池、电机、螺旋桨、相机、电调、飞控、天线及载荷等核心部件，每种不少于3类，形成完整无人机配置。',
+        points: [
+          { t: '9类核心部件', d: '机架/电池/电机/螺旋桨/相机/电调/飞控/天线/载荷' },
+          { t: '载荷支持', d: '手榴弹/60mm迫击炮炮弹/TNT药块等' },
+          { t: '实时参数', d: '推力/重量/速度等关键性能参数动态显示' },
+        ],
+      },
+      {
+        image: '/assets/drone/drone-03-city-battlefield.jpg',
+        tag: '战术想定 · 数字战场',
+        title: '城市级战场渲染与环境构设',
+        desc: '支持DEM地形、倾斜摄影真实地图，构设战场地形、敌我态势、目标部署、行动路线和工事障碍，形成具有明确任务条件的数字化演训空间。',
+        points: [
+          { t: '地形系统', d: 'DEM地形 + 倾斜摄影真实地图' },
+          { t: '渲染能力', d: '城市级大规模战场 + 烟雾特效' },
+          { t: '作战单元', d: '99A/M1A2/04A步战车/PLZ10火炮/悍猛/CM21装甲车等' },
+        ],
+      },
+      {
+        image: '/assets/drone/drone-04-formation-deploy.jpg',
+        tag: '战术想定 · 编队部署',
+        title: '多类型作战单元协同演练',
+        desc: '部署坦克、步战车、火炮、无人车、机器狗等作战单元，形成红蓝对抗的多类型兵力与目标体系，支持编队协同训练。',
+        points: [
+          { t: '丰富兵力体系', d: '坦克/步战车/火炮/无人车/机器狗等多单元' },
+          { t: '红蓝对抗', d: '红方人员/蓝方人员/上级等多角色配置' },
+          { t: '编队协同', d: '多车辆联合训练，还原真实编队环境' },
+        ],
+      },
+      {
+        image: '/assets/drone/drone-05-scene-editor.jpg',
+        tag: '战术想定 · 属性配置',
+        title: '3D场景编辑器与属性管理',
+        desc: '通过对象列表与3D场景编辑器配置作战单元属性与任务，将人员、装备和训练课目放入具体任务背景，实现精细化场景编辑。',
+        points: [
+          { t: '树形对象列表', d: '相机/主题/载具/人员分类管理' },
+          { t: '属性实时配置', d: '名称/队伍/阵营/移动等属性动态设置' },
+          { t: '即时预览', d: '3D场景实时渲染，所见即所得' },
+        ],
+      },
+    ],
   },
   {
     id: 'traffic',
@@ -179,19 +237,23 @@ export default function Products() {
                     {product.desc}
                   </p>
 
-                  {/* Visual: real photo for XR & Drone, SVG for others */}
-                  {(product.id === 'xr' || product.id === 'drone') && (
+                  {/* Visual: carousel for products with slides, photo for XR, SVG for others */}
+                  {product.carouselSlides ? (
+                    <ImageCarousel
+                      slides={product.carouselSlides}
+                      interval={product.carouselInterval || 6000}
+                      className="mb-8"
+                    />
+                  ) : product.id === 'xr' ? (
                     <div className="mb-8 rounded-2xl overflow-hidden border border-slate-200/50 bg-white/40 backdrop-blur-sm shadow-sm">
                       <img
-                        src={product.id === 'xr' ? '/assets/vr-ar-showroom.jpg' : '/assets/drone-training-cabin.jpg'}
-                        alt={product.id === 'xr' ? '数字展厅实景' : '无人机训练仿真'}
+                        src="/assets/vr-ar-showroom.jpg"
+                        alt="数字展厅实景"
                         className="w-full h-auto object-cover"
                         loading="lazy"
                       />
                     </div>
-                  )}
-
-                  {product.id !== 'xr' && product.id !== 'drone' && (
+                  ) : (
                     <div className="mb-8 rounded-2xl overflow-hidden border border-slate-200/50 bg-white/40 backdrop-blur-sm">
                       <ProductIllustration type={product.id} />
                     </div>
