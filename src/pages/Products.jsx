@@ -63,7 +63,7 @@ const products = [
     carouselInterval: 6000,
     carouselSlides: [
       {
-        image: '/assets/drone/drone-01-weapon-base-x2.jpg',
+        image: '/assets/drone/drone-01-weapon-base-x2.jpg?v=2',
         tag: '武器装备库 · 角色编组',
         title: '作战角色与装备配置',
         desc: '支持指挥、侦察、打击、警戒、保障五大作战角色选择与差异化装备配置，建立人员岗位-功能分工-装备配置的对应关系。',
@@ -74,7 +74,7 @@ const products = [
         ],
       },
       {
-        image: '/assets/drone/drone-02-uav-hangar-x2.jpg',
+        image: '/assets/drone/drone-02-uav-hangar-x2.jpg?v=2',
         tag: '无人机库 · 核心部件',
         title: '核心部件组装与平台配置',
         desc: '在机库界面选择并装配机架、电池、电机、螺旋桨、相机、电调、飞控、天线及载荷等核心部件，每种不少于3类，形成完整无人机配置。',
@@ -85,7 +85,7 @@ const products = [
         ],
       },
       {
-        image: '/assets/drone/drone-03-city-battlefield-x2.jpg',
+        image: '/assets/drone/drone-03-city-battlefield-x2.jpg?v=2',
         tag: '战术想定 · 数字战场',
         title: '城市级战场渲染与环境构设',
         desc: '支持DEM地形、倾斜摄影真实地图，构设战场地形、敌我态势、目标部署、行动路线和工事障碍，形成具有明确任务条件的数字化演训空间。',
@@ -96,7 +96,7 @@ const products = [
         ],
       },
       {
-        image: '/assets/drone/drone-04-formation-deploy-x2.jpg',
+        image: '/assets/drone/drone-04-formation-deploy-x2.jpg?v=2',
         tag: '战术想定 · 编队部署',
         title: '多类型作战单元协同演练',
         desc: '部署坦克、步战车、火炮、无人车、机器狗等作战单元，形成红蓝对抗的多类型兵力与目标体系，支持编队协同训练。',
@@ -107,7 +107,7 @@ const products = [
         ],
       },
       {
-        image: '/assets/drone/drone-05-scene-editor-x2.jpg',
+        image: '/assets/drone/drone-05-scene-editor-x2.jpg?v=2',
         tag: '战术想定 · 属性配置',
         title: '3D场景编辑器与属性管理',
         desc: '通过对象列表与3D场景编辑器配置作战单元属性与任务，将人员、装备和训练课目放入具体任务背景，实现精细化场景编辑。',
