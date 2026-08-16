@@ -1,4 +1,4 @@
-import { useEffect } from 'react'
+import { useEffect, useState } from 'react'
 import FloatingShapes from '../components/FloatingShapes'
 import { ProductIllustration } from '../components/ProductIllustrations'
 import ImageCarousel from '../components/ImageCarousel'
@@ -149,6 +149,8 @@ const accentMap = {
 }
 
 export default function Products() {
+  const [activeId, setActiveId] = useState(products[0]?.id)
+
   useEffect(() => {
     const observer = new IntersectionObserver(
       (entries) => {
@@ -160,6 +162,23 @@ export default function Products() {
     )
     document.querySelectorAll('.reveal').forEach((el) => observer.observe(el))
     return () => observer.disconnect()
+  }, [])
+
+  // Scrollspy: highlight the nav pill for the section currently in view
+  useEffect(() => {
+    const sections = products
+      .map((p) => document.getElementById(p.id))
+      .filter(Boolean)
+    const spy = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) setActiveId(entry.target.id)
+        })
+      },
+      { rootMargin: '-45% 0px -45% 0px', threshold: 0 }
+    )
+    sections.forEach((s) => spy.observe(s))
+    return () => spy.disconnect()
   }, [])
 
   return (
@@ -186,11 +205,16 @@ export default function Products() {
           <div className="reveal flex flex-wrap justify-center gap-2.5 mt-10">
             {products.map((p) => {
               const a = accentMap[p.accent]
+              const active = activeId === p.id
               return (
                 <a
                   key={p.id}
                   href={`#${p.id}`}
-                  className={`px-5 py-2 rounded-full text-xs font-semibold transition-all duration-300 border ${a.border} ${a.text} bg-white/60 backdrop-blur hover:scale-105`}
+                  className={`px-5 py-2 rounded-full text-xs font-semibold transition-all duration-300 border backdrop-blur ${
+                    active
+                      ? `${a.bg} ${a.text} ${a.border} scale-105 shadow-sm font-bold`
+                      : `${a.border} ${a.text} bg-white/60 hover:scale-105`
+                  }`}
                 >
                   {p.badge && <span className={`inline-block w-1.5 h-1.5 rounded-full ${a.dot} mr-1.5 animate-pulse`} />}
                   {p.title}
@@ -214,6 +238,9 @@ export default function Products() {
             className={`py-24 md:py-32 relative ${isAlt ? 'bg-section-alt' : 'bg-section'}`}
           >
             <div className={`absolute inset-0 ${isAlt ? 'dot-grid' : 'hex-grid'} opacity-25`} />
+            <span className={`absolute top-8 ${isAlt ? 'right-4 md:right-16' : 'left-4 md:left-16'} text-[100px] md:text-[150px] font-extrabold leading-none pointer-events-none select-none z-0 ${a.text} opacity-[0.05]`}>
+              {String(idx + 1).padStart(2, '0')}
+            </span>
             <div className="max-w-6xl mx-auto px-6 relative z-10">
               {product.carouselSlides ? (
                 /* ── Full-width carousel layout (drone) ── */
@@ -337,11 +364,14 @@ export default function Products() {
                   </div>
 
                   {/* Right: Feature Cards */}
-                  <div className={`reveal grid grid-cols-1 sm:grid-cols-2 gap-4 ${isAlt ? 'lg:order-1' : 'lg:order-2'}`}>
+                  <div className={`reveal grid grid-cols-1 sm:grid-cols-2 gap-5 ${isAlt ? 'lg:order-1' : 'lg:order-2'}`}>
                     {product.features.map((f) => (
-                      <div key={f.title} className="glass-card fx-border p-6 hover:-translate-y-1">
-                        <h4 className="text-sm font-bold text-ink mb-2">{f.title}</h4>
-                        <p className="text-xs text-ink-secondary leading-relaxed">{f.desc}</p>
+                      <div key={f.title} className={`glass-card fx-border p-6 hover:-translate-y-1 rounded-2xl ${a.bg}`}>
+                        <div className={`w-10 h-10 rounded-xl flex items-center justify-center mb-4 ${a.tagBg}`}>
+                          <div className={`w-3 h-3 rounded-sm ${a.dot}`} />
+                        </div>
+                        <h4 className="text-base font-bold text-ink mb-2">{f.title}</h4>
+                        <p className="text-sm text-ink-secondary leading-relaxed">{f.desc}</p>
                       </div>
                     ))}
                   </div>
