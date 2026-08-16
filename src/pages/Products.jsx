@@ -215,10 +215,10 @@ export default function Products() {
           >
             <div className={`absolute inset-0 ${isAlt ? 'dot-grid' : 'hex-grid'} opacity-25`} />
             <div className="max-w-6xl mx-auto px-6 relative z-10">
-              <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-16 items-center">
-
-                {/* Left: Description + Illustration (alternate sides) */}
-                <div className={`reveal ${isAlt ? 'lg:order-2' : 'lg:order-1'}`}>
+              {product.carouselSlides ? (
+                /* ── Full-width carousel layout (drone) ── */
+                <div className="reveal">
+                  {/* Header */}
                   <div className="flex items-center gap-3 mb-4">
                     {product.badge && (
                       <span className={`px-3 py-1 text-[11px] font-semibold rounded-full uppercase tracking-wider ${a.tagBg} ${a.tagText} border ${a.tagBorder}`}>
@@ -229,65 +229,124 @@ export default function Products() {
                       {product.subtitle}
                     </span>
                   </div>
-
                   <h2 className="text-3xl md:text-4xl font-extrabold text-ink mb-6">
                     {product.title}
                   </h2>
-
-                  <p className="text-ink-secondary leading-relaxed mb-8">
+                  <p className="text-ink-secondary leading-relaxed mb-10 max-w-3xl">
                     {product.desc}
                   </p>
 
-                  {/* Visual: carousel for products with slides, photo for XR, SVG for others */}
-                  {product.carouselSlides ? (
+                  {/* Full-width Carousel */}
+                  <div className="mb-12">
                     <ImageCarousel
                       slides={product.carouselSlides}
                       interval={product.carouselInterval || 6000}
-                      className="mb-8"
                     />
-                  ) : product.id === 'xr' ? (
-                    <div className="mb-8 rounded-2xl overflow-hidden border border-slate-200/50 bg-white/40 backdrop-blur-sm shadow-sm">
-                      <img
-                        src="/assets/vr-ar-showroom.jpg"
-                        alt="数字展厅实景"
-                        className="w-full h-auto object-cover"
-                        loading="lazy"
-                      />
-                    </div>
-                  ) : (
-                    <div className="mb-8 rounded-2xl overflow-hidden border border-slate-200/50 bg-white/40 backdrop-blur-sm">
-                      <ProductIllustration type={product.id} />
-                    </div>
-                  )}
+                  </div>
 
-                  <div className={`p-5 rounded-2xl border ${a.border} ${a.bg} mb-8`}>
+                  {/* Feature Cards — 2×2 grid */}
+                  <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5 mb-10">
+                    {product.features.map((f) => (
+                      <div key={f.title} className={`glass-card fx-border p-6 hover:-translate-y-1 rounded-2xl ${a.bg}`}>
+                        <div className={`w-10 h-10 rounded-xl flex items-center justify-center mb-4 ${a.tagBg}`}>
+                          <div className={`w-3 h-3 rounded-sm ${a.dot}`} />
+                        </div>
+                        <h4 className="text-base font-bold text-ink mb-2">{f.title}</h4>
+                        <p className="text-sm text-ink-secondary leading-relaxed">{f.desc}</p>
+                      </div>
+                    ))}
+                  </div>
+
+                  {/* Highlight */}
+                  <div className={`p-6 rounded-2xl border ${a.border} ${a.bg} mb-8`}>
                     <p className="text-sm text-ink-secondary leading-relaxed">{product.highlight}</p>
                   </div>
 
+                  {/* Scenarios */}
                   <div className="space-y-4">
                     <h4 className="text-[11px] font-semibold text-ink-muted uppercase tracking-[0.15em]">应用场景</h4>
-                    {product.scenarios.map((s) => (
-                      <div key={s.title} className="flex gap-3">
-                        <div className={`w-1.5 h-1.5 rounded-full mt-2 shrink-0 ${a.dot}`} />
-                        <div>
-                          <span className="text-sm font-medium text-ink">{s.title}</span>
-                          <span className="text-sm text-ink-muted ml-2">{s.desc}</span>
+                    <div className="grid grid-cols-1 sm:grid-cols-3 gap-5">
+                      {product.scenarios.map((s) => (
+                        <div key={s.title} className={`p-5 rounded-xl border ${a.border} bg-white/40 backdrop-blur-sm`}>
+                          <div className="flex items-center gap-2 mb-2">
+                            <div className={`w-2 h-2 rounded-full shrink-0 ${a.dot}`} />
+                            <span className="text-sm font-semibold text-ink">{s.title}</span>
+                          </div>
+                          <p className="text-xs text-ink-muted leading-relaxed">{s.desc}</p>
                         </div>
+                      ))}
+                    </div>
+                  </div>
+                </div>
+              ) : (
+                /* ── Standard 2-column layout (other products) ── */
+                <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-16 items-center">
+                  {/* Left: Description + Illustration (alternate sides) */}
+                  <div className={`reveal ${isAlt ? 'lg:order-2' : 'lg:order-1'}`}>
+                    <div className="flex items-center gap-3 mb-4">
+                      {product.badge && (
+                        <span className={`px-3 py-1 text-[11px] font-semibold rounded-full uppercase tracking-wider ${a.tagBg} ${a.tagText} border ${a.tagBorder}`}>
+                          {product.badge}
+                        </span>
+                      )}
+                      <span className={`text-xs font-semibold uppercase tracking-wider ${a.text}`}>
+                        {product.subtitle}
+                      </span>
+                    </div>
+
+                    <h2 className="text-3xl md:text-4xl font-extrabold text-ink mb-6">
+                      {product.title}
+                    </h2>
+
+                    <p className="text-ink-secondary leading-relaxed mb-8">
+                      {product.desc}
+                    </p>
+
+                    {/* Visual: photo for XR, SVG for others */}
+                    {product.id === 'xr' ? (
+                      <div className="mb-8 rounded-2xl overflow-hidden border border-slate-200/50 bg-white/40 backdrop-blur-sm shadow-sm">
+                        <img
+                          src="/assets/vr-ar-showroom.jpg"
+                          alt="数字展厅实景"
+                          className="w-full h-auto object-cover"
+                          loading="lazy"
+                        />
+                      </div>
+                    ) : (
+                      <div className="mb-8 rounded-2xl overflow-hidden border border-slate-200/50 bg-white/40 backdrop-blur-sm">
+                        <ProductIllustration type={product.id} />
+                      </div>
+                    )}
+
+                    <div className={`p-5 rounded-2xl border ${a.border} ${a.bg} mb-8`}>
+                      <p className="text-sm text-ink-secondary leading-relaxed">{product.highlight}</p>
+                    </div>
+
+                    <div className="space-y-4">
+                      <h4 className="text-[11px] font-semibold text-ink-muted uppercase tracking-[0.15em]">应用场景</h4>
+                      {product.scenarios.map((s) => (
+                        <div key={s.title} className="flex gap-3">
+                          <div className={`w-1.5 h-1.5 rounded-full mt-2 shrink-0 ${a.dot}`} />
+                          <div>
+                            <span className="text-sm font-medium text-ink">{s.title}</span>
+                            <span className="text-sm text-ink-muted ml-2">{s.desc}</span>
+                          </div>
+                        </div>
+                      ))}
+                    </div>
+                  </div>
+
+                  {/* Right: Feature Cards */}
+                  <div className={`reveal grid grid-cols-1 sm:grid-cols-2 gap-4 ${isAlt ? 'lg:order-1' : 'lg:order-2'}`}>
+                    {product.features.map((f) => (
+                      <div key={f.title} className="glass-card fx-border p-6 hover:-translate-y-1">
+                        <h4 className="text-sm font-bold text-ink mb-2">{f.title}</h4>
+                        <p className="text-xs text-ink-secondary leading-relaxed">{f.desc}</p>
                       </div>
                     ))}
                   </div>
                 </div>
-
-                {/* Right: Feature Cards */}
-                <div className={`reveal grid grid-cols-1 sm:grid-cols-2 gap-4 ${isAlt ? 'lg:order-1' : 'lg:order-2'}`}>
-                  {product.features.map((f) => (
-                    <div key={f.title} className="glass-card fx-border p-6 hover:-translate-y-1">
-                      <h4 className="text-sm font-bold text-ink mb-2">{f.title}</h4>
-                      <p className="text-xs text-ink-secondary leading-relaxed">{f.desc}</p>
-                    </div>
-                  ))}
-                </div>
-              </div>
+              )}
             </div>
           </section>
         )
