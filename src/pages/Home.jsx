@@ -9,25 +9,6 @@ const businessCards = [
   {
     icon: (
       <svg className="w-9 h-9" viewBox="0 0 48 48" fill="none">
-        <rect x="4" y="8" width="40" height="32" rx="4" stroke="white" strokeWidth="1.5" />
-        <circle cx="16" cy="24" r="5" stroke="white" strokeWidth="1.5" />
-        <path d="M8 36c0-3 4-7 8-7s8 4 8 7" stroke="white" strokeWidth="1.5" strokeLinecap="round" />
-        <path d="M28 18h12M28 24h12M28 30h8" stroke="white" strokeWidth="1.5" strokeLinecap="round" />
-        <circle cx="16" cy="24" r="2" fill="#bfdbfe" />
-      </svg>
-    ),
-    title: 'AI 数字员工',
-    desc: '不是聊天框，而是敢进入业务流程的 AI 执行系统。理解知识、遵循流程、调用系统，安全可控地完成真实工作。',
-    to: '/products#ai',
-    iconBox: 'bg-gradient-to-br from-blue-500 to-indigo-600',
-    iconGlow: 'shadow-[0_10px_28px_rgba(37,99,235,0.35)]',
-    border: 'border-slate-200/60 hover:border-blue-300',
-    glow: 'hover:shadow-[0_8px_40px_rgba(37,99,235,0.10)]',
-    topbar: 'from-blue-500 to-indigo-500',
-  },
-  {
-    icon: (
-      <svg className="w-9 h-9" viewBox="0 0 48 48" fill="none">
         <rect x="6" y="14" width="36" height="24" rx="3" stroke="white" strokeWidth="1.5" />
         <circle cx="24" cy="24" r="8" stroke="white" strokeWidth="1.5" />
         <circle cx="24" cy="24" r="3" fill="#a5f3fc" />
@@ -46,24 +27,6 @@ const businessCards = [
   {
     icon: (
       <svg className="w-9 h-9" viewBox="0 0 48 48" fill="none">
-        <path d="M24 8l-4 4h-8c-2.2 0-4 1.8-4 4v20c0 2.2 1.8 4 4 4h24c2.2 0 4-1.8 4-4V16c0-2.2-1.8-4-4-4h-8l-4-4z" stroke="white" strokeWidth="1.5" strokeLinejoin="round" />
-        <circle cx="24" cy="26" r="6" stroke="white" strokeWidth="1.5" />
-        <circle cx="24" cy="26" r="2" fill="#ddd6fe" />
-      </svg>
-    ),
-    title: '无人机训练软件',
-    desc: '军事风洞跳伞训练仿真平台，高精度物理引擎与沉浸式交互体验。更多内容即将上线。',
-    to: '/products#drone',
-    iconBox: 'bg-gradient-to-br from-violet-500 to-purple-600',
-    iconGlow: 'shadow-[0_10px_28px_rgba(139,92,246,0.35)]',
-    border: 'border-slate-200/60 hover:border-purple-300',
-    glow: 'hover:shadow-[0_8px_40px_rgba(139,92,246,0.10)]',
-    badge: '即将上线',
-    topbar: 'from-violet-500 to-purple-500',
-  },
-  {
-    icon: (
-      <svg className="w-9 h-9" viewBox="0 0 48 48" fill="none">
         <rect x="4" y="20" width="40" height="12" rx="2" stroke="white" strokeWidth="1.5" />
         <path d="M12 12h4v8h-4zM20 8h4v12h-4zM28 4h4v16h-4zM36 12h4v8h-4z" stroke="white" strokeWidth="1.5" />
         <line x1="24" y1="32" x2="24" y2="40" stroke="white" strokeWidth="1.5" />
@@ -78,6 +41,43 @@ const businessCards = [
     border: 'border-slate-200/60 hover:border-amber-300',
     glow: 'hover:shadow-[0_8px_40px_rgba(245,158,11,0.10)]',
     topbar: 'from-amber-500 to-orange-500',
+  },
+  {
+    icon: (
+      <svg className="w-9 h-9" viewBox="0 0 48 48" fill="none">
+        <path d="M24 8l-4 4h-8c-2.2 0-4 1.8-4 4v20c0 2.2 1.8 4 4 4h24c2.2 0 4-1.8 4-4V16c0-2.2-1.8-4-4-4h-8l-4-4z" stroke="white" strokeWidth="1.5" strokeLinejoin="round" />
+        <circle cx="24" cy="26" r="6" stroke="white" strokeWidth="1.5" />
+        <circle cx="24" cy="26" r="2" fill="#ddd6fe" />
+      </svg>
+    ),
+    title: '无人机训练软件',
+    desc: '三位一体无人机仿真平台，战/训/教一体化。武器装备库、无人机库、战术想定等核心模块按需组合，贯通作战、训练、教学应用。',
+    to: '/products#drone',
+    iconBox: 'bg-gradient-to-br from-violet-500 to-purple-600',
+    iconGlow: 'shadow-[0_10px_28px_rgba(139,92,246,0.35)]',
+    border: 'border-slate-200/60 hover:border-purple-300',
+    glow: 'hover:shadow-[0_8px_40px_rgba(139,92,246,0.10)]',
+    topbar: 'from-violet-500 to-purple-500',
+  },
+  {
+    icon: (
+      <svg className="w-9 h-9" viewBox="0 0 48 48" fill="none">
+        <rect x="4" y="8" width="40" height="32" rx="4" stroke="white" strokeWidth="1.5" />
+        <circle cx="16" cy="24" r="5" stroke="white" strokeWidth="1.5" />
+        <path d="M8 36c0-3 4-7 8-7s8 4 8 7" stroke="white" strokeWidth="1.5" strokeLinecap="round" />
+        <path d="M28 18h12M28 24h12M28 30h8" stroke="white" strokeWidth="1.5" strokeLinecap="round" />
+        <circle cx="16" cy="24" r="2" fill="#bfdbfe" />
+      </svg>
+    ),
+    title: 'AI 数字员工',
+    desc: '不是聊天框，而是敢进入业务流程的 AI 执行系统。理解知识、遵循流程、调用系统，安全可控地完成真实工作。',
+    to: '/products#ai',
+    iconBox: 'bg-gradient-to-br from-blue-500 to-indigo-600',
+    iconGlow: 'shadow-[0_10px_28px_rgba(37,99,235,0.35)]',
+    border: 'border-slate-200/60 hover:border-blue-300',
+    glow: 'hover:shadow-[0_8px_40px_rgba(37,99,235,0.10)]',
+    badge: '即将上线',
+    topbar: 'from-blue-500 to-indigo-500',
   },
 ]
 

@@ -183,13 +183,13 @@ export default function About() {
                 {
                   year: '2024',
                   title: '技术升级',
-                  desc: '拓展 AI 与时空大数据方向，启动智慧交通与 AI 数字员工产品研发。',
+                  desc: '拓展时空大数据与深度学习方向，启动智慧交通产品研发，构建城市交通智能决策能力。',
                   right: false,
                 },
                 {
                   year: '2026',
                   title: '全面布局',
-                  desc: '四大业务线成型，AI 数字员工 + 智慧交通 + VR/AR + 无人机训练全线推进。',
+                  desc: '四大业务线成型，VR/AR + 智慧交通 + 无人机训练已落地，AI 数字员工即将上线，共同构筑自主可控的智能产品矩阵。',
                   right: true,
                 },
               ].map((item) => (
