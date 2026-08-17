@@ -50,8 +50,8 @@ const businessCards = [
         <circle cx="24" cy="26" r="2" fill="#ddd6fe" />
       </svg>
     ),
-    title: '无人机训练软件',
-    desc: '三位一体无人机仿真平台，战/训/教一体化。武器装备库、无人机库、战术想定等核心模块按需组合，贯通作战、训练、教学应用。',
+    title: '无人机低空攻防虚拟训练平台',
+    desc: '面向低空攻防的无人机虚拟训练平台，覆盖武器装备配置、无人机部件组装、红蓝对抗编组与数字战场构设，贯通作战、训练、教学一体化应用。',
     to: '/products#drone',
     iconBox: 'bg-gradient-to-br from-violet-500 to-purple-600',
     iconGlow: 'shadow-[0_10px_28px_rgba(139,92,246,0.35)]',
