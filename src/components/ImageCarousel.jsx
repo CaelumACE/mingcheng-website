@@ -71,7 +71,7 @@ export default function ImageCarousel({ slides = [], interval = DEFAULT_INTERVAL
       onMouseLeave={() => setIsPaused(false)}
     >
       {/* ── Image Area ── */}
-      <div className="relative overflow-hidden rounded-2xl bg-slate-100 aspect-[2/1] min-h-[200px]">
+      <div className="relative overflow-hidden rounded-2xl bg-slate-100 aspect-[3/2] md:aspect-[2/1] min-h-[200px]">
         {slides.map((s, i) => (
           <div
             key={i}
