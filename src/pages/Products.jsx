@@ -195,9 +195,8 @@ const products = [
     ],
     highlight: '三条回答红线：无依据不抢答 · 低置信降级 RAG 兜底 · 一键回退纯 RAG 模式；图谱底座 400+ 实体节点、近 500 业务关系链路，PostgreSQL + pgvector 单一数据底座。',
     cta: {
-      label: '查看完整产品路线图',
-      href: '/zq-roadmap.html',
-      secondary: { label: '产品手册', href: '/zq-manual.html' },
+      label: '查看产品手册',
+      href: '/zq-manual.html',
     },
   },
 ]
