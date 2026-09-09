@@ -3,68 +3,79 @@
  * 每个插画用对应业务线的配色，纯 SVG 内嵌
  */
 
-export function AIIllustration() {
+export function GraphRAGIllustration() {
   return (
     <svg viewBox="0 0 400 300" className="w-full h-auto" fill="none" xmlns="http://www.w3.org/2000/svg">
       <defs>
-        <linearGradient id="aiGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+        <linearGradient id="grGrad" x1="0%" y1="0%" x2="100%" y2="100%">
           <stop offset="0%" stopColor="#2563EB" stopOpacity="0.12" />
           <stop offset="100%" stopColor="#06B6D4" stopOpacity="0.04" />
         </linearGradient>
       </defs>
 
       {/* Background rounded rect */}
-      <rect x="20" y="20" width="360" height="260" rx="16" fill="url(#aiGrad)" stroke="#BFDBFE" strokeWidth="1" opacity="0.6" />
+      <rect x="20" y="20" width="360" height="260" rx="16" fill="url(#grGrad)" stroke="#BFDBFE" strokeWidth="1" opacity="0.6" />
 
-      {/* Neural network nodes */}
-      {/* Layer 1 */}
-      <circle cx="80" cy="90" r="12" fill="#DBEAFE" stroke="#2563EB" strokeWidth="1.5" />
-      <circle cx="80" cy="150" r="12" fill="#DBEAFE" stroke="#2563EB" strokeWidth="1.5" />
-      <circle cx="80" cy="210" r="12" fill="#DBEAFE" stroke="#2563EB" strokeWidth="1.5" />
-
-      {/* Layer 2 */}
-      <circle cx="180" cy="70" r="12" fill="#BFDBFE" stroke="#3B82F6" strokeWidth="1.5" />
-      <circle cx="180" cy="130" r="12" fill="#BFDBFE" stroke="#3B82F6" strokeWidth="1.5" />
-      <circle cx="180" cy="190" r="12" fill="#BFDBFE" stroke="#3B82F6" strokeWidth="1.5" />
-      <circle cx="180" cy="250" r="12" fill="#BFDBFE" stroke="#3B82F6" strokeWidth="1.5" />
-
-      {/* Layer 3 */}
-      <circle cx="280" cy="100" r="12" fill="#93C5FD" stroke="#06B6D4" strokeWidth="1.5" />
-      <circle cx="280" cy="180" r="12" fill="#93C5FD" stroke="#06B6D4" strokeWidth="1.5" />
-
-      {/* Output */}
-      <circle cx="340" cy="140" r="16" fill="#2563EB" stroke="#1D4ED8" strokeWidth="2" className="node-pulse" />
-
-      {/* Connections */}
-      <g opacity="0.3">
-        <line x1="92" y1="90" x2="168" y2="70" stroke="#2563EB" strokeWidth="1" />
-        <line x1="92" y1="90" x2="168" y2="130" stroke="#2563EB" strokeWidth="1" />
-        <line x1="92" y1="150" x2="168" y2="130" stroke="#2563EB" strokeWidth="1" />
-        <line x1="92" y1="150" x2="168" y2="190" stroke="#2563EB" strokeWidth="1" />
-        <line x1="92" y1="210" x2="168" y2="190" stroke="#2563EB" strokeWidth="1" />
-        <line x1="92" y1="210" x2="168" y2="250" stroke="#2563EB" strokeWidth="1" />
-        <line x1="192" y1="70" x2="268" y2="100" stroke="#3B82F6" strokeWidth="1" />
-        <line x1="192" y1="130" x2="268" y2="100" stroke="#3B82F6" strokeWidth="1" />
-        <line x1="192" y1="130" x2="268" y2="180" stroke="#3B82F6" strokeWidth="1" />
-        <line x1="192" y1="190" x2="268" y2="180" stroke="#3B82F6" strokeWidth="1" />
-        <line x1="192" y1="250" x2="268" y2="180" stroke="#3B82F6" strokeWidth="1" />
-        <line x1="292" y1="100" x2="324" y2="140" stroke="#06B6D4" strokeWidth="1.5" className="dash-anim" />
-        <line x1="292" y1="180" x2="324" y2="140" stroke="#06B6D4" strokeWidth="1.5" className="dash-anim" />
+      {/* Graph edges (mesh, not just star) */}
+      <g opacity="0.35">
+        {/* query -> hub */}
+        <line x1="87" y1="150" x2="176" y2="145" stroke="#2563EB" strokeWidth="1.5" strokeDasharray="4 4" className="dash-anim" />
+        {/* hub -> entities */}
+        <line x1="222" y1="132" x2="312" y2="76" stroke="#3B82F6" strokeWidth="1.2" strokeDasharray="4 4" className="dash-anim" />
+        <line x1="224" y1="150" x2="332" y2="150" stroke="#3B82F6" strokeWidth="1.2" strokeDasharray="4 4" className="dash-anim" />
+        <line x1="222" y1="158" x2="312" y2="224" stroke="#3B82F6" strokeWidth="1.2" strokeDasharray="4 4" className="dash-anim" />
+        <line x1="210" y1="128" x2="247" y2="72" stroke="#06B6D4" strokeWidth="1" strokeDasharray="3 4" className="dash-anim" />
+        <line x1="210" y1="162" x2="247" y2="228" stroke="#06B6D4" strokeWidth="1" strokeDasharray="3 4" className="dash-anim" />
+        {/* cross edges between entities -> graph mesh */}
+        <line x1="325" y1="76" x2="345" y2="146" stroke="#06B6D4" strokeWidth="0.8" opacity="0.6" />
+        <line x1="345" y1="154" x2="325" y2="224" stroke="#06B6D4" strokeWidth="0.8" opacity="0.6" />
+        <line x1="258" y1="66" x2="318" y2="80" stroke="#06B6D4" strokeWidth="0.8" opacity="0.6" />
+        <line x1="258" y1="234" x2="318" y2="220" stroke="#06B6D4" strokeWidth="0.8" opacity="0.6" />
       </g>
 
-      {/* Animated particles */}
-      <circle r="2.5" fill="#06B6D4" opacity="0.8">
-        <animateMotion dur="2s" repeatCount="indefinite" path="M 92,150 L 168,130" />
+      {/* Multi-hop reasoning arcs (entity -> through hub -> query) */}
+      <path d="M 325,70 Q 200,30 72,150" stroke="#06B6D4" strokeWidth="1.2" fill="none" strokeDasharray="3 5" className="dash-anim" opacity="0.5" />
+      <path d="M 325,230 Q 200,275 72,150" stroke="#06B6D4" strokeWidth="1.2" fill="none" strokeDasharray="3 5" className="dash-anim" opacity="0.5" />
+
+      {/* Query node (left) */}
+      <circle cx="72" cy="150" r="15" fill="#DBEAFE" stroke="#2563EB" strokeWidth="1.5" />
+      <text x="72" y="155" textAnchor="middle" fill="#1D4ED8" fontSize="13" fontWeight="bold">问</text>
+      <text x="72" y="180" textAnchor="middle" fill="#94A3B8" fontSize="9" fontFamily="monospace">用户问询</text>
+
+      {/* Central hub — 政企智能助手 */}
+      <circle cx="200" cy="145" r="24" fill="#2563EB" stroke="#1D4ED8" strokeWidth="2" className="node-pulse" />
+      <text x="200" y="150" textAnchor="middle" fill="#fff" fontSize="13" fontWeight="bold">AI</text>
+      <text x="200" y="188" textAnchor="middle" fill="#1E40AF" fontSize="11" fontWeight="bold">政企智能助手</text>
+
+      {/* Entity nodes */}
+      <circle cx="325" cy="70" r="13" fill="#DBEAFE" stroke="#3B82F6" strokeWidth="1.5" />
+      <text x="325" y="74" textAnchor="middle" fill="#1D4ED8" fontSize="9">政策</text>
+
+      <circle cx="345" cy="150" r="13" fill="#DBEAFE" stroke="#3B82F6" strokeWidth="1.5" />
+      <text x="345" y="154" textAnchor="middle" fill="#1D4ED8" fontSize="9">部门</text>
+
+      <circle cx="325" cy="230" r="13" fill="#DBEAFE" stroke="#3B82F6" strokeWidth="1.5" />
+      <text x="325" y="234" textAnchor="middle" fill="#1D4ED8" fontSize="9">事项</text>
+
+      <circle cx="258" cy="62" r="11" fill="#CFFAFE" stroke="#06B6D4" strokeWidth="1.5" />
+      <text x="258" y="65" textAnchor="middle" fill="#0E7490" fontSize="8">材料</text>
+
+      <circle cx="258" cy="238" r="11" fill="#CFFAFE" stroke="#06B6D4" strokeWidth="1.5" />
+      <text x="258" y="241" textAnchor="middle" fill="#0E7490" fontSize="8">法规</text>
+
+      {/* Animated particles along edges */}
+      <circle r="2.5" fill="#06B6D4" opacity="0.85">
+        <animateMotion dur="2s" repeatCount="indefinite" path="M 87,150 L 176,145" />
       </circle>
-      <circle r="2.5" fill="#3B82F6" opacity="0.8">
-        <animateMotion dur="2.5s" repeatCount="indefinite" path="M 192,130 L 268,100" />
+      <circle r="2.5" fill="#3B82F6" opacity="0.85">
+        <animateMotion dur="2.4s" repeatCount="indefinite" path="M 224,150 L 332,150" />
+      </circle>
+      <circle r="2.5" fill="#06B6D4" opacity="0.85">
+        <animateMotion dur="2.8s" repeatCount="indefinite" path="M 222,132 L 312,76" />
       </circle>
 
-      {/* Labels */}
-      <text x="80" y="280" textAnchor="middle" fill="#94A3B8" fontSize="9" fontFamily="monospace">Input</text>
-      <text x="180" y="280" textAnchor="middle" fill="#94A3B8" fontSize="9" fontFamily="monospace">Hidden</text>
-      <text x="280" y="280" textAnchor="middle" fill="#94A3B8" fontSize="9" fontFamily="monospace">Process</text>
-      <text x="340" y="280" textAnchor="middle" fill="#94A3B8" fontSize="9" fontFamily="monospace">Output</text>
+      {/* Theme label */}
+      <text x="200" y="285" textAnchor="middle" fill="#94A3B8" fontSize="8" fontFamily="monospace" opacity="0.6">GRAPH RAG · 多跳推理</text>
     </svg>
   )
 }
@@ -286,7 +297,7 @@ export function TrafficIllustration() {
 
 export function ProductIllustration({ type }) {
   switch (type) {
-    case 'ai':     return <AIIllustration />
+    case 'ai':     return <GraphRAGIllustration />
     case 'xr':     return <XRIllustration />
     case 'drone':  return <DroneIllustration />
     case 'traffic': return <TrafficIllustration />
