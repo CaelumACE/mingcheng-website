@@ -176,23 +176,29 @@ const products = [
   },
   {
     id: 'ai',
-    title: 'AI 数字员工',
-    subtitle: '不只回答问题，更敢进入业务流程',
+    title: '政企智能助手',
+    subtitle: 'GraphRAG 图谱融合推理 · 政务级智能服务平台',
     accent: 'blue',
-    badge: '即将上线',
-    desc: '企业缺的不是另一个聊天框，而是一套可治理的 AI 执行系统。铭澄 AI 数字员工平台让 AI 理解企业知识、遵循审批流程、调用业务系统，安全地完成真实工作。',
+    desc: '面向政务大厅、服务窗口与 12345 热线，以知识图谱融合大模型推理为核心，把政策咨询、办事导引、公文辅助变成 7×24 小时的结构化智能服务——答得准、理得清、可私有部署，一套底座可复制到医疗、教育、金融、税务等更多行业。',
     features: [
-      { title: '知识底座', desc: '知识库 + 业务认知建模，不只搜文档，更理解客户、产品、流程、制度间的业务关系。' },
-      { title: '执行中枢', desc: 'Agent 智能调度 + 多智能体协同，任务拆解、并行执行，关键节点由人确认。' },
-      { title: '系统连接', desc: '安全接入 OA/CRM/ERP/核心业务系统，逐 Agent 校验身份与权限，数据不出域。' },
-      { title: '安全治理', desc: '身份权限 + 沙箱隔离 + 全链路审计，贯穿全流程，可追溯、可复盘。' },
+      { title: 'GraphRAG 图谱融合推理引擎', desc: '多跳链路推理（个体户注册→食品许可→税务登记→社保登记），置信度门控，无依据不抢答、不确定不硬答。' },
+      { title: '听得懂大白话的意图引擎', desc: '查询改写把口语转规范问法，意图消歧精准分流（补办≠缴费≠转移），十几种说法命中同一事项。' },
+      { title: '六类结构化卡片答案', desc: '流程卡 / 材料卡 / 信息网格卡 / 对比卡 / 政策卡 / 智能追问卡，原生结构化直出，告别大段文字堆砌。' },
+      { title: '知识可插拔 · 行业可复制', desc: '办事事项、材料清单、口语别名、流程链路全部标准数据文件驱动，零硬编码，一套底座复制到多行业。' },
+      { title: '全链路私有化 · 数据不出域', desc: 'Docker 一键部署，三级权限、操作可审计，满足政务"数据不出内网、权限可管控"的硬要求。' },
     ],
     scenarios: [
-      { title: '智能办公助手', desc: '制度解读 / 合规校验 / 文稿生成，政策查询从小时级降到分钟级。' },
-      { title: '财务流程自动化', desc: '票据识别 / 预算校验 / 报销审批 / 银企支付，减少人工审单。' },
-      { title: '客户服务与洞察', desc: '客户画像 / 需求挖掘 / 方案生成，全链路数字化。' },
+      { title: '政务大厅 / 服务窗口', desc: '群众问"开个小饭馆要办什么手续"，图谱多跳推理出跨部门完整路线 + 材料清单 + 办理信息卡片组。' },
+      { title: '12345 热线辅助', desc: '口语化诉求自动改写与意图消歧，秒级给出政策要点与办事指引，减轻坐席压力。' },
+      { title: '公文辅助写作', desc: '说需求生成初稿、对话修改、一键导出国标 docx，8 种公文类型覆盖。' },
+      { title: '行业复制', desc: '医疗、教育、金融、税务等场景复用同一底座，行业知识包即插即用。' },
     ],
-    highlight: '私有化部署，数据不出域；关键节点人工审批，AI 不越权；全流程日志留痕，操作可追溯。',
+    highlight: '三条回答红线：无依据不抢答 · 低置信降级 RAG 兜底 · 一键回退纯 RAG 模式；图谱底座 400+ 实体节点、近 500 业务关系链路，PostgreSQL + pgvector 单一数据底座。',
+    cta: {
+      label: '查看完整产品路线图',
+      href: '/zq-roadmap.html',
+      secondary: { label: '产品手册', href: '/zq-manual.html' },
+    },
   },
 ]
 
@@ -254,7 +260,7 @@ export default function Products() {
             四大业务线
           </h1>
           <p className="reveal text-lg text-ink-secondary max-w-2xl mx-auto">
-            VR/AR 虚实融合 · 智慧交通 · 无人机训练软件 · AI 数字员工
+            VR/AR 虚实融合 · 智慧交通 · 无人机训练软件 · 政企智能助手
           </p>
 
           <div className="reveal flex flex-wrap justify-center gap-2.5 mt-10">
@@ -403,6 +409,31 @@ export default function Products() {
                     <div className={`p-5 rounded-2xl border ${a.border} ${a.bg} mb-8`}>
                       <p className="text-sm text-ink-secondary leading-relaxed">{product.highlight}</p>
                     </div>
+
+                    {product.cta && (
+                      <div className="flex flex-wrap gap-3 mb-8">
+                        <a
+                          href={product.cta.href}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          className="btn-primary text-sm px-5 py-2.5 inline-flex items-center gap-1.5"
+                        >
+                          <span className="relative z-10">{product.cta.label}</span>
+                          <svg className="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M7 17L17 7M17 7H8M17 7v9" /></svg>
+                        </a>
+                        {product.cta.secondary && (
+                          <a
+                            href={product.cta.secondary.href}
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            className="btn-outline text-sm px-5 py-2.5 inline-flex items-center gap-1.5"
+                          >
+                            <span className="relative z-10">{product.cta.secondary.label}</span>
+                            <svg className="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M14 3h7v7M21 3l-9 9M21 14v5a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h5" /></svg>
+                          </a>
+                        )}
+                      </div>
+                    )}
 
                     <div className="space-y-4">
                       <h4 className="text-[11px] font-semibold text-ink-muted uppercase tracking-[0.15em]">应用场景</h4>

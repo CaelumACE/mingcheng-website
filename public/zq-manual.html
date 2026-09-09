@@ -1,0 +1,817 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>政企智能助手 · 产品宣传文案 v1.0｜GraphRAG 驱动的新一代政企智能服务平台</title>
+<style>
+  :root{
+    --bg:#070A14;
+    --bg-soft:#0B1022;
+    --glass:rgba(255,255,255,.06);
+    --glass-strong:rgba(255,255,255,.09);
+    --line:rgba(255,255,255,.12);
+    --primary:#7C5CFF;
+    --cyan:#69E7FF;
+    --mint:#62FAD3;
+    --amber:#FFC46B;
+    --text:#F7FAFF;
+    --text-sub:#9AA7C7;
+    --text-dim:#6B7794;
+    --radius:18px;
+    --radius-sm:12px;
+    --shadow-glow:0 0 40px rgba(124,92,255,.25);
+    --font:"Manrope","Inter","SF Pro SC","PingFang SC","Microsoft YaHei",system-ui,-apple-system,sans-serif;
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  html{scroll-behavior:smooth}
+  body{
+    font-family:var(--font);
+    background:var(--bg);
+    color:var(--text);
+    line-height:1.7;
+    overflow-x:hidden;
+    -webkit-font-smoothing:antialiased;
+  }
+  ::selection{background:rgba(124,92,255,.4)}
+  .sr-only{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border:0}
+  a:focus-visible,button:focus-visible{outline:2px solid var(--cyan);outline-offset:3px;border-radius:8px}
+  @media (prefers-reduced-motion: reduce){
+    *{animation:none !important;transition:none !important;scroll-behavior:auto !important}
+  }
+
+  /* ===== 极光背景 ===== */
+  .aurora{position:fixed;inset:0;z-index:-1;overflow:hidden;background:
+    radial-gradient(1200px 700px at 80% -10%, rgba(124,92,255,.18), transparent 60%),
+    radial-gradient(900px 600px at -10% 30%, rgba(105,231,255,.12), transparent 60%),
+    var(--bg);}
+  .blob{position:absolute;border-radius:50%;filter:blur(90px);opacity:.5;animation:drift 26s ease-in-out infinite alternate}
+  .blob.b1{width:520px;height:520px;background:rgba(124,92,255,.35);top:-120px;left:8%}
+  .blob.b2{width:460px;height:460px;background:rgba(105,231,255,.22);top:30%;right:-10%;animation-delay:-8s}
+  .blob.b3{width:420px;height:420px;background:rgba(98,250,211,.14);bottom:-10%;left:30%;animation-delay:-16s}
+  @keyframes drift{
+    0%{transform:translate(0,0) scale(1)}
+    100%{transform:translate(40px,-30px) scale(1.12)}
+  }
+
+  .wrap{max-width:1180px;margin:0 auto;padding:0 24px}
+
+  /* ===== 导航 ===== */
+  nav.topnav{
+    position:fixed;top:16px;left:50%;transform:translateX(-50%);z-index:100;
+    width:min(1180px,calc(100% - 32px));
+    display:flex;align-items:center;justify-content:space-between;
+    padding:12px 22px;border-radius:999px;
+    background:rgba(10,14,30,.55);backdrop-filter:blur(18px);-webkit-backdrop-filter:blur(18px);
+    border:1px solid var(--line);
+  }
+  .brand{display:flex;align-items:center;gap:10px;font-weight:800;font-size:16px;letter-spacing:.5px;text-decoration:none;color:var(--text)}
+  .brand .logo{width:30px;height:30px;border-radius:9px;background:linear-gradient(135deg,var(--primary),var(--cyan));display:grid;place-items:center;font-size:15px;box-shadow:0 0 16px rgba(124,92,255,.5)}
+  .navlinks{display:flex;gap:6px;flex-wrap:wrap}
+  .navlinks a{color:var(--text-sub);text-decoration:none;font-size:13.5px;padding:6px 12px;border-radius:999px;transition:.25s}
+  .navlinks a:hover{color:var(--text);background:var(--glass)}
+  .nav-cta{background:linear-gradient(135deg,var(--primary),#5B8CFF);color:#fff !important;font-weight:700;box-shadow:0 4px 18px rgba(124,92,255,.4)}
+
+  /* ===== Hero ===== */
+  header.hero{padding:150px 0 70px;text-align:center;position:relative}
+  .hero-badge{
+    display:inline-flex;align-items:center;gap:8px;font-size:13px;color:var(--cyan);
+    border:1px solid rgba(105,231,255,.35);background:rgba(105,231,255,.08);
+    padding:6px 16px;border-radius:999px;margin-bottom:26px;letter-spacing:.5px;
+  }
+  .hero-badge .dot{width:7px;height:7px;border-radius:50%;background:var(--mint);box-shadow:0 0 10px var(--mint);animation:pulse 2s infinite}
+  @keyframes pulse{0%,100%{opacity:1}50%{opacity:.4}}
+  h1{
+    font-size:clamp(34px,6vw,62px);line-height:1.15;font-weight:900;letter-spacing:1px;
+    background:linear-gradient(120deg,#fff 20%,var(--cyan) 55%,var(--primary) 90%);
+    -webkit-background-clip:text;background-clip:text;color:transparent;
+    margin-bottom:22px;
+  }
+  .hero-sub{font-size:clamp(15px,2.2vw,19px);color:var(--text-sub);max-width:760px;margin:0 auto 34px}
+  .hero-sub strong{color:var(--text);font-weight:700}
+  .hero-cta{display:flex;gap:14px;justify-content:center;flex-wrap:wrap;margin-bottom:56px}
+  .btn{display:inline-flex;align-items:center;gap:8px;padding:13px 30px;border-radius:999px;font-size:15px;font-weight:700;text-decoration:none;transition:.25s;cursor:pointer;border:none}
+  .btn-primary{background:linear-gradient(135deg,var(--primary),#5B8CFF);color:#fff;box-shadow:0 8px 30px rgba(124,92,255,.45)}
+  .btn-primary:hover{transform:translateY(-2px);box-shadow:0 12px 38px rgba(124,92,255,.6)}
+  .btn-ghost{background:var(--glass);color:var(--text);border:1px solid var(--line);backdrop-filter:blur(10px)}
+  .btn-ghost:hover{background:var(--glass-strong);transform:translateY(-2px)}
+  .hero-stats{display:grid;grid-template-columns:repeat(4,1fr);gap:16px;max-width:920px;margin:0 auto}
+  .stat{
+    background:var(--glass);border:1px solid var(--line);border-radius:var(--radius);
+    padding:22px 14px;backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);
+    transition:.3s;
+  }
+  .stat:hover{transform:translateY(-4px);border-color:rgba(105,231,255,.4);box-shadow:0 10px 30px rgba(105,231,255,.12)}
+  .stat .num{font-size:clamp(24px,3.4vw,34px);font-weight:900;background:linear-gradient(135deg,var(--cyan),var(--primary));-webkit-background-clip:text;background-clip:text;color:transparent;line-height:1.2}
+  .stat .lbl{font-size:13px;color:var(--text-sub);margin-top:6px}
+
+  /* ===== 通用章节 ===== */
+  section{padding:72px 0}
+  .sec-head{text-align:center;max-width:760px;margin:0 auto 48px}
+  .sec-tag{display:inline-block;font-size:12.5px;font-weight:700;letter-spacing:2px;color:var(--primary);background:rgba(124,92,255,.12);border:1px solid rgba(124,92,255,.3);padding:5px 14px;border-radius:999px;margin-bottom:16px}
+  h2{font-size:clamp(26px,4vw,38px);font-weight:900;letter-spacing:.5px;margin-bottom:14px}
+  .sec-desc{color:var(--text-sub);font-size:15.5px}
+
+  /* 痛点 */
+  .pain-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}
+  .pain{
+    background:var(--glass);border:1px solid var(--line);border-radius:var(--radius);
+    padding:26px 24px;backdrop-filter:blur(12px);
+  }
+  .pain .ico{font-size:26px;margin-bottom:12px}
+  .pain h3{font-size:17px;font-weight:800;margin-bottom:8px;color:var(--amber)}
+  .pain p{font-size:14px;color:var(--text-sub)}
+  .pain .solve{margin-top:12px;padding-top:12px;border-top:1px dashed var(--line);font-size:14px;color:var(--mint)}
+  .pain .solve b{color:var(--mint)}
+
+  /* 技术卡 */
+  .tech-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:20px}
+  .tech{
+    position:relative;background:linear-gradient(160deg,rgba(255,255,255,.08),rgba(255,255,255,.03));
+    border:1px solid var(--line);border-radius:var(--radius);padding:30px 28px;
+    backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);transition:.3s;overflow:hidden;
+  }
+  .tech:hover{transform:translateY(-5px);border-color:rgba(124,92,255,.5);box-shadow:var(--shadow-glow)}
+  .tech::before{content:"";position:absolute;top:0;left:0;right:0;height:3px;background:linear-gradient(90deg,var(--primary),var(--cyan));opacity:0;transition:.3s}
+  .tech:hover::before{opacity:1}
+  .tech.wide{grid-column:1/-1}
+  .tech .t-idx{position:absolute;top:22px;right:26px;font-size:44px;font-weight:900;color:rgba(255,255,255,.06);line-height:1}
+  .tech .t-ico{width:46px;height:46px;border-radius:13px;display:grid;place-items:center;font-size:22px;margin-bottom:16px;background:linear-gradient(135deg,rgba(124,92,255,.3),rgba(105,231,255,.2));border:1px solid rgba(124,92,255,.35)}
+  .tech h3{font-size:19px;font-weight:800;margin-bottom:6px}
+  .tech .t-slogan{font-size:14px;color:var(--cyan);font-weight:600;margin-bottom:14px}
+  .tech p{font-size:14.5px;color:var(--text-sub);margin-bottom:10px}
+  .tech ul{list-style:none;margin-top:8px}
+  .tech li{font-size:14px;color:var(--text-sub);padding-left:22px;position:relative;margin-bottom:7px}
+  .tech li::before{content:"▹";position:absolute;left:0;color:var(--primary);font-weight:700}
+  .tech li b{color:var(--text);font-weight:700}
+
+  /* 场景演示 */
+  .demo-tabs{display:flex;gap:10px;justify-content:center;flex-wrap:wrap;margin-bottom:30px}
+  .demo-tab{
+    padding:10px 20px;border-radius:999px;font-size:14px;font-weight:600;cursor:pointer;
+    background:var(--glass);border:1px solid var(--line);color:var(--text-sub);
+    transition:.25s;font-family:var(--font);
+  }
+  .demo-tab:hover{color:var(--text)}
+  .demo-tab.active{background:linear-gradient(135deg,var(--primary),#5B8CFF);color:#fff;border-color:transparent;box-shadow:0 6px 20px rgba(124,92,255,.4)}
+  .demo-stage{
+    max-width:860px;margin:0 auto;background:rgba(10,14,30,.6);border:1px solid var(--line);
+    border-radius:22px;padding:30px;backdrop-filter:blur(16px);min-height:420px;
+  }
+  .demo-panel{display:none;animation:fadeUp .45s ease}
+  .demo-panel.active{display:block}
+  @keyframes fadeUp{from{opacity:0;transform:translateY(14px)}to{opacity:1;transform:none}}
+  .chat-row{display:flex;gap:12px;margin-bottom:18px;align-items:flex-start}
+  .chat-row .avatar{width:36px;height:36px;border-radius:11px;flex-shrink:0;display:grid;place-items:center;font-size:18px}
+  .avatar.user{background:linear-gradient(135deg,#5B8CFF,var(--primary))}
+  .avatar.bot{background:linear-gradient(135deg,var(--cyan),var(--mint))}
+  .bubble{background:var(--glass-strong);border:1px solid var(--line);border-radius:14px;padding:12px 18px;font-size:14.5px;max-width:80%}
+  .chat-row.user .bubble{background:rgba(124,92,255,.18);border-color:rgba(124,92,255,.35)}
+  .bot-note{font-size:13px;color:var(--mint);margin:2px 0 14px 48px}
+  .bot-note .tag{display:inline-block;background:rgba(98,250,211,.12);border:1px solid rgba(98,250,211,.35);color:var(--mint);border-radius:6px;padding:1px 8px;font-size:12px;margin-right:6px}
+
+  /* 卡片 mock */
+  .mock-cards{margin-left:48px;display:flex;flex-direction:column;gap:12px}
+  .mcard{background:rgba(255,255,255,.05);border:1px solid var(--line);border-radius:14px;padding:16px 18px;font-size:13.5px}
+  .mcard .mc-title{font-weight:800;font-size:14px;margin-bottom:10px;display:flex;align-items:center;gap:8px}
+  .mc-title .chip{font-size:11px;font-weight:700;padding:2px 9px;border-radius:6px;background:rgba(105,231,255,.15);color:var(--cyan);border:1px solid rgba(105,231,255,.3)}
+  .steps{display:flex;flex-direction:column;gap:8px}
+  .step{display:flex;gap:12px;align-items:flex-start}
+  .step .n{width:22px;height:22px;border-radius:50%;background:linear-gradient(135deg,var(--primary),var(--cyan));color:#fff;font-size:12px;font-weight:800;display:grid;place-items:center;flex-shrink:0;margin-top:1px}
+  .step .s-body b{font-size:13.5px}
+  .step .s-meta{font-size:12px;color:var(--text-dim)}
+  .step .arrow{color:var(--text-dim);font-size:11px;padding-left:34px;line-height:1}
+  .mats{display:grid;grid-template-columns:repeat(2,1fr);gap:6px 18px}
+  .mats div{padding-left:20px;position:relative;color:var(--text-sub);font-size:13px}
+  .mats div::before{content:"☑";position:absolute;left:0;color:var(--cyan)}
+  .info-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:10px}
+  .info-cell{background:rgba(255,255,255,.04);border-radius:10px;padding:10px 14px}
+  .info-cell .k{font-size:11.5px;color:var(--text-dim);letter-spacing:1px}
+  .info-cell .v{font-size:13.5px;font-weight:700;color:var(--text);margin-top:2px}
+  table.cmp{width:100%;border-collapse:collapse;font-size:13px}
+  table.cmp th,table.cmp td{padding:9px 12px;text-align:left;border-bottom:1px solid var(--line)}
+  table.cmp th{color:var(--cyan);font-size:12.5px;letter-spacing:.5px}
+  table.cmp td.dim{color:var(--text-sub)}
+  table.cmp tr td:first-child{color:var(--text-dim);font-weight:600;white-space:nowrap}
+  .disambig{display:flex;gap:10px;flex-wrap:wrap;margin:4px 0}
+  .disambig .opt{padding:8px 16px;border-radius:10px;border:1px solid var(--line);background:rgba(255,255,255,.04);font-size:13px;color:var(--text-sub)}
+  .disambig .opt.hit{border-color:rgba(98,250,211,.5);background:rgba(98,250,211,.1);color:var(--mint);font-weight:700}
+
+  /* 跨行业 */
+  .industry-flow{display:grid;grid-template-columns:1fr auto 1fr;gap:18px;align-items:center;margin-bottom:44px}
+  .flow-box{background:var(--glass);border:1px solid var(--line);border-radius:var(--radius);padding:26px;text-align:center;backdrop-filter:blur(12px)}
+  .flow-box h4{font-size:16px;font-weight:800;margin-bottom:8px}
+  .flow-box p{font-size:13.5px;color:var(--text-sub)}
+  .flow-arrow{font-size:30px;color:var(--cyan);text-align:center}
+  .flow-box.core{border-color:rgba(124,92,255,.5);background:linear-gradient(160deg,rgba(124,92,255,.16),rgba(105,231,255,.06))}
+  .ind-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:16px}
+  .ind{
+    background:var(--glass);border:1px solid var(--line);border-radius:var(--radius);padding:22px 20px;
+    transition:.3s;backdrop-filter:blur(10px);
+  }
+  .ind:hover{transform:translateY(-4px);border-color:rgba(105,231,255,.4);box-shadow:0 10px 26px rgba(105,231,255,.1)}
+  .ind .i-ico{font-size:24px;margin-bottom:10px}
+  .ind h3{font-size:15.5px;font-weight:800;margin-bottom:6px}
+  .ind p{font-size:13px;color:var(--text-sub)}
+  .ind.live{border-color:rgba(98,250,211,.45)}
+  .ind .live-tag{display:inline-block;margin-top:10px;font-size:11px;font-weight:700;color:var(--mint);background:rgba(98,250,211,.1);border:1px solid rgba(98,250,211,.3);padding:2px 10px;border-radius:999px}
+  .ind .plan-tag{display:inline-block;margin-top:10px;font-size:11px;font-weight:700;color:var(--text-dim);background:rgba(255,255,255,.05);border:1px solid var(--line);padding:2px 10px;border-radius:999px}
+  .steps3{display:grid;grid-template-columns:repeat(3,1fr);gap:18px;margin-top:44px}
+  .step3{background:var(--glass);border:1px solid var(--line);border-radius:var(--radius);padding:24px;position:relative}
+  .step3 .s3n{width:34px;height:34px;border-radius:50%;background:linear-gradient(135deg,var(--primary),var(--cyan));display:grid;place-items:center;font-weight:900;font-size:15px;margin-bottom:12px;box-shadow:0 0 18px rgba(124,92,255,.4)}
+  .step3 h4{font-size:15.5px;font-weight:800;margin-bottom:6px}
+  .step3 p{font-size:13.5px;color:var(--text-sub)}
+
+  /* 部署 */
+  .deploy-grid{display:grid;grid-template-columns:1fr 1fr;gap:20px}
+  .deploy{background:var(--glass);border:1px solid var(--line);border-radius:var(--radius);padding:30px;backdrop-filter:blur(12px)}
+  .deploy.featured{border-color:rgba(124,92,255,.5);background:linear-gradient(160deg,rgba(124,92,255,.14),rgba(255,255,255,.03))}
+  .deploy h3{font-size:19px;font-weight:800;margin-bottom:10px;display:flex;align-items:center;gap:10px}
+  .deploy p{font-size:14px;color:var(--text-sub);margin-bottom:14px}
+  .deploy ul{list-style:none}
+  .deploy li{font-size:14px;color:var(--text-sub);padding:7px 0 7px 26px;position:relative;border-bottom:1px dashed rgba(255,255,255,.07)}
+  .deploy li:last-child{border-bottom:none}
+  .deploy li::before{content:"✓";position:absolute;left:0;color:var(--mint);font-weight:800}
+
+  /* 价值 */
+  .value-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:16px}
+  .value{background:var(--glass);border:1px solid var(--line);border-radius:var(--radius);padding:26px 22px;transition:.3s}
+  .value:hover{transform:translateY(-4px);border-color:rgba(124,92,255,.45)}
+  .value .v-ico{font-size:26px;margin-bottom:12px}
+  .value h3{font-size:16px;font-weight:800;margin-bottom:8px}
+  .value p{font-size:13.5px;color:var(--text-sub)}
+
+  /* 路线 */
+  .road{display:flex;flex-direction:column;gap:0;max-width:860px;margin:0 auto;position:relative}
+  .road::before{content:"";position:absolute;left:17px;top:30px;bottom:30px;width:2px;background:linear-gradient(var(--primary),var(--cyan),var(--mint));opacity:.5}
+  .road-item{display:flex;gap:22px;padding:18px 0;position:relative}
+  .road-dot{width:36px;height:36px;border-radius:50%;flex-shrink:0;display:grid;place-items:center;font-size:15px;z-index:1;background:var(--bg-soft);border:2px solid var(--primary);box-shadow:0 0 16px rgba(124,92,255,.4)}
+  .road-item.now .road-dot{background:linear-gradient(135deg,var(--primary),var(--cyan));border-color:transparent}
+  .road-body{background:var(--glass);border:1px solid var(--line);border-radius:var(--radius-sm);padding:18px 22px;flex:1}
+  .road-body .r-phase{font-size:12.5px;font-weight:800;color:var(--cyan);letter-spacing:1px}
+  .road-body h3{font-size:16px;font-weight:800;margin:4px 0 6px}
+  .road-body p{font-size:13.5px;color:var(--text-sub)}
+
+  /* 结尾 CTA */
+  .final-cta{text-align:center;padding:80px 0 40px}
+  .final-cta .glass-box{
+    background:linear-gradient(160deg,rgba(124,92,255,.18),rgba(105,231,255,.07));
+    border:1px solid rgba(124,92,255,.4);border-radius:28px;padding:60px 30px;backdrop-filter:blur(16px);
+  }
+  .final-cta h2{background:linear-gradient(120deg,#fff,var(--cyan));-webkit-background-clip:text;background-clip:text;color:transparent}
+  .final-cta p{color:var(--text-sub);max-width:600px;margin:0 auto 30px;font-size:15.5px}
+  footer{border-top:1px solid var(--line);padding:30px 0 40px;text-align:center;color:var(--text-dim);font-size:12.5px}
+  footer .f-links{margin-bottom:8px}
+  footer a{color:var(--text-sub);text-decoration:none}
+  footer a:hover{color:var(--cyan)}
+
+  /* 响应式 */
+  @media (max-width:960px){
+    .hero-stats{grid-template-columns:repeat(2,1fr)}
+    .tech-grid{grid-template-columns:1fr}
+    .pain-grid{grid-template-columns:1fr}
+    .ind-grid{grid-template-columns:repeat(2,1fr)}
+    .value-grid{grid-template-columns:repeat(2,1fr)}
+    .steps3{grid-template-columns:1fr}
+    .deploy-grid{grid-template-columns:1fr}
+    .industry-flow{grid-template-columns:1fr}
+    .flow-arrow{transform:rotate(90deg)}
+    .navlinks a:not(.nav-cta){display:none}
+    .mats,.info-grid{grid-template-columns:1fr}
+    .mock-cards{margin-left:0}
+    .bot-note{margin-left:0}
+    .bubble{max-width:100%}
+  }
+  @media (max-width:560px){
+    .ind-grid,.value-grid{grid-template-columns:1fr}
+    section{padding:52px 0}
+    .demo-stage{padding:18px}
+  }
+
+  /* 打印 */
+  @media print{
+    body{background:#fff;color:#1a1a2e}
+    .aurora,.blob{display:none}
+    nav.topnav{position:static;transform:none;background:#fff;border:1px solid #ccc}
+    .brand,.navlinks a{color:#333 !important}
+    .tech,.pain,.stat,.ind,.value,.deploy,.flow-box,.step3,.road-body,.demo-stage,.mcard,.bubble{
+      background:#fff !important;color:#1a1a2e !important;border:1px solid #ccc !important;backdrop-filter:none !important;box-shadow:none !important}
+    h1,.final-cta h2{color:#4a2fcf !important;-webkit-text-fill-color:#4a2fcf}
+    .demo-panel{display:block !important;page-break-inside:avoid}
+    .demo-tabs{display:none}
+    .hero-cta .btn-ghost{display:none}
+  }
+</style>
+</head>
+<body>
+<div class="aurora"><div class="blob b1"></div><div class="blob b2"></div><div class="blob b3"></div></div>
+
+<nav class="topnav">
+  <a class="brand" href="#top"><span class="logo">智</span>政企智能助手</a>
+  <div class="navlinks">
+    <a href="#tech">核心技术</a>
+    <a href="#demo">场景演示</a>
+    <a href="#industry">跨行业复制</a>
+    <a href="#deploy">部署方式</a>
+    <a href="#value">客户价值</a>
+    <a href="#roadmap">演进路线</a>
+    <a class="nav-cta" href="https://www.zqhelper.site" target="_blank" rel="noopener noreferrer">立即体验</a>
+  </div>
+</nav>
+
+<header class="hero" id="top">
+  <div class="wrap">
+    <div class="hero-badge"><span class="dot"></span>GraphRAG 图谱融合推理 · 新一代政企智能服务平台</div>
+    <h1>让政企服务<br>一问到底</h1>
+    <p class="hero-sub">
+      面向<strong>政务大厅、服务窗口与 12345 热线</strong>场景，以<strong>知识图谱融合大模型推理</strong>为核心，
+      把政策咨询、办事导引、公文辅助变成 7×24 小时的<strong>结构化智能服务</strong>——
+      答得准、理得清、可私有部署，<strong>一套底座，可复制到医疗、教育、金融、税务等更多行业</strong>。
+    </p>
+    <div class="hero-cta">
+      <a class="btn btn-primary" href="https://www.zqhelper.site" target="_blank" rel="noopener noreferrer">立即体验在线 Demo →</a>
+      <a class="btn btn-ghost" href="#tech">了解核心技术</a>
+    </div>
+    <div class="hero-stats">
+      <div class="stat"><div class="num">400+</div><div class="lbl">知识图谱实体节点</div></div>
+      <div class="stat"><div class="num">近500</div><div class="lbl">业务关系链路（边）</div></div>
+      <div class="stat"><div class="num">6 类</div><div class="lbl">原生结构化卡片</div></div>
+      <div class="stat"><div class="num">多跳</div><div class="lbl">链路推理 · 一次问全</div></div>
+    </div>
+  </div>
+</header>
+
+<!-- 痛点 -->
+<main>
+<section id="pain">
+  <div class="wrap">
+    <div class="sec-head">
+      <span class="sec-tag">WHY</span>
+      <h2>政企服务的智能问答，难在哪？</h2>
+      <p class="sec-desc">通用聊天机器人回答不了政企场景的真问题——答案必须有据可查，办事必须一步理清，数据必须不出内网。</p>
+    </div>
+    <div class="pain-grid">
+      <div class="pain">
+        <div class="ico">📄</div>
+        <h3>大段文字，群众找不到重点</h3>
+        <p>"带什么材料、去哪办、多久办好"埋在几百字政策文本里，看完还是一头雾水，窗口咨询电话被打爆。</p>
+        <div class="solve"><b>我们的解法：</b>六类结构化卡片直出，流程、材料、地点、时限、电话一屏集齐。</div>
+      </div>
+      <div class="pain">
+        <div class="ico">🔗</div>
+        <h3>一件事牵涉多个部门，问不全</h3>
+        <p>"开个饭馆要办什么手续"横跨工商、食药监、税务、社保，传统问答只能搜到单个事项的片段。</p>
+        <div class="solve"><b>我们的解法：</b>GraphRAG 多跳推理，沿业务关系链路自动串联全流程。</div>
+      </div>
+      <div class="pain">
+        <div class="ico">🗣️</div>
+        <h3>群众说大白话，系统听不懂</h3>
+        <p>"社保卡丢了咋办"——是补办？挂失？还是缴费？口语问法千变万化，关键词匹配频频答错或答非所问。</p>
+        <div class="solve"><b>我们的解法：</b>查询改写 + 意图消歧，十几种说法精准命中同一事项。</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 核心技术 -->
+<section id="tech">
+  <div class="wrap">
+    <div class="sec-head">
+      <span class="sec-tag">CORE TECHNOLOGY</span>
+      <h2>五大核心技术能力</h2>
+      <p class="sec-desc">不是套壳聊天机器人，而是围绕政企真实业务流程深度定制的智能服务引擎。</p>
+    </div>
+    <div class="tech-grid">
+      <article class="tech wide">
+        <span class="t-idx">01</span>
+        <div class="t-ico">🕸️</div>
+        <h3>GraphRAG 图谱融合推理引擎</h3>
+        <div class="t-slogan">不是"搜一段文字"，而是"理一条链路"</div>
+        <p>将 <b>400+ 实体节点、近 500 条业务关系</b>的政务知识图谱，与向量检索、Rerank 精排、大模型推理深度融合：先在图谱中定位事项与实体，再沿关系边做多跳遍历，最后由大模型组织成结构化答案。</p>
+        <ul>
+          <li><b>多跳链路推理：</b>问"开个小饭馆要办什么手续"，自动串联<b>个体户注册 → 食品经营许可 → 税务登记 → 社保登记</b>全流程，一次问全、一步答全</li>
+          <li><b>置信度门控：</b>图谱命中低于阈值自动降级 RAG 向量问答兜底，<b>无依据不抢答、不确定不硬答</b></li>
+          <li><b>轻量化存储：</b>图谱基于 PostgreSQL + JSONB 邻接表实现，不引入 Neo4j 等重型图数据库，私有化部署轻量易维护</li>
+        </ul>
+      </article>
+      <article class="tech">
+        <span class="t-idx">02</span>
+        <div class="t-ico">🎯</div>
+        <h3>听得懂大白话的意图引擎</h3>
+        <div class="t-slogan">群众怎么说，系统都能懂</div>
+        <ul>
+          <li><b>查询改写：</b>大模型自动把口语转成规范问法，"社保卡丢了咋办" → 社会保障卡补换</li>
+          <li><b>意图消歧：</b>补办 ≠ 缴费 ≠ 转移，同一实体下的不同事项精准分流，互不误伤</li>
+          <li><b>别名网络：</b>一个事项十几种说法都能命中；闲聊、写作、追问场景不误触发图谱</li>
+        </ul>
+      </article>
+      <article class="tech">
+        <span class="t-idx">03</span>
+        <div class="t-ico">🗂️</div>
+        <h3>六类结构化卡片答案引擎</h3>
+        <div class="t-slogan">告别大段文字，答案即界面</div>
+        <ul>
+          <li><b>流程卡：</b>步骤编号 + 责任部门 + 办理时长</li>
+          <li><b>材料卡：</b>按事项拆分，必备材料清单一目了然</li>
+          <li><b>信息网格卡：</b>办理地点 / 时限 / 费用 / 咨询电话一屏集齐</li>
+          <li><b>对比卡：</b>两类事项逐项 PK，差异自动高亮</li>
+          <li><b>政策卡 / 智能追问卡：</b>政策要点直出，信息不全主动追问</li>
+        </ul>
+      </article>
+      <article class="tech">
+        <span class="t-idx">04</span>
+        <div class="t-ico">🔌</div>
+        <h3>知识可插拔，行业可复制</h3>
+        <div class="t-slogan">数据驱动，零硬编码</div>
+        <ul>
+          <li>办事事项、材料清单、口语别名、流程链路<b>全部标准数据文件驱动</b>，不写死在代码里</li>
+          <li>业务人员维护数据即生效；<b>换一个行业，只需换一套知识库</b></li>
+          <li>LLM 自动抽取实体关系 + 管理员审核入图的自动构图能力已在演进路线上</li>
+        </ul>
+      </article>
+      <article class="tech">
+        <span class="t-idx">05</span>
+        <div class="t-ico">🔒</div>
+        <h3>全链路私有化，数据不出域</h3>
+        <div class="t-slogan">云端演示与内网私有化，改配置不改代码</div>
+        <ul>
+          <li><b>Docker 一键部署</b>，PostgreSQL + pgvector 单一数据底座，向量、会话、知识库、日志统一存储</li>
+          <li>LLM / Embedding / Rerank <b>全走配置</b>：云端 MiniMax、DeepSeek 与内网本地模型一键切换</li>
+          <li>超管 / 管理员 / 访客三级权限、操作可审计、IP 限流与安全防护，满足"数据不出网、权限可管控"</li>
+        </ul>
+      </article>
+    </div>
+  </div>
+</section>
+
+<!-- 场景演示 -->
+<section id="demo">
+  <div class="wrap">
+    <div class="sec-head">
+      <span class="sec-tag">LIVE DEMO</span>
+      <h2>眼见为实：四个真实提问</h2>
+      <p class="sec-desc">以下为产品真实能力演示，可在在线 Demo 中亲自验证。</p>
+    </div>
+    <div class="demo-tabs" role="tablist">
+      <button class="demo-tab active" data-panel="p1" role="tab">开个小饭馆要办什么手续？</button>
+      <button class="demo-tab" data-panel="p2" role="tab">社保卡丢了咋办？</button>
+      <button class="demo-tab" data-panel="p3" role="tab">职工社保和居民社保哪个好？</button>
+      <button class="demo-tab" data-panel="p4" role="tab">无关闲聊也问政策？</button>
+    </div>
+    <div class="demo-stage">
+
+      <div class="demo-panel active" id="p1" role="tabpanel">
+        <div class="chat-row user"><div class="avatar user">🧑</div><div class="bubble">你好，我想开个小饭馆，都要办什么手续啊？</div></div>
+        <div class="bot-note"><span class="tag">图谱多跳推理</span>识别为虚拟场景"开办餐饮"，自动沿流程链路遍历 4 个事项</div>
+        <div class="chat-row"><div class="avatar bot">🤖</div><div class="bubble">开餐馆需要依次办理以下手续，我为您整理好了全流程 👇</div></div>
+        <div class="mock-cards">
+          <div class="mcard">
+            <div class="mc-title">🧭 开办餐饮服务 · 办理流程 <span class="chip">流程卡</span></div>
+            <div class="steps">
+              <div class="step"><div class="n">1</div><div class="s-body"><b>个体工商户注册登记</b><div class="s-meta">市场监管部门 · 约 3 个工作日</div></div></div>
+              <div class="arrow">▼</div>
+              <div class="step"><div class="n">2</div><div class="s-body"><b>食品经营许可证</b><div class="s-meta">市场监管部门 · 约 10 个工作日</div></div></div>
+              <div class="arrow">▼</div>
+              <div class="step"><div class="n">3</div><div class="s-body"><b>税务登记</b><div class="s-meta">税务部门 · 即办</div></div></div>
+              <div class="arrow">▼</div>
+              <div class="step"><div class="n">4</div><div class="s-body"><b>社保登记（用工参保）</b><div class="s-meta">人社部门 · 约 3 个工作日</div></div></div>
+            </div>
+          </div>
+          <div class="mcard">
+            <div class="mc-title">📋 食品经营许可证 · 申报材料 <span class="chip">材料卡</span></div>
+            <div class="mats">
+              <div>营业执照复印件</div><div>法定代表人身份证</div>
+              <div>经营场所平面图</div><div>从业人员健康证明</div>
+              <div>食品安全管理制度</div><div>租赁合同</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="demo-panel" id="p2" role="tabpanel">
+        <div class="chat-row user"><div class="avatar user">🧑</div><div class="bubble">社保卡丢了咋办？</div></div>
+        <div class="bot-note"><span class="tag">查询改写</span>口语 → "社会保障卡补换"　<span class="tag">意图消歧</span>在多个社保事项中精准分流</div>
+        <div class="chat-row"><div class="avatar bot">🤖</div><div class="bubble">您是要办理<b>社会保障卡补换</b>对吧？以下是办理指南 👇</div></div>
+        <div class="mock-cards">
+          <div class="mcard">
+            <div class="mc-title">🔀 意图消歧过程 <span class="chip">消歧</span></div>
+            <div class="disambig">
+              <span class="opt">社保缴费</span>
+              <span class="opt">社保关系转移</span>
+              <span class="opt hit">✓ 社会保障卡补换</span>
+              <span class="opt">社保参保登记</span>
+            </div>
+          </div>
+          <div class="mcard">
+            <div class="mc-title">📋 社会保障卡补换 · 材料清单 <span class="chip">材料卡</span></div>
+            <div class="mats">
+              <div>本人有效身份证件</div><div>一寸白底证件照</div>
+              <div>代办需提供代办人身份证</div><div>原卡（换领时）</div>
+            </div>
+          </div>
+          <div class="mcard">
+            <div class="mc-title">🏛️ 办理信息 <span class="chip">信息网格卡</span></div>
+            <div class="info-grid">
+              <div class="info-cell"><div class="k">办理地点</div><div class="v">社保卡服务网点 / 政务服务中心</div></div>
+              <div class="info-cell"><div class="k">办理时限</div><div class="v">立等可取或 30 个工作日</div></div>
+              <div class="info-cell"><div class="k">费用</div><div class="v">首次免费，补换按规定收取</div></div>
+              <div class="info-cell"><div class="k">咨询电话</div><div class="v">12333</div></div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="demo-panel" id="p3" role="tabpanel">
+        <div class="chat-row user"><div class="avatar user">🧑</div><div class="bubble">职工社保和居民社保哪个好？我该怎么选？</div></div>
+        <div class="bot-note"><span class="tag">对比推理</span>两类制度逐项比对，差异自动高亮</div>
+        <div class="chat-row"><div class="avatar bot">🤖</div><div class="bubble">两者适用人群不同，为您做了逐项对比 👇</div></div>
+        <div class="mock-cards">
+          <div class="mcard">
+            <div class="mc-title">⚖️ 职工社保 vs 居民社保 <span class="chip">对比卡</span></div>
+            <table class="cmp">
+              <caption class="sr-only">职工社会保险与城乡居民社会保险逐项对比表</caption>
+              <tr><th>对比维度</th><th>职工社会保险</th><th>城乡居民社会保险</th></tr>
+              <tr><td>参保对象</td><td class="dim">单位就业职工 / 灵活就业人员</td><td class="dim">未就业城乡居民</td></tr>
+              <tr><td>缴费方式</td><td class="dim">按月缴费，单位与个人共同承担</td><td class="dim">按年缴费，个人缴纳 + 政府补贴</td></tr>
+              <tr><td>缴费水平</td><td class="dim">较高，与工资基数挂钩</td><td class="dim">较低，设多个档次自选</td></tr>
+              <tr><td>待遇水平</td><td class="dim">较高，医保报销比例与养老金更高</td><td class="dim">较低，保障基本生活医疗</td></tr>
+              <tr><td>适合人群</td><td class="dim">有稳定工作或收入者</td><td class="dim">学生、老人、自由职业等无单位人群</td></tr>
+            </table>
+          </div>
+        </div>
+      </div>
+
+      <div class="demo-panel" id="p4" role="tabpanel">
+        <div class="chat-row user"><div class="avatar user">🧑</div><div class="bubble">今天天气怎么样？陪我聊会儿天呗～</div></div>
+        <div class="bot-note"><span class="tag">红线守护</span>闲聊 / 无关问题不触发图谱、不编造政策</div>
+        <div class="chat-row"><div class="avatar bot">🤖</div><div class="bubble">哈哈，我是政企服务助手，天气信息建议查看天气预报哦～ 关于<b>办事指南、政策咨询、材料清单</b>这类问题，我随时可以帮您！比如您可以问我："营业执照怎么办""高龄津贴怎么申领"。</div></div>
+        <div class="mock-cards">
+          <div class="mcard">
+            <div class="mc-title">🛡️ 三条回答红线 <span class="chip">安全机制</span></div>
+            <div class="steps">
+              <div class="step"><div class="n">✓</div><div class="s-body"><b>无依据不抢答</b><div class="s-meta">知识库与图谱中没有依据的内容，明确告知并引导，绝不编造政策</div></div></div>
+              <div class="step"><div class="n">✓</div><div class="s-body"><b>低置信度降级</b><div class="s-meta">图谱命中不足时自动回退到向量检索问答，回答质量有兜底</div></div></div>
+              <div class="step"><div class="n">✓</div><div class="s-body"><b>一键回退</b><div class="s-meta">图谱融合能力可通过开关整体关闭，即刻回到纯 RAG 模式，发布零风险</div></div></div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- 跨行业 -->
+<section id="industry">
+  <div class="wrap">
+    <div class="sec-head">
+      <span class="sec-tag">UNIVERSAL PLATFORM</span>
+      <h2>一套智能底座，复制到千行百业</h2>
+      <p class="sec-desc">GraphRAG 推理引擎、卡片答案引擎、知识管理后台与政务业务解耦——政务是第一个验证场景，不是唯一边界。</p>
+    </div>
+
+    <div class="industry-flow">
+      <div class="flow-box">
+        <h3>📚 行业知识库</h3>
+        <p>办事事项 · 材料清单 · 流程链路 · 政策文件 · 口语别名（标准数据文件，可替换、可维护）</p>
+      </div>
+      <div class="flow-arrow">➜</div>
+      <div class="flow-box core">
+        <h3>🧠 政企智能助手底座</h3>
+        <p>GraphRAG 融合推理 · 意图消歧改写 · 六类卡片引擎 · 权限审计 · 私有化部署</p>
+      </div>
+    </div>
+
+    <div class="ind-grid">
+      <div class="ind live">
+        <div class="i-ico">🏛️</div>
+        <h3>政务服务</h3>
+        <p>办事导引、政策咨询、12345 热线辅助、公文写作辅助</p>
+        <span class="live-tag">● 首发场景 · Demo 已上线</span>
+      </div>
+      <div class="ind">
+        <div class="i-ico">🏥</div>
+        <h3>医疗健康</h3>
+        <p>就诊流程导引、医保报销解释、科室导诊、检查检验须知</p>
+        <span class="plan-tag">同底座可复制</span>
+      </div>
+      <div class="ind">
+        <div class="i-ico">🎓</div>
+        <h3>教育培训</h3>
+        <p>招生政策、报名流程、资助补贴、学籍与考试事项咨询</p>
+        <span class="plan-tag">同底座可复制</span>
+      </div>
+      <div class="ind">
+        <div class="i-ico">🏦</div>
+        <h3>金融保险</h3>
+        <p>业务办理指南、产品对比、合规问答、金融知识宣导</p>
+        <span class="plan-tag">同底座可复制</span>
+      </div>
+      <div class="ind">
+        <div class="i-ico">🧾</div>
+        <h3>税务服务</h3>
+        <p>办税流程、发票事项、税收优惠政策、申报征期指引</p>
+        <span class="plan-tag">同底座可复制</span>
+      </div>
+      <div class="ind">
+        <div class="i-ico">🏘️</div>
+        <h3>园区社区</h3>
+        <p>便民服务、商圈开办指引、物业事项、补贴申报导引</p>
+        <span class="plan-tag">同底座可复制</span>
+      </div>
+      <div class="ind">
+        <div class="i-ico">🏭</div>
+        <h3>企业服务</h3>
+        <p>开办企业、资质审批、政策申报、用工社保一站式导引</p>
+        <span class="plan-tag">同底座可复制</span>
+      </div>
+      <div class="ind">
+        <div class="i-ico">⚖️</div>
+        <h3>法律援助</h3>
+        <p>援助申请流程、材料清单、权利义务告知、维权路径指引</p>
+        <span class="plan-tag">同底座可复制</span>
+      </div>
+    </div>
+
+    <div class="steps3">
+      <div class="step3">
+        <div class="s3n">1</div>
+        <h3>导入行业知识</h3>
+        <p>将事项、材料、流程、政策文档按标准格式导入，支持批量维护与随时更新。</p>
+      </div>
+      <div class="step3">
+        <div class="s3n">2</div>
+        <h3>构建行业图谱</h3>
+        <p>LLM 自动抽取实体与关系（规划中），管理员审核入图，保证知识准确可控。</p>
+      </div>
+      <div class="step3">
+        <div class="s3n">3</div>
+        <h3>卡片复用上线</h3>
+        <p>六类卡片模板与问答引擎零改动复用，配置行业词库与回答风格即可对外服务。</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 部署 -->
+<section id="deploy">
+  <div class="wrap">
+    <div class="sec-head">
+      <span class="sec-tag">DEPLOYMENT</span>
+      <h2>两种部署形态，按需选择</h2>
+      <p class="sec-desc">先云端验证价值，再私有化落地——同一套代码，仅改配置即可切换。</p>
+    </div>
+    <div class="deploy-grid">
+      <div class="deploy">
+        <h3>☁️ 云端体验版（SaaS）</h3>
+        <p>开箱即用，无需任何部署，适合快速验证、演示汇报与小范围试用。</p>
+        <ul>
+          <li>访问网址即刻使用，支持桌面端与移动端浏览器</li>
+          <li>功能与私有化版同源，演示数据可按行业替换</li>
+          <li>持续迭代升级，始终使用最新版本</li>
+        </ul>
+      </div>
+      <div class="deploy featured">
+        <h3>🛡️ 私有化部署版 <span style="font-size:12px;color:var(--mint);font-weight:700">政企推荐</span></h3>
+        <p>整套系统部署于客户内网，数据不出域，满足政务与行业客户安全合规要求。</p>
+        <ul>
+          <li>Docker 一键部署，PostgreSQL + pgvector 统一数据底座，运维轻量</li>
+          <li>大模型、向量模型、重排模型全部可替换为内网本地模型</li>
+          <li>三级权限体系、操作审计、限流防护，等保合规项持续完善</li>
+          <li>知识库由客户自主掌控、随时更新，不依赖厂商硬编码</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 价值 -->
+<section id="value">
+  <div class="wrap">
+    <div class="sec-head">
+      <span class="sec-tag">VALUE</span>
+      <h2>四类角色，各得其所</h2>
+    </div>
+    <div class="value-grid">
+      <div class="value">
+        <div class="v-ico">🧑‍🤝‍🧑</div>
+        <h3>办事群众</h3>
+        <p>7×24 小时随时问，流程、材料、地点一问就明，少跑腿、不白跑。</p>
+      </div>
+      <div class="value">
+        <div class="v-ico">🧑‍💼</div>
+        <h3>窗口人员</h3>
+        <p>重复性咨询被智能助手分流，窗口聚焦复杂业务，办事效率与服务质量双提升。</p>
+      </div>
+      <div class="value">
+        <div class="v-ico">📊</div>
+        <h3>管理领导</h3>
+        <p>服务口径全辖区统一，问答全程可审计；热点事项与服务数据驾驶舱在规划中。</p>
+      </div>
+      <div class="value">
+        <div class="v-ico">🏢</div>
+        <h3>运营机构</h3>
+        <p>一套底座多行业复制，知识库可持续运营，项目交付与复制成本显著降低。</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 路线 -->
+<section id="roadmap">
+  <div class="wrap">
+    <div class="sec-head">
+      <span class="sec-tag">ROADMAP</span>
+      <h2>持续进化的产品路线</h2>
+    </div>
+    <div class="road">
+      <div class="road-item now">
+        <div class="road-dot">✅</div>
+        X · v1.3（2026.09）</div>
+          <h3>GraphRAG 融合推理 + 六类全卡片体系</h3>
+          <p>图谱多跳推理、意图消歧与查询改写、流程/材料/信息/对比/政策/追问六类卡片、一键回退机制、H1 数据补全（401 节点 / 485 边）。</p>
+        </div>
+      </div>
+      <div class="road-item">
+        <div class="road-dot">🔜</div>
+        <div class="road-body">
+          <div class="r-phase">近期 · 图谱 Phase 3</div>
+          <h3>图谱可视化 · 智能追问 · LLM 自动构图</h3>
+          <p>知识关系网一屏展开（汇报演示视觉哇点）；缺信息时主动追问；LLM 自动抽取实体关系 + 人工审核入图，行业复制效率再提升；移动端体验优化。</p>
+        </div>
+      </div>
+      <div class="road-item">
+        <div class="road-dot">🚀</div>
+        <div class="road-body">
+          <div class="r-phase">中期 · 平台化</div>
+          <h3>数据驾驶舱 · 多租户运营 · OA 与一网通办对接</h3>
+          <p>服务热点可视化、多机构租户隔离运营、公文写作深化、与 OA / 政务服务网打通，从"问答助手"走向"服务平台"。</p>
+        </div>
+      </div>
+      <div class="road-item">
+        <div class="road-dot">🌟</div>
+        <div class="road-body">
+          <div class="r-phase">愿景</div>
+          <h3>政企服务智能化的通用底座</h3>
+          <p>以 GraphRAG 为核心的知识推理能力，成为政务及各行业知识服务的标准化基础设施。</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 结尾 CTA -->
+<section class="final-cta">
+  <div class="wrap">
+    <div class="glass-box">
+      <h2>让每一次咨询，都有确定的答案</h2>
+      <p>在线 Demo 已开放，欢迎亲自体验"开个小饭馆要办什么手续"的多跳推理与结构化卡片。行业复制与私有化部署合作，欢迎与项目团队联系。</p>
+      <div class="hero-cta" style="margin-bottom:0">
+        <a class="btn btn-primary" href="https://www.zqhelper.site" target="_blank" rel="noopener noreferrer">立即体验在线 Demo →</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+</main>
+
+<footer>
+  <div class="wrap">
+    <div class="f-links">
+      <a href="https://www.zqhelper.site" target="_blank" rel="noopener noreferrer">在线 Demo：www.zqhelper.site</a>
+    </div>
+    <div>政企智能助手 · 产品宣传文案 v1.0 · 2026-09-08</div>
+    <div style="margin-top:6px">本文档为产品介绍材料，所涉功能以实际交付版本为准；标注"规划中"的能力处于产品路线图阶段。</div>
+  </div>
+</footer>
+
+<script>
+(function(){
+  // 场景 tab 切换
+  var tabs = document.querySelectorAll('.demo-tab');
+  var panels = document.querySelectorAll('.demo-panel');
+  tabs.forEach(function(tab){
+    tab.addEventListener('click', function(){
+      tabs.forEach(function(t){t.classList.remove('active');});
+      panels.forEach(function(p){p.classList.remove('active');});
+      tab.classList.add('active');
+      var panel = document.getElementById(tab.getAttribute('data-panel'));
+      if(panel){panel.classList.add('active');}
+    });
+  });
+
+  // 页内锚点平滑滚动（原生降级保留）
+  document.querySelectorAll('a[href^="#"]').forEach(function(a){
+    a.addEventListener('click', function(e){
+      var id = a.getAttribute('href').slice(1);
+      var target = document.getElementById(id);
+      if(target){
+        e.preventDefault();
+        target.scrollIntoView({behavior:'smooth', block:'start'});
+      }
+    });
+  });
+})();
+</script>
+</body>
+</html>

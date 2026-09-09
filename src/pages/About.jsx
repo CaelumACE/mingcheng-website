@@ -189,7 +189,7 @@ export default function About() {
                 {
                   year: '2026',
                   title: '全面布局',
-                  desc: '四大业务线成型，VR/AR + 智慧交通 + 无人机训练已落地，AI 数字员工即将上线，共同构筑自主可控的智能产品矩阵。',
+                  desc: '四大业务线成型，VR/AR + 智慧交通 + 无人机训练已落地，政企智能助手（GraphRAG 政务级智能服务平台）同步上线，共同构筑自主可控的智能产品矩阵。',
                   right: true,
                 },
               ].map((item) => (

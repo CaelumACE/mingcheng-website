@@ -69,14 +69,13 @@ const businessCards = [
         <circle cx="16" cy="24" r="2" fill="#bfdbfe" />
       </svg>
     ),
-    title: 'AI 数字员工',
-    desc: '不是聊天框，而是敢进入业务流程的 AI 执行系统。理解知识、遵循流程、调用系统，安全可控地完成真实工作。',
+    title: '政企智能助手',
+    desc: 'GraphRAG 图谱融合推理驱动的政务级智能服务平台。把政策咨询、办事导引、公文辅助变成结构化智能服务，答得准、理得清、可私有部署。',
     to: '/products#ai',
     iconBox: 'bg-gradient-to-br from-blue-500 to-indigo-600',
     iconGlow: 'shadow-[0_10px_28px_rgba(37,99,235,0.35)]',
     border: 'border-slate-200/60 hover:border-blue-300',
     glow: 'hover:shadow-[0_8px_40px_rgba(37,99,235,0.10)]',
-    badge: '即将上线',
     topbar: 'from-blue-500 to-indigo-500',
   },
 ]
@@ -198,7 +197,7 @@ export default function Home() {
               </p>
 
               <p className="reveal text-lg md:text-xl text-ink-secondary max-w-lg mb-12 leading-relaxed">
-                AI 与虚实融合整体解决方案提供商。从数字员工到智慧交通，从 VR 仿真到无人机训练，以技术连接虚拟与现实。
+                AI 与虚实融合整体解决方案提供商。从政企智能助手到智慧交通，从 VR 仿真到无人机训练，以技术连接虚拟与现实。
               </p>
 
               <div className="reveal flex flex-wrap gap-4">

@@ -1,0 +1,799 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>政企智能助手 · 产品路线图 v1.7</title>
+<style>
+:root{
+  --navy:#071B3A;--navy-2:#0E2A55;--navy-3:#16386E;
+  --bg:#F3F7FB;--paper:#FFFFFF;
+  --gold:#D5A84D;--gold-soft:#F4E6C4;
+  --teal:#2BC4B6;--teal-soft:#D6F2EF;
+  --ink:#102033;--muted:#65758A;--line:#E2E8F0;
+  --warn:#C0392B;--warn-soft:#FBE5E1;
+  --ok:#1F8A4C;--ok-soft:#DFF3E6;
+  --purple:#8E5BD0;--purple-soft:#EDE4F8;
+  --danger:#D9404A;--danger-soft:#FCE8EA;
+  --r-sm:6px;--r-md:10px;--r-lg:16px;
+  --shadow-sm:0 1px 2px rgba(7,27,58,.06);
+  --shadow-md:0 6px 20px rgba(7,27,58,.08);
+}
+*{box-sizing:border-box}
+html,body{margin:0;padding:0}
+body{font-family:-apple-system,BlinkMacSystemFont,"PingFang SC","Microsoft YaHei","Inter","IBM Plex Sans","Segoe UI",sans-serif;background:var(--bg);color:var(--ink);line-height:1.65;font-size:15px;-webkit-font-smoothing:antialiased}
+a{color:var(--navy-3);text-decoration:none}
+a:hover{text-decoration:underline}
+a:focus-visible,button:focus-visible{outline:2px solid var(--gold);outline-offset:2px;border-radius:4px}
+
+.shell{display:grid;grid-template-columns:248px minmax(0,1fr);min-height:100vh}
+nav.toc{position:sticky;top:0;align-self:start;height:100vh;overflow-y:auto;background:var(--navy);color:#C9D4E3;padding:28px 20px;border-right:1px solid #06142B}
+nav.toc .brand{font-size:13px;letter-spacing:.12em;color:var(--gold);font-weight:600;margin-bottom:6px}
+nav.toc h2{color:#fff;font-size:17px;margin:0 0 4px;font-weight:600}
+nav.toc .sub{color:#8FA0BA;font-size:12px;margin-bottom:24px}
+nav.toc ol{list-style:none;padding:0;margin:0;counter-reset:nav}
+nav.toc li{counter-increment:nav;margin:0}
+nav.toc a{display:flex;gap:10px;align-items:flex-start;padding:9px 10px;border-radius:var(--r-sm);color:#B7C4D8;font-size:13.5px;line-height:1.4}
+nav.toc a:hover{background:rgba(255,255,255,.06);color:#fff;text-decoration:none}
+nav.toc a::before{content:counter(nav,decimal-leading-zero);color:var(--gold);font-size:11px;font-variant-numeric:tabular-nums;padding-top:2px;min-width:22px}
+nav.toc .foot{margin-top:24px;padding-top:18px;border-top:1px solid rgba(255,255,255,.08);font-size:11.5px;color:#6E8099}
+
+main{padding:36px 44px 80px;max-width:1180px;width:100%}
+.hero{background:linear-gradient(135deg,var(--navy) 0%,var(--navy-3) 100%);color:#fff;border-radius:var(--r-lg);padding:36px 40px;margin-bottom:28px;position:relative;overflow:hidden}
+.hero::after{content:"";position:absolute;right:-60px;top:-60px;width:260px;height:260px;background:radial-gradient(circle,rgba(213,168,77,.22) 0%,rgba(213,168,77,0) 70%)}
+.hero .tag{display:inline-block;font-size:12px;letter-spacing:.14em;color:var(--gold);border:1px solid rgba(213,168,77,.5);padding:4px 12px;border-radius:999px;margin-bottom:14px}
+.hero h1{margin:0 0 10px;font-size:30px;font-weight:700;letter-spacing:-.01em}
+.hero p{margin:0;color:#C9D4E3;font-size:15px;max-width:760px}
+.hero .meta{margin-top:22px;display:flex;flex-wrap:wrap;gap:18px 28px;font-size:13px;color:#B7C4D8;position:relative;z-index:1}
+.hero .meta b{color:#fff;font-weight:600}
+.hero .change-badge{display:inline-block;background:var(--gold);color:var(--navy);font-size:11px;font-weight:700;padding:2px 8px;border-radius:4px;margin-left:8px;vertical-align:middle}
+
+section{margin-bottom:42px;scroll-margin-top:24px}
+h2.sec{font-size:22px;font-weight:700;color:var(--navy);margin:0 0 4px;display:flex;align-items:baseline;gap:12px}
+h2.sec .num{color:var(--gold);font-size:14px;font-weight:600;letter-spacing:.1em}
+.sec-sub{color:var(--muted);font-size:14px;margin:0 0 20px}
+h3{font-size:16px;color:var(--navy);margin:24px 0 10px;font-weight:600}
+h4{font-size:14.5px;color:var(--ink);margin:14px 0 6px;font-weight:600}
+p{margin:8px 0}
+ul,ol{padding-left:22px;margin:8px 0}
+li{margin:4px 0}
+
+.panel{background:var(--paper);border:1px solid var(--line);border-radius:var(--r-md);padding:22px 24px;box-shadow:var(--shadow-sm)}
+.panel + .panel{margin-top:16px}
+.grid-2{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+.grid-3{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
+.grid-4{display:grid;grid-template-columns:repeat(4,1fr);gap:14px}
+@media(max-width:980px){.grid-2,.grid-3,.grid-4{grid-template-columns:1fr}.shell{grid-template-columns:1fr}nav.toc{position:static;height:auto}main{padding:24px 18px 60px}}
+
+.stat{background:var(--paper);border:1px solid var(--line);border-radius:var(--r-md);padding:16px 18px;box-shadow:var(--shadow-sm)}
+.stat .lab{font-size:12px;color:var(--muted);letter-spacing:.04em}
+.stat .val{font-size:22px;color:var(--navy);font-weight:700;margin-top:4px;font-variant-numeric:tabular-nums}
+.stat .hint{font-size:12px;color:var(--muted);margin-top:2px}
+
+.vision{background:var(--paper);border-left:4px solid var(--gold);padding:22px 26px;border-radius:var(--r-md);box-shadow:var(--shadow-sm)}
+.vision .label{font-size:12px;letter-spacing:.14em;color:var(--gold);font-weight:600}
+.vision .quote{font-size:19px;color:var(--navy);font-weight:600;margin:8px 0 6px;line-height:1.5}
+.vision p{margin:0;color:var(--muted)}
+
+table{width:100%;border-collapse:collapse;background:var(--paper);border:1px solid var(--line);border-radius:var(--r-md);overflow:hidden;font-size:14px}
+th,td{padding:11px 14px;text-align:left;vertical-align:top;border-bottom:1px solid var(--line)}
+th{background:#EDF2F8;color:var(--navy);font-weight:600;font-size:13px;white-space:nowrap}
+tr:last-child td{border-bottom:0}
+td .tagline{color:var(--muted);font-size:12.5px;display:block;margin-top:3px}
+.col-num{font-variant-numeric:tabular-nums;white-space:nowrap;color:var(--navy);font-weight:600}
+code{font-size:12.5px;background:#F0F3F8;padding:1px 5px;border-radius:3px;color:var(--navy-3)}
+
+.sprint{background:var(--paper);border:1px solid var(--line);border-radius:var(--r-md);padding:18px 22px;margin-bottom:12px;box-shadow:var(--shadow-sm);border-left:4px solid var(--gold)}
+.sprint.done{border-left-color:var(--ok);opacity:.85}
+.sprint.security{border-left-color:var(--danger)}
+.sprint.mid{border-left-color:var(--teal)}
+.sprint.long{border-left-color:#8E5BD0}
+.sprint .sp-head{display:flex;align-items:baseline;justify-content:space-between;gap:14px;flex-wrap:wrap;margin-bottom:8px}
+.sprint .sp-no{font-size:12px;letter-spacing:.1em;color:var(--gold);font-weight:700}
+.sprint.done .sp-no{color:var(--ok)}
+.sprint.security .sp-no{color:var(--danger)}
+.sprint.mid .sp-no{color:var(--teal)}
+.sprint.long .sp-no{color:#8E5BD0}
+.sprint h3{margin:0;font-size:16px;color:var(--navy)}
+.sprint .sp-meta{font-size:12.5px;color:var(--muted)}
+.sprint .sp-body{display:grid;grid-template-columns:1fr 1fr;gap:18px;margin-top:10px}
+@media(max-width:760px){.sprint .sp-body{grid-template-columns:1fr}}
+.sprint .sp-body h4{margin-top:0;font-size:13px;color:var(--navy-3);text-transform:uppercase;letter-spacing:.06em;font-weight:600}
+.sprint ul{padding-left:18px;margin:6px 0 0}
+.sprint li{font-size:13.5px;margin:4px 0}
+.sprint .outcome{margin-top:12px;padding:10px 14px;background:var(--ok-soft);border-radius:var(--r-sm);font-size:13px;color:var(--ok)}
+.sprint .outcome b{font-weight:600}
+.wow{display:inline-block;font-size:11px;background:var(--gold);color:var(--navy);padding:2px 8px;border-radius:4px;font-weight:700;letter-spacing:.04em;margin-left:8px;vertical-align:middle}
+.sec-badge{display:inline-block;font-size:11px;background:var(--danger);color:#fff;padding:2px 8px;border-radius:4px;font-weight:700;letter-spacing:.04em;margin-left:8px;vertical-align:middle}
+.done-badge{display:inline-block;font-size:11px;background:var(--ok);color:#fff;padding:2px 8px;border-radius:4px;font-weight:700;letter-spacing:.04em;margin-left:8px;vertical-align:middle}
+
+.phase{background:var(--paper);border:1px solid var(--line);border-radius:var(--r-md);padding:0;overflow:hidden;box-shadow:var(--shadow-sm);display:flex;flex-direction:column}
+.phase .ph-head{padding:14px 18px;color:#fff;display:flex;align-items:center;justify-content:space-between;gap:10px}
+.phase.short .ph-head{background:linear-gradient(135deg,var(--navy) 0%,var(--navy-3) 100%)}
+.phase.mid .ph-head{background:linear-gradient(135deg,#1F4E79 0%,#2BC4B6 100%)}
+.phase.long .ph-head{background:linear-gradient(135deg,#5B3A8C 0%,#8E5BD0 100%)}
+.phase .ph-head h3{margin:0;color:#fff;font-size:16px}
+.phase .ph-head .cycle{font-size:12px;background:rgba(255,255,255,.18);padding:3px 10px;border-radius:999px;white-space:nowrap}
+.phase .ph-body{padding:16px 18px;flex:1}
+.phase .goal{font-size:13px;color:var(--muted);margin:0 0 12px;padding-bottom:12px;border-bottom:1px dashed var(--line)}
+.phase .goal b{color:var(--ink)}
+.phase ul{padding-left:18px;margin:0}
+.phase li{font-size:13.5px;margin:6px 0;line-height:1.55}
+.phase li b{color:var(--navy)}
+
+.pillar{background:var(--paper);border:1px solid var(--line);border-radius:var(--r-md);padding:18px 20px;box-shadow:var(--shadow-sm)}
+.pillar .ph{display:flex;align-items:center;gap:10px;margin-bottom:8px}
+.pillar .ph .ico{width:34px;height:34px;border-radius:8px;background:var(--gold-soft);display:inline-flex;align-items:center;justify-content:center;color:var(--navy);flex-shrink:0}
+.pillar h4{margin:0;font-size:15px;color:var(--navy)}
+.pillar p{font-size:13.5px;color:var(--muted);margin:0}
+
+.kpi{background:var(--paper);border:1px solid var(--line);border-radius:var(--r-md);padding:16px 18px}
+.kpi .k-name{font-size:13.5px;color:var(--navy);font-weight:600}
+.kpi .k-target{font-size:12px;color:var(--muted);margin-top:4px}
+.kpi .k-target b{color:var(--ink)}
+
+.risk{display:grid;grid-template-columns:140px 1fr 1fr;gap:0;background:var(--paper);border:1px solid var(--line);border-radius:var(--r-md);overflow:hidden;margin-bottom:10px}
+.risk > div{padding:12px 16px;border-right:1px solid var(--line);font-size:13.5px}
+.risk > div:last-child{border-right:0}
+.risk .r-name{background:#FAFBFD;font-weight:600;color:var(--navy)}
+.risk .r-mit{color:var(--muted)}
+.risk .r-name.resolved{background:var(--ok-soft);color:var(--ok)}
+@media(max-width:760px){.risk{grid-template-columns:1fr}.risk > div{border-right:0;border-bottom:1px solid var(--line)}}
+
+.callout{padding:14px 18px;border-radius:var(--r-md);margin:14px 0;font-size:14px}
+.callout.warn{background:var(--warn-soft);color:var(--warn);border-left:4px solid var(--warn)}
+.callout.ok{background:var(--ok-soft);color:var(--ok);border-left:4px solid var(--ok)}
+.callout.info{background:#EAF1FA;color:var(--navy);border-left:4px solid var(--navy-3)}
+.callout b{font-weight:600}
+
+.principle{display:flex;gap:14px;padding:14px 0;border-bottom:1px solid var(--line)}
+.principle:last-child{border-bottom:0}
+.principle .p-no{width:32px;height:32px;border-radius:50%;background:var(--navy);color:var(--gold);display:inline-flex;align-items:center;justify-content:center;font-weight:700;font-size:14px;flex-shrink:0}
+.principle h4{margin:2px 0 4px;font-size:15px;color:var(--navy)}
+.principle p{margin:0;font-size:13.5px;color:var(--muted)}
+
+.tl-bar{display:flex;gap:0;border-radius:var(--r-sm);overflow:hidden;height:32px;font-size:11px;font-weight:600;margin:14px 0}
+.tl-bar div{display:flex;align-items:center;justify-content:center;color:#fff;padding:0 6px;white-space:nowrap;text-align:center}
+.tl-bar .t-done{background:var(--ok)}
+.tl-bar .t-sec{background:var(--danger)}
+.tl-bar .t-next{background:var(--gold);color:var(--navy)}
+.tl-bar .t-mid{background:var(--teal)}
+.tl-bar .t-long{background:#8E5BD0}
+
+.changelog{background:var(--paper);border:1px solid var(--line);border-radius:var(--r-md);padding:18px 22px;box-shadow:var(--shadow-sm)}
+.changelog .cl-item{padding:10px 0;border-bottom:1px solid var(--line);font-size:13.5px}
+.changelog .cl-item:last-child{border-bottom:0}
+.changelog .cl-tag{display:inline-block;font-size:11px;font-weight:700;padding:1px 7px;border-radius:3px;margin-right:8px}
+.changelog .cl-tag.add{background:var(--ok-soft);color:var(--ok)}
+.changelog .cl.tag.change{background:var(--gold-soft);color:#8A6A1A}
+.changelog .cl-tag.change{background:var(--gold-soft);color:#8A6A1A}
+.changelog .cl-ver{display:inline-block;font-size:11px;font-weight:700;padding:1px 7px;border-radius:3px;margin-right:8px;background:var(--navy);color:var(--gold)}
+
+footer{margin-top:60px;padding-top:24px;border-top:1px solid var(--line);color:var(--muted);font-size:12.5px;text-align:center}
+
+@media print{nav.toc{display:none}.shell{grid-template-columns:1fr}main{padding:20px}.hero{background:var(--navy) !important;-webkit-print-color-adjust:exact;print-color-adjust:exact}section{page-break-inside:avoid}}
+</style>
+</head>
+<body>
+<div class="shell">
+<nav class="toc" aria-label="目录">
+  <div class="brand">ZHENGQI · ROADMAP</div>
+  <h2>政企智能助手</h2>
+  <div class="sub">产品路线图 · 3天为一迭代</div>
+  <ol>
+    <li><a href="#s1">定位与目标</a></li>
+    <li><a href="#s2">v1.8 变更说明</a></li>
+    <li><a href="#s3">现状盘点</a></li>
+    <li><a href="#s4">差异化策略</a></li>
+    <li><a href="#s5">短期规划</a></li>
+    <li><a href="#s6">中期规划</a></li>
+    <li><a href="#s7">长期规划</a></li>
+    <li><a href="#s8">商业化路径</a></li>
+    <li><a href="#s9">度量与里程碑</a></li>
+    <li><a href="#s10">风险与依赖</a></li>
+    <li><a href="#s11">执行原则</a></li>
+  </ol>
+  <div class="foot">v1.8 · 2026-09-08<br>S06收官 v1.2.0 · S07图谱融合+全卡片收口<br>编制：产品组 小赵</div>
+</nav>
+
+<main>
+  <header class="hero">
+    <span class="tag">PRODUCT ROADMAP · v1.8</span>
+    <h1>S07收口：图谱RAG融合推理 + 全卡片体系，"开个小饭馆"一句话出跨部门路线卡片组<span class="change-badge">v1.8 更新</span></h1>
+    <p>S06已收官（tag v1.2.0）：PG邻接表知识图谱上线（378节点/453边），政策/办事回答卡片化，部署安全bug全部修复。S07图谱Phase2开发全部收口：后端图谱优先+RAG兜底双路融合、多跳推理、实体消歧、LLM口语改写、政策语义分块；前端Process/Material/Compare/InfoGrid四张新卡+SSE card事件流，卡片接口协议v1.0先于代码冻结；H1数据修正新增社保卡申领补换、高龄津贴两个事项，图谱重建401节点/485边。前端已上线、后端CI三绿，VM部署后小钱启动测试，通过即打tag v1.3.0。下一步S08图谱Phase3：LLM自动构建+图谱可视化+智能追问。</p>
+    <div class="meta">
+      <span><b>当前版本</b> · v1.8（S07收口·图谱融合+全卡片）</span>
+      <span><b>里程碑</b> · S06已交付（tag v1.2.0），S07开发收口（目标tag v1.3.0）</span>
+      <span><b>代码版本</b> · 前端 d2eb59c / 后端 6e8a3e4</span>
+      <span><b>规划周期</b> · 25 迭代 / 75 工作日</span>
+    </div>
+  </header>
+
+  <!-- 1 -->
+  <section id="s1">
+    <h2 class="sec"><span class="num">01</span>定位与目标</h2>
+    <p class="sec-sub">战略主线不变：不做"通用 AI 聊天"，做"懂政务业务的 AI 办事员"。</p>
+    <div class="vision">
+      <div class="label">CORE POSITIONING</div>
+      <div class="quote">不做"通用 AI 聊天"，做"懂政务业务的 AI 办事员"。</div>
+      <p>通用大模型谁都能调，但知道"开饭店要先办营业执照再办食品许可"、知道"群众说'过户'其实是不动产登记"、知道"公文落款日期要用阿拉伯数字"——这些是政务领域 know-how，是我们团队的壁垒。</p>
+    </div>
+    <div class="grid-3" style="margin-top:18px">
+      <div class="pillar">
+        <div class="ph"><span class="ico"><svg aria-hidden="true" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2L2 7l10 5 10-5-10-5z"/><path d="M2 17l10 5 10-5"/><path d="M2 12l10 5 10-5"/></svg></span><h4>产品目标</h4></div>
+        <p>公文撰写、政策咨询、办事指引三合一，从单次问答升级为"一件事"全链路服务。</p>
+      </div>
+      <div class="pillar">
+        <div class="ph"><span class="ico"><svg aria-hidden="true" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg></span><h4>商业目标</h4></div>
+        <p>6 个月内完成 SaaS 与私有化双形态，跑通 1-2 个标杆客户。</p>
+      </div>
+      <div class="pillar">
+        <div class="ph"><span class="ico"><svg aria-hidden="true" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M2 12h20"/></svg></span><h4>能力目标</h4></div>
+        <p>政务知识库 + 业务规则引擎 + 公文模板库，可配置、可迁移、可私有化。</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- 2 v1.4变更 -->
+  <section id="s2">
+    <h2 class="sec"><span class="num">02</span>v1.8 变更说明</h2>
+    <p class="sec-sub">S06收官 tag v1.2.0；S07图谱RAG融合+全卡片体系开发收口，协议先行、前后端并行。遗留项登记入S08。</p>
+    <div class="changelog">
+      <div class="cl-item"><span class="cl-ver">v1.8</span><span class="cl-tag add">交付</span><b>S06知识图谱Phase1收官</b>（tag v1.2.0 / 8195995）：PG邻接表图谱5类实体/4类关系上线（线上378节点/453边），图谱上下文注入RAG链路；PolicyCard政策摘要卡+ServiceCard迁移BaseCard；N1/N2/N4/N5/N6部署安全bug全部修复；RAG三参数调优（temperature分档/max_tokens 4096/召回绝对下限）</div>
+      <div class="cl-item"><span class="cl-ver">v1.8</span><span class="cl-tag add">交付</span><b>S07图谱RAG融合+全卡片体系开发收口</b>：后端graph_fusion图谱优先精确匹配+RAG兜底模糊检索双路、BFS多跳遍历（GRAPH_MAX_HOPS=3/MAX_ENTITIES=15）、实体消歧打分、政策长文语义分块（500字/100重叠）、LLM口语改写（3s超时+LRU缓存，失败降级原文）；前端Process/Material/Compare/InfoGrid四新卡+SSE card事件流（实时上屏+done重放去重+历史保留）；单回答硬截断≤6卡、GRAPH_RAG_ENABLED=false一键回退S06。前端d2eb59c已上线、后端52b0a03+6e8a3e4推送，CI均三绿</div>
+      <div class="cl-item"><span class="cl-ver">v1.8</span><span class="cl-tag add">数据</span><b>H1数据修正包落地</b>：SVC-011 canonical补"跨省"二字；事项库新增SVC-025社会保障卡申领与补换、SVC-026高龄津贴申领（材料/步骤/地点/时限/电话字段齐全）；14条别名补丁含消歧分流（补办/挂失→025、缴费→001、跨省转移→011）；service_transitions.json场景路线数据文件驱动（开饭店/开企业），图谱重建401节点/485边，12条主链路全命中、闲聊不误命中</div>
+      <div class="cl-item"><span class="cl-ver">v1.8</span><span class="cl-tag add">协作</span><b>卡片接口协议v1.0先于代码冻结</b>：SSE event:card信封{card_type,data,source,confidence}+6类card_type，字段照现网ServiceCard/PolicyCard零映射定稿，前后端并行联调；浩哥指令"先完成S7全部内容再测试"，小钱测试用例v0.1（多跳5组/消歧3组/口语10条/8类卡片/降级红线/回归55项+图谱6组）冻结待跑</div>
+      <div class="cl-item"><span class="cl-ver">v1.8</span><span class="cl-tag add">经验</span><b>CI事故与验证流程升级</b>：纯re-export语法不创建模块作用域绑定，CARD_RENDERERS引用组件名TS2304——本地tsc --noEmit在project references工程漏检、CI的tsc -b才报错；本地验证统一升级为tsc -b &amp;&amp; vite build，推送后三重验证（CI三绿+线上bundle grep特征串），经验已沉淀</div>
+      <div class="cl-item"><span class="cl-ver">v1.8</span><span class="cl-tag change">遗留</span><b>S07遗留项登记入S08</b>：①policy卡后端产出点+CARD_BACKFILL_ENABLED RAG回填卡未实现（待小李拍板）；②3条脏数据清理（备份+浩哥授权）；③图谱两版差异对齐（线上378/453 vs 旧314/585）；④手机端KnowledgeAdmin/ChangePasswordModal弹窗排查；⑤小李私有化部署方案初稿；⑥小钱4个设计点拍板。均不阻塞v1.3.0演示</div>
+      <div class="cl-item"><span class="cl-ver">v1.8</span><span class="cl-tag change">排期</span><b>S08=图谱Phase3</b>：LLM辅助实体自动构建（管理员审核入图）+图谱可视化（力导向/层级图+回答内嵌迷你图谱）+智能追问（模糊反问≥80%准确率）+忘记密码，同步消化S07遗留项；S09公文深化起编号不变</div>
+      <div class="cl-item"><span class="cl-ver">v1.7</span><span class="cl-tag change">方向调整</span><b>S06方向调整为知识图谱+结构化卡片组件库</b>：浩哥19:01指示优先研发。小李架构方案：知识图谱用PG邻接表（不上Neo4j），3期推进（基础构建→RAG融合→LLM自动构建）；卡片库8组件（BaseCard/PolicyCard/ServiceCard/ProcessCard/MaterialCard/CompareCard/InfoGridCard/index）。原RAG质量提升（语义分块/查询理解）融入图谱+RAG融合，HK服务器迁移后置</div>
+      <div class="cl-item"><span class="cl-ver">v1.7</span><span class="cl-tag add">架构</span><b>知识图谱技术方案确定</b>：PG JSONB+邻接表存储（knowledge_graph_nodes + knowledge_graph_edges），实体5类（政策/事项/材料/部门/流程节点），关系4类（包含/需要/属于/流程），图谱优先精确匹配+RAG兜底模糊检索，支持多跳推理与实体消歧</div>
+      <div class="cl-item"><span class="cl-ver">v1.7</span><span class="cl-tag add">前端</span><b>结构化卡片组件库规划</b>：统一CSS变量/图标系统/字段缺失自动隐藏/响应式grid，8组件覆盖政策摘要/办事事项/对比/流程步骤/材料清单/信息网格，后续所有新功能复用</div>
+      <div class="cl-item"><span class="cl-ver">v1.7</span><span class="cl-tag add">修复</span><b>代码审查N1/N2/N5纳入S06首批</b>：N1 deploy_vm.sh补齐SUPER_ADMIN_PASSWORD/JWT_SECRET交互；N2 JWT_SECRET未配置即拒绝启动（防多worker随机）；N5 history只放行user/assistant角色防system注入。N4上传限制统一+N6写操作重试幂等S06一起做</div>
+      <div class="cl-item"><span class="cl-ver">v1.7</span><span class="cl-tag change">Sprint重组</span><b>中期Sprint重新编排</b>：S06图谱基础+卡片库+bug修复 → S07图谱RAG融合+全卡片+可视化 → S08 LLM自动构建+智能追问+QA。原S07公文深化→S09，原S08体验批次→S10，后续顺延。S09-S15编号重排</div>
+      <div class="cl-item"><span class="cl-ver">v1.7</span><span class="cl-tag change">合规基线</span><b>政务合规红线登记</b>：代码审查发现C1-C8（数据出网/公网发布/穿透残留/弱口令/脱敏/TLS/审计/密钥处理），Demo阶段不做，私有化交付前统一清零。C2/C3公网通路SaaS demo阶段保留，auto_deploy.sh/trycloudflare可清</div>
+      <div class="cl-item"><span class="cl-ver">v1.6</span><span class="cl-tag add">修复</span><b>P0公文写作跑偏</b>：_build_writing_message()对话栏入口面板字段全空时默认doc_type=通知导致用户原始query被丢弃，LLM自由发挥。修复：字段全空时透传request.message（28e0fb8）</div>
+      <div class="cl-item"><span class="cl-ver">v1.6</span><span class="cl-tag add">修复</span><b>P1 SSE 401处理</b>：SSE fetch绕过apiFetch导致401不弹登录，新增handleUnauthorized()统一处理（1c409ff）</div>
+      <div class="cl-item"><span class="cl-ver">v1.6</span><span class="cl-tag add">修复</span><b>P1 Markdown代码块围栏</b>：MiniMax输出markdown代码围栏（三个反引号+markdown）时marked渲染为代码块，新增unwrapMarkdownFence()剥离（1c409ff）</div>
+      <div class="cl-item"><span class="cl-ver">v1.6</span><span class="cl-tag add">基建</span><b>隧道迁移cpolar HK专业版</b>：Cloudflare Tunnel→cpolar HK固定域名api.zqhelper.site，systemd开机自启+证书自动续期，解决大陆CF不稳定</div>
+      <div class="cl-item"><span class="cl-ver">v1.6</span><span class="cl-tag add">性能</span><b>前后端性能优化</b>：后端async并发优化373c70a、nginx keepalive/gzip f2be1af、前端React.memo+流式节流8bbf3ef/e5e86de/7df5b8a、网络请求自动重试fd74b3e</div>
+      <div class="cl-item"><span class="cl-ver">v1.6</span><span class="cl-tag change">方向调整</span><b>S06调整为RAG质量提升</b>：知识库扩充+语义分块(500字/块+100字重叠)+查询理解(LLM query改写)+HK服务器直连迁移(TTFB 260ms→50ms)，原S06公文模板库/版本历史顺延</div>
+      <div class="cl-item"><span class="cl-ver">v1.6</span><span class="cl-tag change">QA</span><b>55项全量回归+5项针对性回归</b>：PASS 49/FAIL 6→P0/P1全部修复关闭，P2聚焦小问题不阻塞。核心能力全过（健康检查/三账号/JWT/Rerank/T2六场景/SSE/超管唯一/越权/CRUD/互踢/安全头/上传限制/边界值）</div>
+      <div class="cl-item"><span class="cl-ver">v1.5</span><span class="cl-tag add">交付</span><b>S04公文对话式生成完整闭环</b>：对话修改/docx国标导出/工具栏+满意度反馈/8种公文/预览排版，tag v1.0-s04 commit 133664b</div>
+      <div class="cl-item"><span class="cl-ver">v1.5</span><span class="cl-tag add">新增</span><b>流式双层BUG修复</b>：cb0cef4修嵌套async generator delta丢失→133664b补修_build_messages非writing分支user_query未定义500，教训：改多分支函数必须跑全intent冒烟</div>
+      <div class="cl-item"><span class="cl-ver">v1.5</span><span class="cl-tag add">新增</span><b>S05技术债清单</b>：公文预览折叠截断、历史空会话堆积、WRITING_REVISE_KEYWORDS单字误判、密码强度提示、自动迁移fail-fast</div>
+      <div class="cl-item"><span class="cl-ver">v1.5</span><span class="cl-tag change">里程碑</span><b>v1.0出彩产品化版本已达成</b>（原计划S04末约08-28，实际08-26交付）</div>
+      <div class="cl-item"><span class="cl-ver">v1.5</span><span class="cl-tag change">更新</span><b>S05范围调整</b>：体验批次①+S04技术债+小李架构建议（密码强度/操作日志审计前置评估）</div>
+
+      <div class="cl-item"><span class="cl-ver">v1.4</span><span class="cl-tag add">新增</span><b>S03账号安全体系完整闭环</b>：Token踢线/logout/用户管理CRUD/登录限流/改密码/防竞态/三级权限矩阵/自保护/独立超管/删除用户清理聊天记录/降级递增token_version/修改密码入口闭环/侧边栏logo修复/无权限提示，commit 1729245</div>
+      <div class="cl-item"><span class="cl-ver">v1.4</span><span class="cl-tag add">新增</span><b>S04任务卡定稿</b>：公文对话式生成哇点，4必做（对话修改后端/docx导出/工具栏+导出按钮/满意度反馈）+2重要（公文排版/文种扩充到8种）+2可选</div>
+      <div class="cl-item"><span class="cl-ver">v1.4</span><span class="cl-tag add">新增</span><b>技术债登记</b>：自动迁移fail-fast、测试脚本带JWT、chat_sessions外键评估、超管密码私有化文档，纳入S05/S06</div>
+      <div class="cl-item"><span class="cl-ver">v1.4</span><span class="cl-tag add">新增</span><b>小李架构建议4项</b>：密码强度提示纳入S05体验批次，操作日志审计纳入S06，忘记密码后置S08+，多标签隔离不改（Chrome标准行为）</div>
+      <div class="cl-item"><span class="cl-ver">v1.4</span><span class="cl-tag change">里程碑</span><b>v1.0出彩产品化版本锁定S04末（约08-28）</b></div>
+
+      <div class="cl-item" style="border-top:2px solid var(--line);padding-top:14px;margin-top:4px"><span class="cl-ver" style="background:var(--muted);color:#fff">v1.3</span><span class="cl-tag add">新增</span><b>S03 账号安全体系闭环</b>：插入安全加固 Sprint，包含 Token 踢线、logout、用户管理、登录限流、改密码、删除防竞态 6 项 + demo 降权 + 前端登录守卫，3 天交付。无"哇"点，但安全是政企硬门槛。</div>
+      <div class="cl-item"><span class="cl-tag change">顺延</span><b>原 S03 公文对话式生成 → S04</b>：哇点功能后移一个 Sprint，安全做完再启动。</div>
+      <div class="cl-item"><span class="cl-tag change">顺延</span><b>中期 S04-S13 整体后移一位 → S05-S14</b>，长期 S14-S23 → S15-S24。总迭代从 23 增至 24。</div>
+      <div class="cl-item"><span class="cl-tag add">明确</span><b>体验类全部后置</b>：P1 体验 6 项（登录页 Logo、消息复制、会话排序、时间分组、发送重试等）和 P2/P3 体验项，不在安全 Sprint 中穿插，统一放入 S05 及以后分批交付。</div>
+      <div class="cl-item"><span class="cl-tag change">里程碑</span><b>v1.0 出彩产品化版本</b>从"S03 末"调整为"S04 末"（约 12 天后），因为新增了安全 Sprint。</div>
+      <div class="cl-item"><span class="cl-tag add">新增原则</span><b>安全优先于出彩</b>：不是每个 Sprint 都必须有"哇"点，安全加固 Sprint 同样是有价值的交付。地基不稳不能往上盖楼。</div>
+    </div>
+  </section>
+
+  <!-- 3 现状 -->
+  <section id="s3">
+    <h2 class="sec"><span class="num">03</span>现状盘点</h2>
+    <p class="sec-sub">S01-S06全部完成（tag v1.2.0）。三个哇点+安全底座+UI焕新+知识图谱Phase1+结构化卡片已公网演示。S07图谱RAG融合+全卡片体系开发收口，待测试打tag v1.3.0。</p>
+    <div class="grid-4">
+      <div class="stat"><div class="lab">已完成迭代</div><div class="val" style="color:var(--ok)">6 / 25</div><div class="hint">S01一件事+S02比对+S03安全+S04公文+S05 RAG升级+S06图谱Phase1</div></div>
+      <div class="stat"><div class="lab">知识图谱</div><div class="val" style="color:var(--ok)">401 / 485 ✅</div><div class="hint">节点/边（H1重建后），5类实体4类关系</div></div>
+      <div class="stat"><div class="lab">结构化卡片</div><div class="val" style="color:var(--ok)">6 类全通</div><div class="hint">process/material/info_grid/compare/policy/service，协议v1.0冻结</div></div>
+      <div class="stat"><div class="lab">当前代码</div><div class="val" style="color:var(--gold)">S07收口</div><div class="hint">前端d2eb59c/后端6e8a3e4，CI三绿，待VM部署+测试</div></div>
+    </div>
+    <div class="grid-2" style="margin-top:16px">
+      <div class="panel">
+        <h3 style="margin-top:0;color:var(--ok)">✅ 已验证能力</h3>
+        <ul>
+          <li><b>RAG 问答 + 意图路由</b>：公文撰写 / 政策咨询 / 办事指引 / smalltalk 四分类</li>
+          <li><b>混合检索</b>：pgvector 向量 + 关键词 n-gram 双路召回 + Rerank 精排</li>
+          <li><b>P0 账号安全</b>：关闭注册 / 会话隔离 / 越权 404 / admin 密码环境变量 / guide 接口补鉴权</li>
+          <li><b>三级权限体系</b>：super_admin / admin / user，角色继承与接口鉴权完整</li>
+          <li><b>Token踢线+单点登录</b>：token_version机制，新登录/改密/降级即时踢线</li>
+          <li><b>用户管理后台</b>：创建/禁用/重置密码/搜索排序，删除用户清理聊天记录</li>
+          <li><b>登录限流</b>：5次失败锁15分钟，防暴力破解</li>
+          <li><b>修改密码闭环</b>：旧密码验证+新密码+踢所有设备，入口完整闭环</li>
+          <li><b>降级/禁用即时踢线</b>：递增token_version，旧token立即失效</li>
+          <li><b>政策语义级红绿对比</b>（S02 哇点）+ 知识库运营后台</li>
+          <li><b>数据库统一 PostgreSQL</b>，会话/向量/知识库/反馈全部落 PG</li>
+          <li><b>公文对话式生成</b>（S04哇点）：自然语言修改→docx国标导出→8种公文</li>
+          <li><b>满意度反馈</b>：👍👎+归属校验+幂等去重，落PG feedback_logs</li>
+          <li><b>CI/CD</b>：GitHub Actions 三项全绿 + Cloudflare Pages 自动部署</li>
+          <li><b>S05 UI焕新</b>：主界面+登录页视觉升级，公文写作抽屉A方案结构化面板</li>
+          <li><b>S05 性能优化</b>：后端async并发、nginx keepalive/gzip、前端React.memo+流式80ms节流</li>
+          <li><b>S05 基建</b>：cpolar HK固定域名+systemd自启+证书自动续期，前端网络请求自动重试</li>
+          <li><b>S05 P0/P1修复</b>：公文query透传、SSE 401统一处理、Markdown围栏剥离、桌面端聚焦增强</li>
+        </ul>
+      </div>
+      <div class="panel">
+        <h3 style="margin-top:0;color:var(--gold)">🎯 S07收口状态（图谱Phase2·融合推理+全卡片）</h3>
+        <ul>
+          <li><b>图谱+RAG双路融合</b>（后端6e8a3e4）：图谱命中优先遍历出结构化结果，未命中/低置信走RAG兜底；BFS多跳（≤3跳/15实体）、消歧打分、置信度门控0.75</li>
+          <li><b>F4/F5检索质量</b>：政策长文500字滑窗分块（100重叠）、LLM口语→政务术语改写（3s超时+LRU缓存+失败降级原文）</li>
+          <li><b>四新卡+SSE card流</b>（前端d2eb59c已上线）：Process时间线/Material可勾选/Compare差异高亮/InfoGrid四宫格；流式实时上屏+done重放+指纹去重+历史保留</li>
+          <li><b>H1数据修正</b>：新增SVC-025社保卡申领补换/SVC-026高龄津贴，14条别名含消歧分流，场景路线service_transitions.json文件驱动</li>
+          <li><b>降级红线</b>：闲聊/写作/追问不触发图谱、空内容不发卡、单回答≤6卡、GRAPH_RAG_ENABLED=false一键回退S06（含compare卡已纳入门控）</li>
+          <li><b>待办</b>：VM部署+图谱重建→小钱v0.1用例测试（55项回归+图谱6组+S07新场景）→浩哥终验→tag v1.3.0</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <!-- 4 差异化策略 -->
+  <section id="s4">
+    <h2 class="sec"><span class="num">04</span>差异化策略（不变）</h2>
+    <p class="sec-sub">9 个差异化功能三级优先级不变，S03安全已闭环，S04公文哇点当前启动，恢复每期一个"哇"点节奏。</p>
+    <table>
+      <thead><tr><th style="width:50px">优先级</th><th style="width:160px">差异化功能</th><th>核心体验</th><th style="width:90px">Sprint</th></tr></thead>
+      <tbody>
+        <tr><td><span style="display:inline-block;font-size:11px;font-weight:700;padding:2px 8px;border-radius:4px;background:var(--gold);color:var(--navy)">P0 出彩</span></td><td><b>"一件事"智能导办</b></td><td>输入"我要开饭店"→ 跨部门办事路线图，每步带材料/时限/部门</td><td class="col-num">S01 ✅</td></tr>
+        <tr><td><span style="display:inline-block;font-size:11px;font-weight:700;padding:2px 8px;border-radius:4px;background:var(--gold);color:var(--navy)">P0 出彩</span></td><td><b>政策智能比对</b></td><td>选两份政策 → LLM 语义级 diff → 红绿对比 → 导出报告</td><td class="col-num">S02 ✅</td></tr>
+        <tr><td><span style="display:inline-block;font-size:11px;font-weight:700;padding:2px 8px;border-radius:4px;background:var(--gold);color:var(--navy)">P0 出彩</span></td><td><b>公文对话式生成</b></td><td>说需求→生成初稿→对话修改→导出 docx</td><td class="col-num">S04 ✅<br>S09 深化</td></tr>
+        <tr><td><span style="display:inline-block;font-size:11px;font-weight:700;padding:2px 8px;border-radius:4px;background:var(--teal-soft);color:var(--navy-3)">P1 体验</span></td><td><b>结构化回答卡片</b></td><td>政策卡片/步骤卡片/材料卡片替代纯文本堆砌，统一组件库8类卡片</td><td class="col-num">S06 启动<br>S07 全量</td></tr>
+        <tr><td><span style="display:inline-block;font-size:11px;font-weight:700;padding:2px 8px;border-radius:4px;background:var(--teal-soft);color:var(--navy-3)">P1 体验</span></td><td><b>智能追问与意图澄清</b></td><td>问得模糊时主动反问，不瞎答</td><td class="col-num">S08</td></tr>
+        <tr><td><span style="display:inline-block;font-size:11px;font-weight:700;padding:2px 8px;border-radius:4px;background:var(--teal-soft);color:var(--navy-3)">P1 体验</span></td><td><b>政务知识图谱</b></td><td>政策→关联事项/上位法/流程关系，多跳推理+实体消歧，可视化展示</td><td class="col-num">S06 启动<br>S07 融合<br>S08 可视化</td></tr>
+        <tr><td><span style="display:inline-block;font-size:11px;font-weight:700;padding:2px 8px;border-radius:4px;background:var(--purple-soft);color:var(--purple)">P2 深化</span></td><td><b>个性化工作台</b></td><td>按部门/角色推荐政策、热门问答、待办</td><td class="col-num">S11</td></tr>
+        <tr><td><span style="display:inline-block;font-size:11px;font-weight:700;padding:2px 8px;border-radius:4px;background:var(--purple-soft);color:var(--purple)">P2 深化</span></td><td><b>多模态拍照识别材料</b></td><td>OCR → 自动填表 + 材料完整性校验</td><td class="col-num">S22</td></tr>
+        <tr><td><span style="display:inline-block;font-size:11px;font-weight:700;padding:2px 8px;border-radius:4px;background:var(--purple-soft);color:var(--purple)">P2 深化</span></td><td><b>对话结果一键分享</b></td><td>只读链接，同事可查看完整对话和引用</td><td class="col-num">S20</td></tr>
+      </tbody>
+    </table>
+    <div class="callout ok" style="margin-top:18px">
+      <b>节奏确认：</b>① S01-S06全部闭环交付（tag v1.2.0）；② 知识图谱3期推进：S06基础构建✅ → S07图谱RAG融合+全卡片（开发收口，目标v1.3.0）→ S08 LLM自动构建+可视化+智能追问；③ RAG质量提升（语义分块/LLM查询改写/阈值调优）已随S07落地；④ 代码审查N1/N2/N4/N5/N6部署安全bug S06已全部修复；⑤ 合规红线C1-C8 Demo阶段不做，私有化前清零；⑥ 每个Sprint结束必须有可公网演示的版本。
+    </div>
+  </section>
+
+  <!-- 5 短期 -->
+  <section id="s5">
+    <h2 class="sec"><span class="num">05</span>短期规划：S01-S06 已交付 · S07 收口</h2>
+    <p class="sec-sub">S01-S06全部完成（tag v1.2.0）。S07图谱RAG融合+全卡片体系开发收口，前端已上线、后端CI三绿，VM部署后小钱启动测试，通过即打tag v1.3.0。</p>
+
+    <div class="tl-bar">
+      <div class="t-done" style="flex:3">S01-S06 已完成（v1.2.0）</div>
+      <div class="t-next" style="flex:1">S07 图谱融合+全卡片（收口·当前）</div>
+      <div class="t-mid" style="flex:1">S08 图谱Phase3</div>
+    </div>
+
+    <article class="sprint done">
+      <div class="sp-head">
+        <div><span class="sp-no">SPRINT 01 · 已完成</span><h3>"一件事"智能导办 + 最简登录<span class="done-badge">已交付</span></h3></div>
+        <div class="sp-meta">3天 · v1.0.0-stable(91c36f6)</div>
+      </div>
+      <div class="sp-body">
+        <div><h4>交付内容</h4><ul><li>跨部门办事路线图（执照→许可→消防→税务）</li><li>每步带材料/时限/负责部门</li><li>最简登录体系</li><li>PostgreSQL 统一 + cpolar 隧道</li></ul></div>
+        <div><h4>验收结果</h4><ul><li>✅ MVP 3 天交付</li><li>✅ 公网可访问</li><li>✅ CI/CD 全绿</li></ul></div>
+      </div>
+    </article>
+
+    <article class="sprint done">
+      <div class="sp-head">
+        <div><span class="sp-no">SPRINT 02 · 已完成</span><h3>政策智能比对 + 知识库后台 + P0安全修复<span class="done-badge">已交付</span></h3></div>
+        <div class="sp-meta">3天 · b5b9a5e</div>
+      </div>
+      <div class="sp-body">
+        <div><h4>🌟 哇点功能</h4><ul><li><b>政策语义级红绿对比</b>：LLM diff → 高亮新增/删除/修改 → 左右分屏</li><li>知识库运营后台（admin CRUD）</li><li>检索测试面板（混合检索调试工具）</li></ul></div>
+        <div><h4>🔒 安全修复（7项闭环）</h4><ul><li>关闭注册 / 会话隔离 / 越权404</li><li>admin 密码环境变量 / guide 补鉴权</li><li>新建对话切Tab / 检索面板405+分数归一化</li><li>3个访客账号创建</li></ul></div>
+      </div>
+    </article>
+
+    <article class="sprint done">
+      <div class="sp-head">
+        <div><span class="sp-no">SPRINT 03 · 已完成</span><h3>账号安全体系闭环<span class="done-badge">已交付</span></h3></div>
+        <div class="sp-meta">3天 · 1729245</div>
+      </div>
+      <div class="sp-body">
+        <div>
+          <h4>🔒 安全核心（全部交付）</h4>
+          <ul>
+            <li><b>Token踢线（token_version）</b>：新登录使旧token失效，解决异地同时登录</li>
+            <li><b>POST /api/auth/logout 接口</b>：主动注销使当前token失效</li>
+            <li><b>用户管理CRUD+搜索排序</b>：创建/禁用/重置密码/搜索，不再靠SQL</li>
+            <li><b>登录失败限流</b>：5次失败锁15分钟，返429</li>
+            <li><b>修改密码闭环</b>：旧密码验证+新密码+踢所有设备</li>
+            <li><b>删除会话防竞态</b>：loading+disabled+失败回滚</li>
+            <li><b>独立超管账号</b>：super_admin独立于admin，不可删除/降级</li>
+            <li><b>三级权限矩阵</b>：super_admin/admin/user，接口级鉴权</li>
+            <li><b>自保护四道防线</b>：不可删自己/不可降自己/超管唯一/最后超管保护</li>
+            <li><b>降级禁用递增token_version</b>：即时踢线，旧token立即失效</li>
+            <li><b>删除用户清理聊天记录</b>：级联清理chat_sessions和messages</li>
+          </ul>
+        </div>
+        <div>
+          <h4>🔧 配套+修复</h4>
+          <ul>
+            <li><b>前端全局登录守卫</b>：未登录只显示登录框，不渲染主界面</li>
+            <li><b>侧边栏布局优化</b></li>
+            <li><b>超管知识库权限</b></li>
+            <li><b>修改密码入口闭环</b>（1729245）</li>
+            <li><b>logo文字重复修复</b>（74ba836）</li>
+            <li><b>无权限提示</b>（74ba836）</li>
+            <li><b>小钱后端54项权限+43项安全专项全过</b></li>
+            <li><b>前端E2E 21项16项核心权限全过</b></li>
+            <li><b>CI三绿</b></li>
+          </ul>
+        </div>
+      </div>
+      <div class="outcome"><b>交付结果：</b>S03账号安全体系完整闭环，commit 1729245。后端54项权限+43项安全专项全过，前端E2E 21项16项核心权限全过，CI三绿。</div>
+    </article>
+
+    <article class="sprint done">
+      <div class="sp-head">
+        <div><span class="sp-no">SPRINT 04 · 已完成</span><h3>公文对话式生成 <span class="wow">哇点</span><span class="done-badge">已交付</span></h3></div>
+        <div class="sp-meta">3天 · 133664b · tag v1.0-s04</div>
+      </div>
+      <div class="sp-body">
+        <div>
+          <h4>🌟 哇点功能（4必做+2重要）</h4>
+          <ul>
+            <li><b>对话式公文修改</b>：初稿后自然语言改"加一段XX""语气改正式点"，后端维护公文上下文，只改指定部分</li>
+            <li><b>docx导出</b>：国标格式（标题居中/正文仿宋/落款右对齐），WPS/Word可打开</li>
+            <li><b>公文工具栏</b>：导出Word+复制+反馈按钮</li>
+            <li><b>满意度反馈👍👎</b>：所有AI回答可评价，👎可选原因，落feedback_logs</li>
+            <li>[P1]<b>公文预览排版</b>：白底卡片+金色线，模拟公文纸张</li>
+            <li>[P1]<b>文种扩充到8种</b>：通知/纪要/报告/请示/函/批复/意见/决定</li>
+          </ul>
+        </div>
+        <div>
+          <h4>✅ 里程碑+可选</h4>
+          <ul>
+            <li><b>v1.0出彩产品化版本</b></li>
+            <li>三件事+比对+公文三个哇点可演示</li>
+            <li>安全底座完整（S03闭环）</li>
+            <li>[P2可选]<b>复制全文+重新生成</b></li>
+            <li>[P2可选]<b>空状态快捷指令</b></li>
+            <li>演示话术："说一句话生成红头公文，不满意直接对话改，改完一键导出docx——底层还有完整的账号安全体系"</li>
+          </ul>
+        </div>
+      </div>
+      <div class="outcome"><b>交付结果：</b>S04完整闭环，commit 133664b tag v1.0-s04。对话修改多轮不丢上下文、docx国标导出38KB（PK头验证）、反馈归属校验+幂等409、8种公文、流式双层BUG修复、小钱QA全过（S03回归45 passed+1 skipped）、CI三绿。v1.0出彩版本达成。</div>
+    </article>
+
+    <article class="sprint done">
+      <div class="sp-head">
+        <div><span class="sp-no">SPRINT 05 · 已完成</span><h3>RAG升级 + UI焕新 + 隧道迁移<span class="done-badge">已交付</span></h3></div>
+        <div class="sp-meta">5天 · 28e0fb8 · tag v1.1.0</div>
+      </div>
+      <div class="sp-body">
+        <div>
+          <h4>🎨 UI/UX焕新</h4>
+          <ul>
+            <li><b>主界面+登录页视觉焕新</b>（610fccd），对齐V1.2高保真原型</li>
+            <li><b>公文写作抽屉A方案</b>（8e4026e）：文种/标题/主送/正文/落款结构化面板</li>
+            <li>知识库后台增强+检索测试面板（765ce88/566b808）</li>
+            <li>模型下拉切换修复+头像清晰度（8190c38）</li>
+            <li>引用来源简化，只保留标题+来源（db1f5c2）</li>
+          </ul>
+        </div>
+        <div>
+          <h4>⚡ 性能+基建</h4>
+          <ul>
+            <li><b>后端并发优化</b>（373c70a）：async改造+连接池</li>
+            <li><b>nginx调优</b>（f2be1af）：keepalive复用+gzip+静态缓存</li>
+            <li><b>前端渲染优化</b>（8bbf3ef/e5e86de/7df5b8a）：React.memo+80ms流式节流+错误边界</li>
+            <li><b>网络请求自动重试</b>（fd74b3e）：指数退避+content-visibility长列表优化</li>
+            <li><b>cpolar HK隧道迁移</b>：固定域名api.zqhelper.site+systemd自启+证书续期hook</li>
+          </ul>
+        </div>
+      </div>
+      <div class="sp-body" style="margin-top:0">
+        <div>
+          <h4>🔴 P0/P1 修复</h4>
+          <ul>
+            <li><b>P0 公文query透传</b>（28e0fb8）：对话栏入口用户原始消息不再被丢弃</li>
+            <li><b>P1 SSE 401统一处理</b>（1c409ff）：token过期清session弹登录</li>
+            <li><b>P1 Markdown围栏剥离</b>（1c409ff）：自动识别并剥离LLM输出的markdown代码围栏</li>
+            <li><b>P1 compose环境变量透传</b>（f3a7b60）：JWT/session/rate-limit配置不再丢失</li>
+            <li>上传限制统一10MB（6ad0924）、输入框桌面端聚焦（e75711e/1c409ff）</li>
+          </ul>
+        </div>
+        <div>
+          <h4>✅ QA验收</h4>
+          <ul>
+            <li><b>55项全量回归</b>（API 48+UI 7），PASS 49</li>
+            <li><b>5项针对性回归</b>：公文非流式/SSE、Markdown、401全PASS</li>
+            <li>P0/P1全部关闭，P2聚焦不阻塞</li>
+            <li>核心能力全过：Rerank/T2六场景/SSE/超管唯一/越权/互踢/安全头</li>
+            <li>tag v1.1.0，文档CHANGELOG+部署文档+技术决策同步更新</li>
+          </ul>
+        </div>
+      </div>
+      <div class="outcome"><b>交付结果：</b>S05全量交付，tag v1.1.0（commit 71f17af）。UI焕新+性能优化+基建迁移+P0/P1修复闭环。公网地址：www.zqhelper.site（CF Pages）+ api.zqhelper.site（cpolar HK）。</div>
+    </article>
+
+    <article class="sprint done">
+      <div class="sp-head">
+        <div><span class="sp-no">SPRINT 06 · 已完成</span><h3>知识图谱Phase1 + 卡片库 + 部署安全修复<span class="done-badge">已交付</span></h3></div>
+        <div class="sp-meta">08-29~09-01 · tag v1.2.0（8195995）</div>
+      </div>
+      <div class="sp-body">
+        <div><h4>🕸 知识图谱 Phase1</h4><ul><li>PG邻接表 knowledge_graph_nodes/edges（JSONB，不上Neo4j，私有化轻量）</li><li>实体5类：政策/事项/材料/部门/流程节点；关系4类：包含/需要/属于/流程</li><li>图谱health就绪（mode=postgres），图谱上下文注入RAG回答链路</li><li>基于事项库89条JSON+aliases.json构建初始图谱</li></ul></div>
+        <div><h4>🎴 卡片+安全+调优</h4><ul><li>BaseCard统一基座（六色badgeVariant）+PolicyCard政策摘要卡上线</li><li>N1/N2/N4/N5/N6部署安全bug全部修复（JWT强制配置/history防注入/上传统一/写操作幂等）</li><li>RAG三参数：temperature按意图分档、max_tokens 4096、召回叠绝对下限</li><li>小钱55项回归+图谱专项QA通过，CI三绿</li></ul></div>
+      </div>
+      <div class="outcome"><b>交付结果：</b>知识图谱从0到1上线（378节点/453边），政策回答PolicyCard化，部署安全隐患清零，tag v1.2.0。</div>
+    </article>
+
+    <article class="sprint">
+      <div class="sp-head">
+        <div><span class="sp-no">SPRINT 07 · 开发收口</span><h3>图谱Phase2：图谱RAG融合推理 + 全卡片体系 <span class="wow">哇点</span></h3></div>
+        <div class="sp-meta">09-08~09-11 · 目标 tag v1.3.0</div>
+      </div>
+      <div class="sp-body">
+        <div><h4>🕸 F1-F5 后端融合（小孙）</h4><ul><li><b>F1 融合路由</b>：图谱命中优先出结构化结果，未命中/低置信RAG兜底；GRAPH_RAG_ENABLED一键回退</li><li><b>F2 多跳遍历</b>：BFS≤3跳/15实体，跨部门路线（开饭店→个体户→食品许可→税务→社保）</li><li><b>F3 实体消歧</b>：打分排序+别名分流（补办→社保卡025、缴费→社保登记001）</li><li><b>F4 语义分块</b>：政策长文500字滑窗+100字重叠</li><li><b>F5 LLM改写</b>：口语→政务术语，3s超时+LRU缓存+失败降级原文</li></ul></div>
+        <div><h4>🎴 K1-K5 前端全卡片（小赵，已上线）</h4><ul><li><b>ProcessCard</b>：垂直时间线+部门8色稳定配色+"还有更多环节"截断提示</li><li><b>MaterialCard</b>：可勾选清单+X/Y进度条（全备齐变绿）+纯本地状态</li><li><b>CompareCard</b>：三列对比+差异行黄底高亮+缺值"—"</li><li><b>InfoGridCard</b>：地点/时限/费用/电话四宫格，缺格隐藏，tel:直拨</li><li><b>SSE card流</b>：实时上屏+done.cards重放权威合并+指纹去重+历史重放；H2容器级IntersectionObserver+RAF门控动画</li></ul></div>
+        <div><h4>📦 H1 数据 + 协议（小钱/小赵）</h4><ul><li>SVC-025社保卡申领补换、SVC-026高龄津贴入库；SVC-011补"跨省"；14条别名补丁</li><li>service_transitions.json场景路线（开饭店/开企业），文件驱动无硬编码</li><li>图谱重建401节点/485边，12条主链路命中、闲聊不误命中</li><li>卡片接口协议v1.0冻结先行：SSE event:card信封+6类card_type，前后端零映射对齐</li></ul></div>
+        <div><h4>✅ 验收流程（进行中）</h4><ul><li>前端d2eb59c：CI三绿+线上bundle特征串验证通过（一次TS2304 CI事故已修并沉淀经验）</li><li>后端52b0a03+6e8a3e4：小赵功能验收主链路通过（字段/降级红线/H1分流全核），CI三绿</li><li>小李架构review并行；待VM部署+图谱重建→小钱v0.1用例（55回归+图谱6组+S07新场景）</li></ul></div>
+      </div>
+      <div class="outcome"><b>哇点演示：</b>群众问"开个小饭馆要办什么手续"——图谱多跳推理出跨部门完整路线：办理路线时间线卡+各事项材料清单卡+办理信息四宫格卡，卡片组随流式回答实时上屏；"职工社保和居民社保哪个好"出对比卡；"社保卡丢了咋办"口语改写+消歧直达补办事项。测试通过后打tag v1.3.0。</div>
+    </article>
+
+    <div class="callout info">
+      <b>三阶段总览：</b>短期（S01-06）出彩产品化+RAG升级+图谱Phase1 ✅ 已达成（v1.2.0）→ 中期（S07-15）图谱壁垒+全卡片+体验深化（S07融合推理收口中）→ 长期（S16-25）平台化。智能推理从"演示能力"变成"默认回答形态"。
+    </div>
+  </section>
+
+  <!-- 6 中期 -->
+  <section id="s6">
+    <h2 class="sec"><span class="num">06</span>中期规划：S08-S15 · 8 迭代 · 24 天</h2>
+    <p class="sec-sub">S06/S07已在05章详述（S06已交付v1.2.0、S07收口中）。S08完成知识图谱三期最后一块（LLM自动构建+可视化+智能追问）并消化S07遗留，S09起深化公文+体验批次，建立政务推理壁垒。小李架构：PG邻接表存图谱，不上Neo4j保持私有化轻量。</p>
+
+    <article class="sprint done">
+      <div class="sp-head"><div><span class="sp-no">SPRINT 06 · 已完成</span><h3>知识图谱Phase1 + 结构化卡片组件库 + 部署安全bug修复<span class="done-badge">已交付</span></h3></div><div class="sp-meta">08-29~09-01 · tag v1.2.0（8195995）</div></div>
+      <div class="sp-body">
+        <div><h4>🕸 知识图谱 Phase1（小孙+小李）</h4><ul><li><b>实体定义5类</b>：政策/事项/材料/部门/流程节点</li><li><b>关系定义4类</b>：政策-包含-事项、事项-需要-材料、事项-属于-部门、事项-包含-流程</li><li><b>PG存储</b>：knowledge_graph_nodes + knowledge_graph_edges 邻接表（JSONB，不上Neo4j）</li><li>基于现有89条JSON+aliases.json人工构建初始图谱</li><li>图谱查询API：POST /api/graph/query 输入意图返回关联实体链</li></ul></div>
+        <div><h4>🎴 卡片组件库 Phase1（小赵）</h4><ul><li><b>BaseCard</b>：基础卡片（标题/描述/操作区）+统一CSS变量/图标</li><li><b>PolicyCard</b>：政策摘要卡（文号/生效日期/要点）</li><li><b>ServiceCard重构</b>：现有办事事项卡迁移到BaseCard</li><li>字段缺失自动隐藏、响应式grid（桌面2列/手机1列）</li></ul></div>
+        <div><h4>🔧 代码审查bug修复（首批）</h4><ul><li><b>N1</b>：deploy_vm.sh补齐SUPER_ADMIN_PASSWORD/JWT_SECRET交互+强度校验</li><li><b>N2</b>：JWT_SECRET未配置即拒绝启动（防多worker随机失效）</li><li><b>N5</b>：history只放行user/assistant角色，system一律丢弃（防注入绕过护栏）</li><li><b>N4</b>：compare.py上传5MB→10MB统一+size None保护</li><li><b>N6</b>：重试默认只GET，写操作关重试或幂等key</li></ul></div>
+        <div><h4>⚙️ RAG参数调优 + 收尾</h4><ul><li><b>R1</b>：temperature按意图分档（QA 0.1/公文0.5/smalltalk 0.7）</li><li><b>R2</b>：max_tokens 2048→4096+前端截断提示</li><li><b>R3</b>：召回阈值叠绝对下限，低置信拒答不放行噪声</li><li>P2输入框聚焦改用屏幕宽度+React ref、脏数据清理</li><li>社保卡知识补全+aliases映射</li></ul></div>
+      </div>
+      <div class="outcome"><b>交付结果：</b>知识图谱从0到1上线（PG邻接表378节点/453边，5类实体/4类关系），PolicyCard政策摘要卡+ServiceCard迁移BaseCard上线，N1/N2/N4/N5/N6部署安全bug全部修复，RAG三参数调优落地，小钱QA通过，tag v1.2.0。</div>
+    </article>
+
+    <article class="sprint">
+      <div class="sp-head"><div><span class="sp-no">SPRINT 07 · 开发收口中（详见05章）</span><h3>知识图谱Phase2：图谱+RAG融合 + 全卡片组件 <span class="wow">哇点</span></h3></div><div class="sp-meta">09-08~09-11 · 目标 tag v1.3.0</div></div>
+      <div class="sp-body">
+        <div><h4>🕸 图谱+RAG融合（小孙+小李）</h4><ul><li><b>图谱优先精确匹配</b>：意图命中实体→遍历图谱返回结构化结果</li><li><b>RAG兜底模糊检索</b>：图谱未命中走向量+关键词+Rerank</li><li>多跳推理：A→B→C链路（如"开饭店"→执照+许可+消防+税务）</li><li>实体消歧："公积金"区分住房公积金 vs 住房补贴</li><li>RAG语义分块（500字/块+100字重叠）融入此期</li><li>LLM query改写（口语化→标准政务术语）</li></ul></div>
+        <div><h4>🎴 全卡片组件（小赵）</h4><ul><li><b>ProcessCard</b>：流程步骤卡片（时间线展示）</li><li><b>MaterialCard</b>：材料清单卡片（checkbox+勾选动画）</li><li><b>CompareCard</b>：对比卡片（A vs B差异高亮）</li><li><b>InfoGridCard</b>：信息网格卡（地点/时限/费用/电话四宫格）</li><li>index.ts统一导出+自动类型推断</li><li>政策咨询类回答100%包含结构化卡片</li></ul></div>
+      </div>
+      <div class="outcome"><b>S07状态：</b>前端d2eb59c已上线（Process/Material/Compare/InfoGrid四新卡+SSE card流+容器级动画门控），后端52b0a03+6e8a3e4推送CI三绿，小赵功能验收主链路通过（协议v1.0字段对齐/降级红线/H1消歧分流全核）。待VM部署+图谱重建（401节点/485边）→小钱v0.1用例测试→浩哥终验→tag v1.3.0。可演示"开个小饭馆要办什么手续"→跨部门路线图+材料+信息卡片组。</div>
+    </article>
+
+    <article class="sprint mid">
+      <div class="sp-head"><div><span class="sp-no">SPRINT 08 · 视觉出彩</span><h3>知识图谱Phase3：LLM自动构建 + 图谱可视化 + 智能追问 <span class="wow">哇点</span></h3></div><div class="sp-meta">3天 · 09-12起</div></div>
+      <div class="sp-body">
+        <div><h4>🕸 LLM自动构建（小孙+小李）</h4><ul><li>LLM辅助实体抽取：从政策文本自动识别实体和关系</li><li>图谱更新机制：新政策入库时自动扩展图谱</li><li>人工审核兜底：自动抽取结果管理员确认后入图</li><li>图谱覆盖率/准确率度量看板</li></ul></div>
+        <div><h4>📊 图谱可视化（小赵）</h4><ul><li>力导向图/层级图两种布局</li><li>可交互：点击节点展开、双击跳转事项</li><li>政策→关联事项/上位法/下级文件/办理流程关系图</li><li>回答中嵌入迷你图谱卡片</li></ul></div>
+        <div><h4>💬 智能追问</h4><ul><li>模糊问题主动反问澄清（如"哪个区的社保？"）</li><li>追问准确率目标≥80%</li><li>忘记密码功能（小李架构建议）</li><li>QA回归（小钱）：图谱准确率/卡片覆盖/追问质量</li></ul></div>
+        <div><h4>🧹 S07遗留消化</h4><ul><li>policy卡后端产出点 + CARD_BACKFILL_ENABLED RAG回填卡（小李拍板排期）</li><li>3条脏数据清理（删除前备份+浩哥授权）</li><li>图谱两版差异对齐（378/453 vs 314/585成因核查）</li><li>手机端KnowledgeAdmin/ChangePasswordModal弹窗排查</li><li>小李私有化部署方案初稿收尾、小钱4个设计点拍板</li></ul></div>
+      </div>
+      <div class="outcome"><b>S08交付：</b>图谱可自动扩展+可视化交互，智能追问闭环。这是"懂政务业务的AI办事员"的核心壁垒演示——从文本匹配升级到智能推理。可演示关系图点击探索+模糊问题反问。</div>
+    </article>
+
+    <article class="sprint mid">
+      <div class="sp-head"><div><span class="sp-no">SPRINT 09</span><h3>公文协作深化：模板库 + 版本历史 + 体验批次②</h3></div><div class="sp-meta">3天</div></div>
+      <div class="sp-body">
+        <div><h4>公文深化</h4><ul><li>满意公文"存为模板"，部门级模板库</li><li>公文版本历史，可对比可回滚</li><li>模板变量自动填充（{{发文单位}}/{{日期}}）</li><li>操作日志审计（小李架构建议）</li></ul></div>
+        <div><h4>体验批次②（P2）</h4><ul><li>会话重命名+搜索</li><li>消息重新生成按钮</li><li>操作反馈 Toast 统一组件</li><li>退出登录确认弹窗</li><li>S05遗留体验项（消息复制/时间分组等如S05未覆盖）</li></ul></div>
+      </div>
+    </article>
+
+    <article class="sprint mid">
+      <div class="sp-head"><div><span class="sp-no">SPRINT 10</span><h3>体验批次③ + 移动端 + 导出</h3></div><div class="sp-meta">3天</div></div>
+      <div class="sp-body">
+        <div><h4>体验补全</h4><ul><li>首次登录引导页</li><li>空状态引导（推荐问题示例）</li><li>长消息折叠展开</li><li>引用来源可点击展开原文</li></ul></div>
+        <div><h4>移动端 + 导出</h4><ul><li>移动端适配（手势/键盘/底部导航）</li><li>单条对话导出 Word/PDF</li><li>比对结果持久化到 PG</li><li>锦上添花：深色模式/键盘快捷键/会话置顶</li></ul></div>
+      </div>
+    </article>
+
+    <article class="sprint mid">
+      <div class="sp-head"><div><span class="sp-no">SPRINT 11</span><h3>个性化工作台 + 主动政策推送</h3></div><div class="sp-meta">3天</div></div>
+      <div class="sp-body">
+        <div><h4>交付内容</h4><ul><li>登录后按部门/角色展示关注政策/热门问答/待办</li><li>首次使用选择关注领域</li><li>新政策自动匹配推送</li></ul></div>
+        <div><h4>锦上添花</h4><ul><li>输入框 @提及知识库精准提问</li></ul></div>
+      </div>
+    </article>
+
+    <article class="sprint mid">
+      <div class="sp-head"><div><span class="sp-no">SPRINT 12</span><h3>数据驾驶舱（给领导看）</h3></div><div class="sp-meta">3天</div></div>
+      <div class="sp-body">
+        <div><h4>交付内容</h4><ul><li>核心指标卡：调用量/活跃/满意度/响应时长</li><li>热点问题 Top20、未命中 Top20</li><li>按部门/主题/时段多维下钻</li><li>未命中一键转待补知识条目</li></ul></div>
+        <div><h4>验收</h4><ul><li>领导一页看清"用得怎么样、哪里不行"</li></ul></div>
+      </div>
+    </article>
+
+    <article class="sprint mid">
+      <div class="sp-head"><div><span class="sp-no">SPRINT 13</span><h3>多租户与部门隔离</h3></div><div class="sp-meta">3天 · SaaS 地基</div></div>
+      <div class="sp-body">
+        <div><h4>交付内容</h4><ul><li>租户（区/局/街道）一级隔离</li><li>超级管理员后台：租户开通/停用/配额</li><li>租户级配置：欢迎语/推荐问题/Logo/主色</li></ul></div>
+        <div><h4>为什么此时做</h4><ul><li>用户体系（S03）已完善，加租户层水到渠成</li><li>SaaS 商业化和私有化复制的共同前提</li></ul></div>
+      </div>
+    </article>
+
+    <article class="sprint mid">
+      <div class="sp-head"><div><span class="sp-no">SPRINT 14</span><h3>OA / 审批 + 网办大厅对接</h3></div><div class="sp-meta">3天 · 从"告诉你"到"帮你办"</div></div>
+      <div class="sp-body">
+        <div><h4>交付内容</h4><ul><li>公文定稿"提交审批"（钉钉/企微/webhook）</li><li>审批状态回写对话</li><li>路线图事项跳转政务网办大厅</li><li>适配层接口稳定，换系统只改配置</li></ul></div>
+        <div><h4>验收</h4><ul><li>跑通"撰写→修改→提交审批→状态回写"链路</li></ul></div>
+      </div>
+    </article>
+
+    <article class="sprint mid">
+      <div class="sp-head"><div><span class="sp-no">SPRINT 15</span><h3>中期里程碑：标杆客户共创 &amp; v1.5</h3></div><div class="sp-meta">3天 · 复盘+打磨</div></div>
+      <div class="sp-body">
+        <div><h4>交付内容</h4><ul><li>1-2 个真实客户为期一周共创试用</li><li>收集窗口办事员与办公室秘书反馈</li><li>修复高频问题，性能与稳定性压测</li><li>v1.5 发布说明、客户案例稿、私有化部署手册</li></ul></div>
+        <div><h4>里程碑产出</h4><ul><li>v1.5：一件事+公文+比对+图谱+看板</li><li>1 份标杆客户案例</li></ul></div>
+      </div>
+    </article>
+  </section>
+
+  <!-- 7 长期 -->
+  <section id="s7">
+    <h2 class="sec"><span class="num">07</span>长期规划：10 迭代 · 30 天（S16-S25）</h2>
+    <p class="sec-sub">面向平台化、行业复制与私有化交付。整体较 v1.2 后移一位，内容不变。</p>
+    <div class="grid-2">
+      <div class="panel"><h3 style="margin-top:0">S16 · 技能/插件市场雏形</h3><p style="color:var(--muted);font-size:13px;margin-bottom:8px">把公文、办事、咨询能力抽象成可安装技能包。</p><ul><li>技能清单/安装/配置 schema</li><li>首批官方技能：税务/市监/社保助手</li></ul></div>
+      <div class="panel"><h3 style="margin-top:0">S17 · 可视化智能体编排</h3><p style="color:var(--muted);font-size:13px;margin-bottom:8px">非技术人员也能配复杂问答流程。</p><ul><li>拖拽节点：意图/检索/追问/工具/回复</li><li>流程调试与版本管理</li></ul></div>
+      <div class="panel"><h3 style="margin-top:0">S18 · 私有化一键部署包</h3><p style="color:var(--muted);font-size:13px;margin-bottom:8px">Docker Compose → K8s Helm Chart。</p><ul><li>离线安装包/镜像私有仓库</li><li>初始化向导/升级脚本/回滚</li></ul></div>
+      <div class="panel"><h3 style="margin-top:0">S19 · 混合模型与本地大模型</h3><p style="color:var(--muted);font-size:13px;margin-bottom:8px">敏感数据走内网，通用问答走云端。</p><ul><li>模型路由：按租户/意图/敏感级别</li><li>兼容 Ollama / vLLM 本地部署</li></ul></div>
+      <div class="panel"><h3 style="margin-top:0">S20 · 开放 API + 对话分享</h3><p style="color:var(--muted);font-size:13px;margin-bottom:8px">第三方系统可调用，对话结果可分享。</p><ul><li>对话/知识库/公文 RESTful API</li><li>API Key 管理/配额/审计</li><li>对话结果只读分享链接</li></ul></div>
+      <div class="panel"><h3 style="margin-top:0">S21 · 多端接入（小程序/公众号/终端）</h3><p style="color:var(--muted);font-size:13px;margin-bottom:8px">一套后端服务多端复用。</p><ul><li>微信小程序与公众号 H5</li><li>政务自助终端适配（大字/触屏/语音）</li></ul></div>
+      <div class="panel"><h3 style="margin-top:0">S22 · 多模态：拍照识别材料</h3><p style="color:var(--muted);font-size:13px;margin-bottom:8px">拍照 → OCR → 自动填表 + 完整性校验。</p><ul><li>身份证/执照/合同 OCR</li><li>材料完整性校验</li></ul></div>
+      <div class="panel"><h3 style="margin-top:0">S23 · 行业版本：税务/市监/社保</h3><p style="color:var(--muted);font-size:13px;margin-bottom:8px">每行业一套预置知识库+模板+流程。</p><ul><li>行业知识包导入工具</li><li>行业公文模板与"一件事"主题包</li></ul></div>
+      <div class="panel"><h3 style="margin-top:0">S24 · 计费订阅 + 安全合规</h3><p style="color:var(--muted);font-size:13px;margin-bottom:8px">SaaS 商业化 + 等保合规政企门槛。</p><ul><li>套餐管理/用量统计/账单</li><li>等保 2.0 三级合规自查与整改</li></ul></div>
+      <div class="panel"><h3 style="margin-top:0">S25 · v3.0 平台化发布</h3><p style="color:var(--muted);font-size:13px;margin-bottom:8px">长期里程碑。</p><ul><li>三形态：平台版/行业版/私有化版</li><li>开发者文档与技能市场公开</li><li>≥3 付费客户或试点局办</li></ul></div>
+    </div>
+  </section>
+
+  <!-- 8 商业化 -->
+  <section id="s8">
+    <h2 class="sec"><span class="num">08</span>商业化路径（不变）</h2>
+    <table>
+      <thead><tr><th style="width:130px">形态</th><th>目标客户</th><th>交付方式</th><th>收费模式</th><th>关键能力</th></tr></thead>
+      <tbody>
+        <tr><td><b>SaaS 版</b></td><td>中小部门、街道、社区</td><td>公有云多租户，开箱即用</td><td>按人数/年订阅</td><td>v1.0 + S13 多租户</td></tr>
+        <tr><td><b>私有化版</b></td><td>区县级政府、局级单位</td><td>内网/政务云部署</td><td>一次性授权+年服务费</td><td>S18 部署包 + S24 等保</td></tr>
+        <tr><td><b>行业版</b></td><td>税务/市监/社保条线</td><td>预置知识包+模板+流程</td><td>行业 license + 实施费</td><td>S23 行业版本 + S16 技能市场</td></tr>
+      </tbody>
+    </table>
+    <div class="callout warn" style="margin-top:18px">
+      <b>客户共创红线：</b>SaaS 正式对外前必须完成 1-2 个真实客户共创（S15），短期先把出彩功能和安全底座打好。
+    </div>
+  </section>
+
+  <!-- 9 度量 -->
+  <section id="s9">
+    <h2 class="sec"><span class="num">09</span>度量与里程碑</h2>
+    <table>
+      <thead><tr><th style="width:90px">版本</th><th>时间节点</th><th>里程碑</th><th>核心标志</th></tr></thead>
+      <tbody>
+        <tr style="background:var(--ok-soft)"><td class="col-num">v1.0 ✅</td><td>S04末 / 08-26 已交付</td><td>出彩产品化版本</td><td>三件事+比对+公文三个哇点可演示；安全体系闭环。<b>提前2天达成。</b></td></tr>
+        <tr style="background:var(--ok-soft)"><td class="col-num">v1.1 ✅</td><td>S05末 / 08-28 已交付</td><td>RAG升级+UI焕新</td><td>UI视觉焕新+公文抽屉+性能优化+cpolar HK固定域名+P0/P1全修复，tag v1.1.0（28e0fb8）。55项回归P0/P1全过。</td></tr>
+        <tr style="background:var(--ok-soft)"><td class="col-num">v1.2 ✅</td><td>S06末 / 09-01 已交付</td><td>知识图谱Phase1+卡片库</td><td>PG邻接表图谱上线（378节点/453边）+PolicyCard+部署安全bug清零+RAG调优，tag v1.2.0（8195995）。</td></tr>
+        <tr style="background:var(--gold-soft)"><td class="col-num">v1.3</td><td>S07末 / 09-11 目标</td><td>图谱融合推理+全卡片</td><td>图谱RAG双路融合+多跳+消歧+口语改写+语义分块，6类卡片全通（401节点/485边）。前端d2eb59c已上线、后端6e8a3e4待VM部署测试。</td></tr>
+        <tr><td class="col-num">v1.5</td><td>S15 末 / 约 30 天后</td><td>图谱壁垒版本</td><td>知识图谱三期完成+结构化卡片全覆盖+RAG融合+数据看板+多租户，1-2 标杆客户共创</td></tr>
+        <tr><td class="col-num">v3.0</td><td>S25 末 / 约 60 天后</td><td>平台化版本</td><td>三形态商业化，≥3 付费客户或试点</td></tr>
+      </tbody>
+    </table>
+    <h3>核心指标</h3>
+    <div class="grid-3">
+      <div class="kpi"><div class="k-name">北极星：周活跃办事用户</div><div class="k-target">v1.0 ≥ <b>50</b>；v1.5 ≥ <b>300</b>；v3.0 ≥ <b>1000</b></div></div>
+      <div class="kpi"><div class="k-name">知识库命中率</div><div class="k-target">v1.0 ≥ <b>70%</b>；v1.5 ≥ <b>85%</b>；v3.0 ≥ <b>92%</b></div></div>
+      <div class="kpi"><div class="k-name">满意度（👍占比）</div><div class="k-target">v1.0 ≥ <b>80%</b>；v1.5 ≥ <b>88%</b>；v3.0 ≥ <b>92%</b></div></div>
+      <div class="kpi"><div class="k-name">安全专项通过率</div><div class="k-target">S03 已闭环 <b>100%</b>（54项权限+43项安全+E2E全过）</div></div>
+      <div class="kpi"><div class="k-name">公文一次生成可用率</div><div class="k-target">v1.0 ≥ <b>50%</b>；v1.5 ≥ <b>75%</b></div></div>
+      <div class="kpi"><div class="k-name">政策比对准确率</div><div class="k-target">v1.0 ≥ <b>85%</b>；v1.5 ≥ <b>95%</b></div></div>
+    </div>
+  </section>
+
+  <!-- 10 风险 -->
+  <section id="s10">
+    <h2 class="sec"><span class="num">10</span>风险与依赖</h2>
+    <div class="risk">
+      <div class="r-name resolved">安全方案选型 ✅ 已解除</div>
+      <div>Token 踢线方案已确定为 token_version 机制，S03 已完整交付。</div>
+      <div class="r-mit">已闭环：token_version + logout + 三级权限矩阵 + 自保护，commit 1729245。</div>
+    </div>
+    <div class="risk">
+      <div class="r-name resolved">安全 Sprint 无哇点 ✅ 已解除</div>
+      <div>S03 安全已闭环交付，S04 立即恢复哇点节奏。</div>
+      <div class="r-mit">已解除：S03安全体系完整交付，S04公文对话式生成哇点当前启动。</div>
+    </div>
+    <div class="risk">
+      <div class="r-name">对话修改上下文丢失</div>
+      <div>公文对话式修改多轮后，LLM可能丢失前文公文结构，导致"加一段"变成重写全文。</div>
+      <div class="r-mit">公文上下文存数据库不存内存，每次修改携带完整公文结构+修改指令，后端维护公文状态机。</div>
+    </div>
+    <div class="risk">
+      <div class="r-name">RAG检索质量瓶颈</div>
+      <div>当前整段入库粒度粗，口语化问法与书面政务术语存在gap，可能导致召回不准或漏召。</div>
+      <div class="r-mit">S06-S07专项治理：知识图谱精确匹配+多跳推理+实体消歧，叠加语义分块(500字+100字重叠)+LLM query改写+R1/R2/R3参数调优。命中率目标v1.5≥85%。</div>
+    </div>
+    <div class="risk">
+      <div class="r-name">政务合规红线（C1-C8）</div>
+      <div>代码审查发现数据出网/公网自动发布/穿透残留/弱口令/日志脱敏/TLS/审计/密钥处理等8项等保差距。</div>
+      <div class="r-mit">Demo阶段不阻塞（用在线API+公网演示），私有化交付前统一清零。S06先清auto_deploy.sh/trycloudflare残留；C1内网模型/C7审计日志等大项随S18私有化部署包做。</div>
+    </div>
+    <div class="risk">
+      <div class="r-name">图谱构建冷启动质量</div>
+      <div>初始图谱基于事项库JSON+aliases人工构建，实体关系覆盖可能不全，LLM自动抽取（S08）可能引入噪声关系。</div>
+      <div class="r-mit">Phase1人工构建保证准确率优先（S06已交付378/453，S07 H1修正后401/485），图谱与RAG双路融合（图谱未命中RAG兜底）；Phase3自动抽取必经管理员审核，设图谱覆盖率/准确率度量。</div>
+    </div>
+    <div class="risk">
+      <div class="r-name">图谱融合误命中/过度泛化</div>
+      <div>别名命中打分可能把无关问题（如闲聊、外地政策）误判为办事意图出卡，或多跳遍历跨部门扩散过宽，回答变啰嗦。</div>
+      <div class="r-mit">置信度门控 GRAPH_HIT_THRESHOLD=0.75 + 单事项多跳上限（services&gt;6或hops&gt;2收窄为单事项邻居）+ 闲聊/写作/追问意图不触发图谱 + 单回答≤6卡硬截断；小钱v0.1用例专测误命中红线（"随便乱写/你好"不出卡）；GRAPH_RAG_ENABLED=false一键回退S06兜底。</div>
+    </div>
+    <div class="risk">
+      <div class="r-name">docx中文字体</div>
+      <div>服务器端生成docx可能缺少仿宋/黑体等中文字体，导致WPS/Word打开字体回退。</div>
+      <div class="r-mit">字体回退链（仿宋→FangSong→serif）+ Docker镜像安装fonts-wqy-zenhei等中文字体包。</div>
+    </div>
+    <div class="risk">
+      <div class="r-name resolved">LLM改公文"自作主张" ✅ 已验证</div>
+      <div>S04多轮测试通过：修改标题/加段落/改语气均精准修改，未指定部分保持不变。</div>
+      <div class="r-mit">已验证：writing_revise携带完整公文上下文+修改指令，Prompt强约束。</div>
+    </div>
+    <div class="risk">
+      <div class="r-name resolved">工期紧 ✅ 已解除</div>
+      <div>S04实际08-26交付，比计划08-28提前2天。核心4必做+2重要全部完成。</div>
+      <div class="r-mit">已闭环：必做优先+复用RAG/权限/CI基础，review流程补完。</div>
+    </div>
+    <div class="risk">
+      <div class="r-name">大模型效果与成本</div>
+      <div>公文长文本与方言口语化问法效果可能波动；Token 成本不可控。</div>
+      <div class="r-mit">多模型抽象层，按意图路由；Prompt + RAG 调优优先于换模型；监控单次成本。</div>
+    </div>
+    <div class="risk">
+      <div class="r-name resolved">cpolar隧道不稳定 ✅ 已解除</div>
+      <div>S05已迁移至cpolar专业版HK节点，固定域名api.zqhelper.site，systemd开机自启+证书自动续期。</div>
+      <div class="r-mit">已闭环：专业版固定域名不再变化。偶发TTFB抖动（~260ms）由前端请求重试缓解。HK云服务器直连迁移（目标50ms）因S06优先知识图谱后置，Demo阶段cpolar可接受。</div>
+    </div>
+    <div class="risk" style="display:none">
+      <div class="r-name">cpolar 隧道稳定性_old</div>
+      <div>免费版 URL 非永久固定，VM 重启后地址变化影响公网访问。</div>
+      <div class="r-mit">S04 不处理（出彩优先）；中期评估付费固定域名或 Cloudflare Tunnel。</div>
+    </div>
+  </section>
+
+  <!-- 11 原则 -->
+  <section id="s11">
+    <h2 class="sec"><span class="num">11</span>执行原则</h2>
+    <div class="panel">
+      <div class="principle"><div class="p-no">1</div><div><h4>安全优先于出彩</h4><p>账号安全体系是政企客户硬门槛，不做完不往上盖功能。安全 Sprint 不需要哇点，安全本身就是交付价值。S03已完整闭环验证此原则。</p></div></div>
+      <div class="principle"><div class="p-no">2</div><div><h4>3 天一个可演示版本</h4><p>每个迭代结束必须有可在公网演示的版本。安全 Sprint 演示安全能力，出彩 Sprint 演示差异化功能。CI/Deploy 全绿是基本线。</p></div></div>
+      <div class="principle"><div class="p-no">3</div><div><h4>先有再优，不憋大招</h4><p>出彩功能做 MVP 最小闭环，结构化模板+LLM 混合兜底。宁可功能少但能演示，不堆半成品。</p></div></div>
+      <div class="principle"><div class="p-no">4</div><div><h4>PM 总控 + 严格按流程</h4><p>小孙提交 → 小李 review → 小赵验收 → 小钱测试 → 浩哥终验，不得跳步。任务完成必须 @ 对接人。</p></div></div>
+      <div class="principle"><div class="p-no">5</div><div><h4>体验类分批穿插</h4><p>P1/P2/P3 体验项不单独占 Sprint，在出彩 Sprint 中每批穿插 4-5 个，积少成多。</p></div></div>
+      <div class="principle"><div class="p-no">6</div><div><h4>三端版本强一致</h4><p>公网、沙盒、GitHub 远端必须完全一致，VM 统一一条更新命令。</p></div></div>
+      <div class="principle"><div class="p-no">7</div><div><h4>架构始终为私有化预留</h4><p>所有第三方依赖、模型、存储、域名走配置；换环境只改配置不改业务代码。</p></div></div>
+      <div class="principle"><div class="p-no">8</div><div><h4>知识库没有的内容严禁瞎编</h4><p>RAG 红线：无命中时明确告知并引导，不编造。</p></div></div>
+      <div class="principle"><div class="p-no">9</div><div><h4>错误第一时间沟通</h4><p>API 报错、环境故障、依赖问题，第一时间群内说明现象与阻塞。</p></div></div>
+      <div class="principle"><div class="p-no">10</div><div><h4>Token 节约</h4><p>巡检 2 小时一次精简同步；代码审查只看 diff；UAT 批量跑不逐题开会话。</p></div></div>
+    </div>
+    <div class="callout ok" style="margin-top:18px">
+      <b>当前状态：</b>S01-S06全部闭环，tag v1.2.0（8195995）。S07图谱RAG融合+全卡片体系开发收口——前端d2eb59c已上线、后端6e8a3e4 CI三绿、小赵功能验收主链路通过，VM部署+小钱测试通过后打tag v1.3.0。S08推进图谱Phase3（LLM自动构建+可视化+智能追问）并消化S07遗留项，从"文本匹配"到"智能推理"的升级在S07完成闭环。
+    </div>
+  </section>
+
+  <footer>
+    政企智能助手产品路线图 v1.7 · 2026-08-28 · S06知识图谱+卡片库启动 · 编制：产品组 小赵
+  </footer>
+</main>
+</div>
+<script>
+document.querySelectorAll('nav.toc a[href^="#"]').forEach(function(a){
+  a.addEventListener('click',function(e){
+    var id=a.getAttribute('href').slice(1);
+    var el=document.getElementById(id);
+    if(el){e.preventDefault();el.scrollIntoView({behavior:'smooth',block:'start'});history.replaceState(null,'','#'+id);}
+  });
+});
+</script>
+</body>
+</html>
