@@ -9,6 +9,25 @@ const businessCards = [
   {
     icon: (
       <svg className="w-9 h-9" viewBox="0 0 48 48" fill="none">
+        <rect x="4" y="8" width="40" height="32" rx="4" stroke="white" strokeWidth="1.5" />
+        <circle cx="16" cy="24" r="5" stroke="white" strokeWidth="1.5" />
+        <path d="M8 36c0-3 4-7 8-7s8 4 8 7" stroke="white" strokeWidth="1.5" strokeLinecap="round" />
+        <path d="M28 18h12M28 24h12M28 30h8" stroke="white" strokeWidth="1.5" strokeLinecap="round" />
+        <circle cx="16" cy="24" r="2" fill="#bfdbfe" />
+      </svg>
+    ),
+    title: '政企智能助手',
+    desc: 'GraphRAG 图谱融合推理驱动的政务级智能服务平台。把政策咨询、办事导引、公文辅助变成结构化智能服务，答得准、理得清、可私有部署。',
+    to: '/products#ai',
+    iconBox: 'bg-gradient-to-br from-blue-500 to-indigo-600',
+    iconGlow: 'shadow-[0_10px_28px_rgba(37,99,235,0.35)]',
+    border: 'border-slate-200/60 hover:border-blue-300',
+    glow: 'hover:shadow-[0_8px_40px_rgba(37,99,235,0.10)]',
+    topbar: 'from-blue-500 to-indigo-500',
+  },
+  {
+    icon: (
+      <svg className="w-9 h-9" viewBox="0 0 48 48" fill="none">
         <rect x="6" y="14" width="36" height="24" rx="3" stroke="white" strokeWidth="1.5" />
         <circle cx="24" cy="24" r="8" stroke="white" strokeWidth="1.5" />
         <circle cx="24" cy="24" r="3" fill="#a5f3fc" />
@@ -27,24 +46,6 @@ const businessCards = [
   {
     icon: (
       <svg className="w-9 h-9" viewBox="0 0 48 48" fill="none">
-        <rect x="4" y="20" width="40" height="12" rx="2" stroke="white" strokeWidth="1.5" />
-        <path d="M12 12h4v8h-4zM20 8h4v12h-4zM28 4h4v16h-4zM36 12h4v8h-4z" stroke="white" strokeWidth="1.5" />
-        <line x1="24" y1="32" x2="24" y2="40" stroke="white" strokeWidth="1.5" />
-        <circle cx="24" cy="42" r="3" fill="#fde68a" />
-      </svg>
-    ),
-    title: '智慧交通',
-    desc: '自研时空分层预测模型，突破 GCN 瓶颈。动态图结构学习 + BiGCN 出行预测 + T2GAN 态势推演。',
-    to: '/products#traffic',
-    iconBox: 'bg-gradient-to-br from-amber-500 to-orange-600',
-    iconGlow: 'shadow-[0_10px_28px_rgba(245,158,11,0.35)]',
-    border: 'border-slate-200/60 hover:border-amber-300',
-    glow: 'hover:shadow-[0_8px_40px_rgba(245,158,11,0.10)]',
-    topbar: 'from-amber-500 to-orange-500',
-  },
-  {
-    icon: (
-      <svg className="w-9 h-9" viewBox="0 0 48 48" fill="none">
         <path d="M24 8l-4 4h-8c-2.2 0-4 1.8-4 4v20c0 2.2 1.8 4 4 4h24c2.2 0 4-1.8 4-4V16c0-2.2-1.8-4-4-4h-8l-4-4z" stroke="white" strokeWidth="1.5" strokeLinejoin="round" />
         <circle cx="24" cy="26" r="6" stroke="white" strokeWidth="1.5" />
         <circle cx="24" cy="26" r="2" fill="#ddd6fe" />
@@ -59,30 +60,11 @@ const businessCards = [
     glow: 'hover:shadow-[0_8px_40px_rgba(139,92,246,0.10)]',
     topbar: 'from-violet-500 to-purple-500',
   },
-  {
-    icon: (
-      <svg className="w-9 h-9" viewBox="0 0 48 48" fill="none">
-        <rect x="4" y="8" width="40" height="32" rx="4" stroke="white" strokeWidth="1.5" />
-        <circle cx="16" cy="24" r="5" stroke="white" strokeWidth="1.5" />
-        <path d="M8 36c0-3 4-7 8-7s8 4 8 7" stroke="white" strokeWidth="1.5" strokeLinecap="round" />
-        <path d="M28 18h12M28 24h12M28 30h8" stroke="white" strokeWidth="1.5" strokeLinecap="round" />
-        <circle cx="16" cy="24" r="2" fill="#bfdbfe" />
-      </svg>
-    ),
-    title: '政企智能助手',
-    desc: 'GraphRAG 图谱融合推理驱动的政务级智能服务平台。把政策咨询、办事导引、公文辅助变成结构化智能服务，答得准、理得清、可私有部署。',
-    to: '/products#ai',
-    iconBox: 'bg-gradient-to-br from-blue-500 to-indigo-600',
-    iconGlow: 'shadow-[0_10px_28px_rgba(37,99,235,0.35)]',
-    border: 'border-slate-200/60 hover:border-blue-300',
-    glow: 'hover:shadow-[0_8px_40px_rgba(37,99,235,0.10)]',
-    topbar: 'from-blue-500 to-indigo-500',
-  },
 ]
 
 const stats = [
   { value: '2022', label: '年成立' },
-  { value: '4', label: '大业务线' },
+  { value: '3', label: '大业务线' },
   { value: '5+', label: '年技术积累' },
   { value: '100', label: '% 自主可控' },
 ]
@@ -197,7 +179,7 @@ export default function Home() {
               </p>
 
               <p className="reveal text-lg md:text-xl text-ink-secondary max-w-lg mb-12 leading-relaxed">
-                AI 与虚实融合整体解决方案提供商。从政企智能助手到智慧交通，从 VR 仿真到无人机训练，以技术连接虚拟与现实。
+                AI 与虚实融合整体解决方案提供商。从政企智能助手到 VR 仿真，从无人机训练到虚实融合，以技术连接虚拟与现实。
               </p>
 
               <div className="reveal flex flex-wrap gap-4">
@@ -226,7 +208,7 @@ export default function Home() {
         <div className="max-w-6xl mx-auto px-6 relative z-10">
           <div className="text-center mb-16 reveal">
             <span className="section-tag mb-6">核心业务</span>
-            <h2 className="section-title mt-6">四大业务线</h2>
+            <h2 className="section-title mt-6">三大业务线</h2>
             <p className="section-subtitle">全链路智能解决方案</p>
           </div>
 

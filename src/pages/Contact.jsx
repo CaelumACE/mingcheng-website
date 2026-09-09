@@ -117,7 +117,6 @@ export default function Contact() {
                       <option value="ai">政企智能助手</option>
                       <option value="xr">VR/AR 虚实融合</option>
                       <option value="drone">无人机训练软件</option>
-                      <option value="traffic">智慧交通</option>
                       <option value="other">其他</option>
                     </select>
                   </div>
